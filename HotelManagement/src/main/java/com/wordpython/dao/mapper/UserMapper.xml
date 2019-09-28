@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace指定映射的包下的接口 -->
+<mapper namespace="com.wordpython.dao.UserMapper">
+    <select id="findByUsername" parameterType="String" resultType="com.wordpython.entity.Users">
+		select * from users where username=#{username}
+	</select>
+<!--    <insert id="save" parameterType="Users">-->
+<!--		insert into users(account,username,password,phone) values(#{account},#{username},#{password},#{phone})-->
+<!--	</insert>-->
+
+</mapper>

@@ -1,0 +1,47 @@
+html{
+    background-color: #F2F2F2;
+}
+body {
+    line-height: 24px;
+    font: 14px Helvetica Neue,Helvetica,PingFang SC,Tahoma,Arial,sans-serif;
+}
+.error-page-info-desc {
+    color: #777;
+    font-size: 20px;
+    line-height: 28px;
+    margin-bottom: 16px;
+}
+blockquote, body, button, dd, div, dl, dt, form, h1, h2, h3, h4, h5, h6, input, li, ol, p, pre, td, textarea, th, ul {
+    margin: 0;
+    padding: 0;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+.error-page-img {
+    min-width: 300px;
+    max-width: 100%;
+    max-height: 300px;
+}
+.error-page-info {
+    display: inline-block;
+    text-align: center;
+    vertical-align: middle;
+    padding-left: 30px;
+}
+.error-page-info h1 {
+    color: #434e59;
+    font-size: 72px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+.error-page {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+    background: transparent;
+}

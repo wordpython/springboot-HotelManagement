@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace指定映射的包下的接口 -->
+<mapper namespace="com.wordpython.dao.GoodsDao">
+	<select id="selectGoods" parameterType="Goods" resultType="Goods">
+		select * from Goods
+		<where>
+			<if test="mark==1">
+				and major=#{major} and academy=#{academy} and sno=#{son} sname=#{sname}
+			</if>
+			<if test="mark==2">
+				and sname=#{sname} and idcard=#{idcard}
+			</if>
+			<if test="mark==3">
+				and bname=#{bname} and account=#{account}
+			</if>
+			<if test="mark==4">
+				brand=#{brand} and size=#{size} and sname=#{sname} and sno=#{sno} and other=#{other}
+			</if>
+			<if test="mark==5"><!-- 查询手机 -->
+				brand=#{brand} and mobile=#{mobile} and other=#{other}
+			</if>
+			<if test="mark==6">
+				brand=#{brand}  
+			</if>
+			<if test="mark==7">
+				bname=#{bname} and sno=#{sno} and sname=#{sname}
+			</if>
+			<if test="mark==8">
+				
+			</if>
+			<if test="mark==0">
+				
+			</if>
+			<if test="mark==null">
+				uuid=#{uuid}
+			</if>
+		</where>
+	</select>
+	<!-- 根据表中的日期进行排序，找到最新的n条数据 -->
+	<select id="selectGoodsOfTime" resultType="Goods">
+		select * from Goods order by create_time desc limit #{n};
+	</select>
+	<insert id="saveGoods" parameterType="Goods">
+		insert into Goods(uuid,mark,academy,major,photo,sno,sname,contact,idcard,bname,account,brand,size,other,mobile,create_time)
+		values(#{uuid},#{mark},#{academy},#{major},#{photo},#{sno},#{sname},#{contact},#{idcard},#{bname},#{account},#{brand},#{size},#{other},#{mobile},#{create_time})
+	</insert>
+	<delete id="deleteGoods">
+		delete from Goods where uuid=#{uuid}
+	</delete>
+</mapper>

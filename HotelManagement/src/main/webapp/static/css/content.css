@@ -1,0 +1,122 @@
+@charset "UTF-8";
+
+body {
+	margin: 0 auto;
+	width: 1349px;
+	height: 100%;
+	background-color: #fff;
+	line-height: 20px;
+}
+
+.login_head {
+	height: 60px;
+	position: relative;
+	border-bottom: 1px solid #fff;
+	background-color: #2b303b;
+	font-family: 'FranklinPro', 'FranklinITCProLight',
+		'Franklin Gothic Medium', 'Franklin Gothic', 'ITC Franklin Gothic',
+		'Apple SD Gothic Neo', 'Myriad Set Pro', 'Helvetica Neue',
+		'Helvetica Neue Light', Helvetica, Arial, 'Lucida Grande', sans-serif;
+}
+
+.logo {
+	float: left;
+	height: 21px;
+	width: 168px;
+	padding: 10px 20px;
+}
+
+.logo a {
+	margin: 0 auto;
+	color: #fff;
+}
+
+.logo_a {
+	width: 84px;
+	height: 44px;
+	margin-bottom: 10px;
+	display: inline-block;
+	background-size: contain;
+	float: left;
+	background-repeat: no-repeat;
+	background-image: url(../imgs/my.jpg);
+}
+
+.menu_head {
+	padding: 20px 20px;
+	width: 68px;
+	height: 20px;
+	float: right;
+}
+
+.menu_head a {
+	color: #fff;
+	text-decoration: none;
+	position: absolute;
+}
+
+.span {
+	width: 20px;
+	height: 24px;
+	color: #fff;
+	float: right;
+	font-size: 18px;
+	margin-top: 8px;
+}
+
+hr {
+	width: 1050px;
+	margin-top: 50px;
+}
+
+.new_content {
+	margin-top: 50px;
+}
+
+.contentBody {
+	float: left;
+	/*background-color: #2b303b;*/
+	width: 680px;
+	height: 100%;
+	margin-left: 150px;
+	border-right: 1px solid #d5d5d5;
+}
+
+.contentLeft {
+	width: 340px;
+	height: 700px;
+	margin-left: 860px;
+	background-color: #2b303b;
+}
+
+.searchF {
+	height: 100%;
+	width: 620px;
+}
+
+.head_title {
+	margin-left: 150px;
+	margin-bottom: 0px;
+	width: 1000px;
+	height: 128px;
+	padding-left: 0px;
+	word-wrap: break-word;
+	word-break: normal;
+}
+
+.head_title h1 {
+	font-family: 'PostoniWide', 'Bodoni 72', 'Bodoni MT', Didot,
+		'Didot LT STD', 'Hoefler Text', Garamond, Georgia, serif;
+	font-size: calc(21px + 2.5vw);
+	font-weight: bold;
+	word-spacing: -0.02em;
+	margin-bottom: 8px;
+	line-height: 1.1em;
+	color: #2a2a2a;
+	display: inline-block;
+	width: 100%;
+}
+
+article, article p {
+	line-height: calc(1.5em + 0.3333vw);
+}

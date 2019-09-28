@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="./js/jquery-1.11.3.min.js"></script>
+<script type="text/javascript"
+	src="./js/jquery-easyui-1.7.0/jquery.easyui.min.js"></script>
+<script type="text/javascript"
+	src="./js/jquery-easyui-1.7.0/locale/easyui-lang-zh_CN.js"></script>
+<link rel="stylesheet"
+	href="./js/jquery-easyui-1.7.0/themes/default/easyui.css"
+	type="text/css"></link>
+<link type="text/css" rel="stylesheet"
+	href="./js/jquery-easyui-1.7.0/themes/icon.css"></link>
+<script type="text/javascript">
+	function send_button() {
+		$('#dl').dialog('open');
+	}
+	function closeDialog() {
+		alert("ldksaf");
+		$('#dl').dialog('close');
+	}
+</script>
+</head>
+<body>
+	<button onclick="send_button()">发送短信</button>
+	<div id="dl" class="easyui-dialog"
+		data-options="iconCls: 'icon-save' ,toolbar:'#dlg-toolbar',buttons:'#dlg-buttons',closed:true"
+		style="padding: 5px; width: 400px; height: 200px; text-align: center;"
+		title="手机验证码验证" iconCls="icon-ok" toolbar="#dlg-toolbar"
+		buttons="#dlg-buttons">
+		<div class="line code-wrap">
+			<div class="label account-label error" style="margin: 0 8px;">手机验证码不能为空</div>
+
+			<div class="value">
+				<input data-v-8664920c="" type="text" placeholder="请输入手机验证码"
+					style="height: 38px; padding: 4px;"
+					class="code input-register-code input-error">
+			</div>
+		</div>
+	</div>
+	<div id="dlg-toolbar" style="text-align: center;">短信已发送至您的手机，请留意查收</div>
+	<div id="dlg-buttons">
+		<a href="#" class="easyui-linkbutton" iconCls="icon-ok"
+			onclick="javascript:alert('Ok')">确认</a> <a href="#"
+			class="easyui-linkbutton" iconCls="icon-cancel"
+			onclick="closeDialog()">重新发送</a>
+	</div>
+</body>
+</html>
