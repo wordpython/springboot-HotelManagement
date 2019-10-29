@@ -40,7 +40,7 @@ public class LoginD {
 	}
 	//截取姓名
 	private String getChinese(String stuNameId) {
-		String regex = "([\u4e00-\u9fa5]+)";
+		String regex = "([\u4e00-\u9fa5]+)";//匹配中文
 		String str="";
 		Matcher matcher = Pattern.compile(regex).matcher(stuNameId);
 		while (matcher.find()) {

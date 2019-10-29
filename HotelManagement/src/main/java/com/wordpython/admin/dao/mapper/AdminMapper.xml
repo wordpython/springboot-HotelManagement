@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace指定映射的包下的接口 -->
+<mapper namespace="com.wordpython.admin.dao.AdminMapper">
+    <insert id="insertAdmin" parameterType="Admin">
+		insert into admin (admin_id, username, password) values (#{admin_id},#{username},#{password})
+	</insert>
+	<select id="selectAdmin" parameterType="Admin" resultType="com.wordpython.admin.entity.Admin">
+		select * from admin where username=#{username} and password=#{password}
+	</select>
+	<select id="selectAdminByUsername" parameterType="Admin" resultType="com.wordpython.admin.entity.Admin">
+		select * from admin where username=#{username}
+	</select>
+    <update id="updateAdmin" parameterType="Admin">
+		update admin set username=#{username},password=#{password} where username=#{username}
+	</update>
+    <delete id="deleteAdmin" parameterType="Admin">
+		delete from admin where username=#{username}
+	</delete>
+</mapper>

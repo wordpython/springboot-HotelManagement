@@ -1,0 +1,347 @@
+DROP DATABASE IF EXISTS hotel_management;
+# 这里加上编码方式后，在linux运行就不会报错
+CREATE DATABASE IF NOT EXISTS hotel_management DEFAULT CHARSET utf8 COLLATE utf8_general_ci;
+
+use hotel_management;
+/*
+  Navicat MySQL Data Transfer
+
+  Source Server         :localhost
+  Source Server         :MySQL
+  Source Server         :50723
+  Source Host           :localhost:3306
+  Source Schema         :hotel_management
+
+  Target Server Type    :MySQL
+  Target Server Version :50723
+  File Encoding         :65001
+
+  Date:15/10/2019 16:21
+ */
+
+SET NAMES utf8mb4;
+-- 对表结构或本身操作时，先禁用外键约束
+SET FOREIGN_KEY_CHECKS = 0;
+
+-- -----------------------------------
+
+-- 前台管理系统数据库
+
+-- -----------------------------------
+
+-- ----------------------------
+-- Table structure for admin
+-- 店主表
+-- ----------------------------
+DROP TABLE IF EXISTS admin;
+CREATE TABLE admin
+(
+    admin_id VARCHAR(255) NOT NULL PRIMARY KEY COMMENT '主键',
+    username varchar(255) NOT NULL COMMENT '用户名',
+    password varchar(255) NOT NULL COMMENT '密码'
+) COMMENT '店主表';
+INSERT INTO admin value ('1', 'wordpython', 'bbbbbb');
+INSERT INTO admin value ('2', 'word', 'bbbbbb');
+
+-- ----------------------------
+-- Table structure for hotel
+-- 酒店信息表
+-- ----------------------------
+DROP TABLE IF EXISTS hotel;
+CREATE TABLE hotel
+(
+    `hotel_id`    VARCHAR(255) not null COMMENT '酒店id',
+    admin_id      VARCHAR(255) COMMENT '店主主键',
+    `hotel_name`  VARCHAR(255) NOT NULL COMMENT '酒店名',
+    `phone`       VARCHAR(255) NULL COMMENT '手机号',
+    `telephone`   VARCHAR(255) COMMENT '电话号码',
+    `email`       VARCHAR(255) COMMENT '电子邮箱',
+    `address`     VARCHAR(255) COMMENT '地址',
+    `website`     VARCHAR(255) COMMENT '网站',
+    detailed      varchar(255) COMMENT '补充酒店信息',
+    `create_time` TIMESTAMP                             DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+    `update_time` TIMESTAMP ON UPDATE CURRENT_TIMESTAMP DEFAULT CURRENT_TIMESTAMP COMMENT '更新时间',
+    PRIMARY KEY (`hotel_id`)
+
+
+) comment '酒店信息表';
+INSERT INTO hotel (hotel_id, admin_id, hotel_name, phone, telephone, email, address, website, detailed)
+    value ('1', '1', '裕华商务公馆', '13211134568', '13610079095', 'wordpython@163.com', '东莞',
+           'https://wordpython.com', '旁边有著名公园，交通方便，环境优美');
+-- ----------------------------
+-- Table structure for photo
+-- 房间图片表
+-- ----------------------------
+DROP TABLE IF EXISTS photo;
+CREATE TABLE photo
+(
+    photo_id    varchar(255) NOT NULL PRIMARY KEY COMMENT '主键id',
+    room_number varchar(255) COMMENT '房间编号',
+    hotel_id    varchar(255) COMMENT '酒店id',
+    img_url     varchar(255) COMMENT '图片文件夹名',
+    photo_name  varchar(255) COMMENT '图片名字'
+) COMMENT '房间图片表';
+INSERT INTO photo value ('1', '888888', '1', '/images/', '0.jpg');
+INSERT INTO photo value ('2', '888888', '1', '/images/', '1.jpg');
+INSERT INTO photo value ('3', '888888', '1', '/images/', '2.jpg');
+INSERT INTO photo value ('4', '888888', '1', '/images/', '3.jpg');
+INSERT INTO photo value ('5', '867677', '1', '/images/', '3.jpg');
+
+
+-- ----------------------------
+-- Table structure for room
+-- 房间表
+-- ----------------------------
+DROP TABLE IF EXISTS room;
+CREATE TABLE room
+(
+    type_id     varchar(255) NOT NULL PRIMARY KEY COMMENT '主键id',
+    room_number varchar(255) NOT NULL COMMENT '房间编号',
+    hotel_id    varchar(255) COMMENT '酒店id',
+    type        varchar(255) COMMENT '房间类型(单双人房等)',
+    area        varchar(255) COMMENT '房间面积',
+    floor       int COMMENT '所属楼层',
+    bed         int COMMENT '床位数',
+    wifi        varchar(255) COMMENT 'wifi(有无)',
+    workbench   varchar(255) COMMENT '工作台（有无）',
+    livingroom  varchar(255) COMMENT '客厅（有无）',
+    kitchen     varchar(255) COMMENT '厨房',
+    win         varchar(255) COMMENT '窗口(有无)',
+    detailed    varchar(255) COMMENT '特别提示',
+    create_time timestamp    not null DEFAULT '0000-00-00 00:00:00' COMMENT '创建时间',
+    update_time timestamp    null ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间'
+#     FOREIGN KEY (room_number) REFERENCES room_msg (room_number) ON DELETE CASCADE ON UPDATE CASCADE
+) COMMENT '房间表';
+-- -----------
+-- Records of room
+-- -----------
+INSERT INTO room value ('1', '888888', '1', '双人房', '20-25㎡', 8, 2, '有', '有', '有', '有', '有', '非常温馨浪漫的房间',
+                        '2019-010-14 17:11:10', '2019-10-14 17:11:10');
+INSERT INTO room value ('2', '867677', '1', '双人房', '20-25㎡', 8, 2, '有', '有', '有', '有', '有', '非常温馨浪漫的房间',
+                        '2019-010-14 17:11:10', '2019-10-14 17:11:10');
+
+-- ----------------------------
+-- Table structure for room_msg
+-- 房间信息表
+-- ----------------------------
+DROP TABLE IF EXISTS room_msg;
+CREATE TABLE room_msg
+(
+    room_id     varchar(255) NOT NULL PRIMARY KEY COMMENT '房间id',
+    room_number varchar(255) COMMENT '房间编号',
+    hotel_id    varchar(255) COMMENT '酒店id',
+    status      varchar(255) COMMENT '房间状态:1-可预订，0-已被预订，-1：已入住，-2：不可用',
+    price       double    DEFAULT 0 COMMENT '房间价格',
+    discount    double    DEFAULT 0 COMMENT '房间折扣',
+    create_time timestamp DEFAULT '0000-00-00 00:00:00' COMMENT '创建时间',
+    update_time timestamp    null ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间'
+) COMMENT '房间信息表';
+-- -----------
+-- Records of room_msg
+-- -----------
+INSERT INTO room_msg value (1, '888888', '1', '可预订', 88.8, 0.88, '2019-10-14 17:11:10', '2019-10-14 17:11:10');
+INSERT INTO room_msg value (2, '867677', '1', '可预订', 78.8, 0.90, '2019-10-14 17:11:10', '2019-10-14 17:11:10');
+
+-- ----------------------------
+-- Table structure for user
+-- 客户表
+-- ----------------------------
+DROP TABLE IF EXISTS user;
+CREATE TABLE user
+(
+    user_id      varchar(255) NOT NULL PRIMARY KEY COMMENT '编号(主键)',
+    username     varchar(255) NOT NULL COMMENT '昵称',
+    password     varchar(255) NOT NULL COMMENT '密码',
+    photo        varchar(255) COMMENT '头像路径',
+    mail         varchar(255) COMMENT '邮箱',
+    code         varchar(255) COMMENT '邮箱验证码',
+    name         varchar(255) COMMENT '实名',
+    phone        varchar(255) COMMENT '电话',
+    idcard       varchar(255) COMMENT '身份证号',
+    status       varchar(255) COMMENT '登录状态',
+    bookingtimes int COMMENT '预订次数',
+    level        int COMMENT '等级'
+) COMMENT '客户表';
+-- -----------
+-- Records of user
+-- -----------
+INSERT INTO user() value (1, 'wordpython', 'aaaaaa', 'C:/major/images/', 'wordpython@163.com', NULL, 'ydl',
+                          '13680008000', '440882199780008888', 'false', 88, 1);
+
+-- ----------------------------
+-- Table structure for booking
+-- 预定表
+-- ----------------------------
+DROP TABLE IF EXISTS booking;
+CREATE TABLE booking
+(
+    booking_id   bigint    NOT NULL PRIMARY KEY COMMENT '预订id',
+    user_id      varchar(255) COMMENT '客户编号',
+    room_number  varchar(255) COMMENT '房间编号',
+    booking_time timestamp COMMENT '预订日期',
+    cost         double COMMENT '订单费用',
+    status       int COMMENT '订单状态:0-已下单，1-已付款，2-已消费，-1-已取消，-2-被删除',
+    create_time  TIMESTAMP null DEFAULT '0000-00-00 00:00:00' COMMENT '创建时间',
+    update_time  TIMESTAMP null ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间'
+#     FOREIGN KEY (user_id) REFERENCES user (user_id) ON DELETE CASCADE ON UPDATE CASCADE
+#     FOREIGN KEY (room_number) REFERENCES room (room_number) ON DELETE CASCADE ON UPDATE CASCADE
+) COMMENT '预定表';
+
+
+-- -----------------------------------
+
+-- 后台管理系统数据库
+
+-- -----------------------------------
+
+-- ----------------------------
+-- Table structure for sys_dict
+-- 基础字典
+-- ----------------------------
+DROP TABLE IF EXISTS sys_dict;
+CREATE TABLE sys_dict
+(
+    dict_id      bigint       NOT NULL COMMENT '字典id',
+    dict_type_id bigint       NOT NULL COMMENT '所属字典类型的id',
+    code         varchar(50)  NOT NULL COMMENT '字典编码',
+    name         varchar(255) NOT NULL COMMENT '字典名称',
+    parent_id    bigint       NOT NULL COMMENT '上级代码id',
+    parent_ids   varchar(255) COMMENT '所有上级id',
+    status       varchar(10)  NOT NULL DEFAULT 'ENABLE' COMMENT '状态（字典）',
+    sort         int COMMENT '排序',
+    description  varchar(1000) COMMENT '字典的描述',
+    create_time  datetime COMMENT '创建时间',
+    update_time  datetime COMMENT '更新时间',
+    create_user  bigint COMMENT '创建人',
+    update_user  bigint COMMENT '修改人',
+    PRIMARY KEY (dict_id) USING BTREE
+) COMMENT = '基础字典';
+
+-- -----------
+-- Records of sys_dict
+-- -----------
+INSERT INTO sys_dict
+VALUES (1106120532442595330, 1106120208097067009, 'M', '男', 0, '[0]', 'ENABLE', NULL, '', '2019-03-14 17:11:00', NULL,
+        1, NULL);
+INSERT INTO sys_dict
+VALUES (1106120574163337218, 1106120208097067009, 'F', '女', 0, '[0]', 'ENABLE', NULL, '', '2019-03-14 17:11:10', NULL,
+        1, NULL);
+INSERT INTO sys_dict
+VALUES (1106120645697191938, 1106120265689055233, 'ENABLE', '启用', 0, '[0]', 'ENABLE', NULL, '', '2019-03-14 17:11:27',
+        NULL, 1, NULL);
+INSERT INTO sys_dict
+VALUES (1106120699468169217, 1106120265689055233, 'DISABLE', '禁用', 0, '[0]', 'ENABLE', NULL, '', '2019-03-14 17:11:40',
+        NULL, 1, NULL);
+INSERT INTO sys_dict
+VALUES (1106120784318939137, 1106120322450571266, 'ENABLE', '启用', 0, '[0]', 'ENABLE', NULL, '', '2019-03-14 17:12:00',
+        NULL, 1, NULL);
+INSERT INTO sys_dict
+VALUES (1106120825993543682, 1106120322450571266, 'FREEZE', '冻结', 0, '[0]', 'ENABLE', 1, '', '2019-03-14 17:12:10',
+        '2019-03-16 10:56:36', 1, 1);
+INSERT INTO sys_dict
+VALUES (1106120875872206849, 1106120322450571266, 'DELETED', '已删除', 0, '[0]', 'ENABLE', -1221, '',
+        '2019-03-14 17:12:22', '2019-03-16 10:56:53', 1, 1);
+INSERT INTO sys_dict
+VALUES (1106120935070613505, 1106120388036902914, 'Y', '删除', 0, '[0]', 'ENABLE', 23333, '', '2019-03-14 17:12:36',
+        '2019-03-16 10:58:53', 1, 1);
+INSERT INTO sys_dict
+VALUES (1106120968910258177, 1106120388036902914, 'N', '未删除', 0, '[0]', 'ENABLE', 1212211221, '', '2019-03-14 17:12:44',
+        '2019-03-16 10:59:03', 1, 1);
+
+-- ----------------------------
+-- Table structure for sys_dict_type
+-- 字典类型表
+-- ----------------------------
+DROP TABLE IF EXISTS `sys_dict_type`;
+CREATE TABLE `sys_dict_type`
+(
+    dict_type_id bigint       NOT NULL COMMENT '字典类型id',
+    code         varchar(255) NOT NULL COMMENT '字典类型编码',
+    name         varchar(255) NOT NULL COMMENT '字典类型名称',
+    description  varchar(1000) COMMENT '字典描述',
+    system_flag  char(1)      NOT NULL COMMENT '是否是系统字典，Y-是，N-否',
+    status       varchar(10)  NOT NULL DEFAULT 'ENABLE' COMMENT '状态(字典)',
+    sort         int COMMENT '排序',
+    create_time  datetime COMMENT '添加时间',
+    create_user  bigint COMMENT '创建人',
+    update_time  datetime COMMENT '修改时间',
+    update_user  bigint COMMENT '修改人',
+    PRIMARY KEY (dict_type_id) USING BTREE
+) COMMENT = '字典类型表';
+
+-- ------------
+-- Records of sys_dict_type
+-- ------------
+INSERT INTO `sys_dict_type`
+VALUES (1106120208097067009, 'SEX', '性别', '', 'Y', 'ENABLE', 4, '2019-03-14 17:09:43', 1, NULL, NULL);
+INSERT INTO `sys_dict_type`
+VALUES (1106120265689055233, 'STATUS', '状态', '', 'Y', 'ENABLE', 3, '2019-03-14 17:09:57', 1, NULL, NULL);
+INSERT INTO `sys_dict_type`
+VALUES (1106120322450571266, 'ACCOUNT_STATUS', '账号状态', '', 'Y', 'ENABLE', 21112, '2019-03-14 17:10:10', 1,
+        '2019-03-16 10:56:15', 1);
+INSERT INTO `sys_dict_type`
+VALUES (1106120388036902914, 'DEL_FLAG', '是否删除', '', 'Y', 'ENABLE', 2, '2019-03-14 17:10:26', 1, '2019-03-27 16:26:31',
+        1);
+
+
+-- -------------------------------
+-- Table structure for sys_user
+-- 管理员表
+-- -------------------------------
+DROP TABLE IF EXISTS sys_user;
+CREATE TABLE sys_user
+(
+    user_id     bigint      NOT NULL COMMENT '主键id',
+    avatar      varchar(64) COMMENT '头像',
+    account     varchar(45) NOT NULL COMMENT '账号',
+    passwore    varchar(45) NOT NULL COMMENT '密码',
+    salt        varchar(45) COMMENT 'md5密码盐',
+    name        varchar(45) NOT NULL COMMENT '名字',
+    sex         varchar(32) COMMENT '性别(字典)',
+    email       varchar(45) COMMENT '电子邮件',
+    phone       varchar(45) COMMENT '电话',
+    role_id     varchar(255) COMMENT '角色id(多个逗号隔开)',
+    status      varchar(32) COMMENT '状态(字典)',
+    create_time datetime COMMENT '创建时间',
+    create_user bigint COMMENT '创建人',
+    update_time datetime COMMENT '更新时间',
+    update_user bigint COMMENT '更新人',
+    PRIMARY KEY (user_id) USING BTREE
+) COMMENT = '管理员表';
+
+-- --------------
+-- Records of sys_user
+-- --------------
+INSERT INTO sys_user
+VALUES (1, '1', 'admin', '1d6b1208c7d151d335790276a18e3d99', 'q6taw', 'wordpython', 'M', 'wordpython@163.com',
+        '13680008000', '1', 'ENABLE', '2019-10-15 08:49:53', NULL, '2019-10-15 22:52:24', 24);
+
+-- ----------------------------
+-- Table structure for sys_role
+-- 角色表
+-- ----------------------------
+DROP TABLE IF EXISTS sys_role;
+CREATE TABLE sys_role
+(
+    role_id     bigint NOT NULL COMMENT '主键id',
+    pid         bigint COMMENT '父角色id',
+    name        varchar(255) COMMENT '角色名称',
+    description varchar(255) COMMENT '提示',
+    sort        int COMMENT '序号',
+    create_time datetime COMMENT '创建时间',
+    update_time datetime COMMENT '修改时间',
+    create_user bigint COMMENT '创建用户',
+    update_user bigint COMMENT '修改用户',
+    PRIMARY KEY (role_id) USING BTREE
+) COMMENT '角色表';
+
+-- --------------
+-- Records of sys_role
+-- --------------
+INSERT INTO sys_role
+VALUES (1, 0, '超级管理员', 'administrator', 1, '2019-10-15 21:00:00', '2019-10-15 21:00:00', NULL, NULL);
+INSERT INTO sys_role
+VALUES (5, 1, '临时管理员', 'temp', 2, '2019-10-15 21:00:00', '2019-10-15 21:00:00', NULL, NULL);
+
+
+SET FOREIGN_KEY_CHECKS = 1; -- 外键约束

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace指定映射的包下的接口 -->
+<mapper namespace="com.wordpython.dao.MapperRoom">
+
+    <!--
+        图片的增删改查
+    -->
+    <!-- 一对多查询，结果集处理 -->
+    <resultMap id="photoResultMap" type="com.wordpython.entity.Photo">
+        <result property="room_number" column="room_number"/>
+        <result property="img_url" column="img_url"/>
+        <!--
+            collection节点：配置List集合类型的属性，用于1对多的查询
+            ofType：在List里放的是什么类型
+         -->
+        <collection property="photo_names" ofType="string" javaType="list">
+            <result column="photo_name"/>
+        </collection>
+    </resultMap>
+    <select id="selectPhotos" resultMap="photoResultMap">
+		SELECT room_number,img_url,photo_name from photo JOIN room USING(room_number)
+		where room.hotel_id=#{hotel_id} and photo.hotel_id=#{hotel_id};
+	</select>
+    <select id="selectPhoto" parameterType="Room" resultMap="photoResultMap">
+		SELECT room_number,img_url,photo_name from photo JOIN room USING(room_number)
+		where room_number=#{room_number} and room.hotel_id=#{hotel_id} and photo.hotel_id=#{hotel_id};
+	</select>
+    <insert id="insertPhoto" parameterType="Photo">
+        insert into photo(photo_id, room_number,hotel_id,img_url, photo_name)
+        value(#{photo_id},#{room_number},#{hotel_id},#{img_url},#{photo_name})
+    </insert>
+    <update id="updatePhoto" parameterType="Photo">
+		update photo set room_number =#{room_number}
+		where img_url=#{img_url}  and hotel_id=#{hotel_id};
+	</update>
+
+
+    <!--
+        房间信息的增删改查
+    -->
+    <select id="selectRoom" parameterType="Room" resultType="Room">
+		SELECT * from room JOIN room_msg USING(room_number,create_time,update_time)
+		where room_number=#{room_number} ;
+	</select>
+    <select id="selectRooms" parameterType="Room" resultType="Room">
+		SELECT * from room JOIN room_msg USING(room_number,create_time,update_time)
+		where room.hotel_id=#{hotel_id} and room_msg.hotel_id=#{hotel_id};
+	</select>
+    <insert id="insertRoom" parameterType="Room">
+		insert into room(type_id,room_number,hotel_id,type,area,floor,bed,wifi,workbench,livingroom,kitchen,win,detailed,create_time,update_time)
+		values(#{type_id},#{room_number},#{hotel_id},#{type},#{area},#{floor},#{bed},#{wifi},#{workbench},#{livingroom},#{kitchen},#{win},#{detailed},#{create_time},#{update_time});
+        insert into room_msg(room_id, room_number,hotel_id, status, price, discount, create_time, update_time)
+        values (#{room_id},#{room_number},#{hotel_id},#{status},#{price},#{discount},#{create_time},#{update_time});
+	</insert>
+    <update id="updateRoom" parameterType="Room">
+		update room set room_number=#{room_number},type=#{type},wifi=#{wifi},workbench=#{workbench},livingroom=#{livingroom},kitchen=#{kitchen},update_time=#{update_time}
+		where type_id=#{type_id} and hotel_id=#{hotel_id};
+		update room_msg set room_number=#{room_number},price=#{price},update_time=#{update_time}
+		where room_id=#{room_id} and hotel_id=#{hotel_id};
+	</update>
+    <delete id="deleteRoom" parameterType="Room">
+		delete from room where room_number=#{room_number} and hotel_id=#{hotel_id};
+		delete from room_msg where room_id=#{room_id} and hotel_id=#{hotel_id};
+		delete from photo where room_number=#{room_number} and hotel_id=#{hotel_id};
+	</delete>
+    <select id="selectPartRoom" parameterType="Room" resultType="Room">
+        <!-- select * from users limit 5,10  检索记录行 6-15 -->
+        select * from room
+        <if test="start !=null and rows !=null">
+            limit #{start},#{rows}
+        </if>
+    </select>
+    <select id="selectRoomCount" parameterType="Integer" resultType="Integer">
+		select count(*) from room
+	</select>
+</mapper>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace指定映射的包下的接口 -->
+<mapper namespace="com.wordpython.admin.dao.BookingMapper">
+    <select id="selectBooking" parameterType="Booking" resultType="Booking">
+		select * from booking where user_id=#{user_id}
+	</select>
+    <insert id="insertBooking" parameterType="Booking">
+		insert into booking(booking_id,user_id,room_number,booking_time,cost,status,create_time)
+		values(#{booking_id},#{user_id},#{room_number},#{booking_time},#{cost},#{status},#{create_time})
+	</insert>
+    <update id="updateBooking" parameterType="Booking">
+		update booking set user_id =#{user_id},room_number=#{room_number},booking_time=#{booking_time},cost=#{cost},status=#{status}
+		where user_id=#{user_id};
+	</update>
+    <delete id="deleteBooking" parameterType="Booking">
+		delete from booking where user_id=#{user_id}
+	</delete>
+    <select id="selectPartBooking" parameterType="Booking" resultType="Booking">
+        <!-- select * from users limit 5,10  检索记录行 6-15 -->
+        select * from booking
+        <if test="start !=null and rows !=null">
+            limit #{start},#{rows}
+        </if>
+    </select>
+    <select id="selectBookingCount" parameterType="Integer" resultType="Integer">
+		select count(*) from booking
+	</select>
+</mapper>

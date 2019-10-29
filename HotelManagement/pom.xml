@@ -19,11 +19,19 @@
         <java.version>1.8</java.version>
     </properties>
     <dependencies>
-        <!-- 因配置外部tomcat而配置的依赖 -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-tomcat</artifactId>
-        </dependency>
+
+        <!-- 因配置外部tomcat而配置的依赖  添加servlet-api的依赖-->
+<!--        <dependency>-->
+<!--            <groupId>org.springframework.boot</groupId>-->
+<!--            <artifactId>spring-boot-starter-tomcat</artifactId>-->
+<!--        </dependency>-->
+<!--        <dependency>-->
+<!--            <groupId>javax.servlet</groupId>-->
+<!--            <artifactId>javax.servlet-api</artifactId>-->
+<!--            <version>3.1.0</version>-->
+<!--            <scope>provided</scope>-->
+<!--        </dependency>-->
+
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
@@ -113,9 +121,15 @@
     </dependencies>
 
     <build>
-        <finalName>hotel</finalName>
+        <finalName>ydlword</finalName>
         <plugins>
-
+            <!--
+                导出成可执行的jar文件
+                不过会重新打包  .original
+                如果去掉该插件，
+                运行的时候要指定main  java -cp hotel.jar com.xxx.Application
+                否则找不到main
+            -->
 <!--            <plugin>-->
 <!--                <groupId>org.springframework.boot</groupId>-->
 <!--                <artifactId>spring-boot-maven-plugin</artifactId>-->
@@ -131,6 +145,7 @@
                     <target>1.8</target>
                 </configuration>
             </plugin>
+            <!--如果想在打包的时候定义war名称，还可以添加下面的插件-->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-war-plugin</artifactId>

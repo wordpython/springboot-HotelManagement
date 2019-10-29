@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>酒店管理</title>
+    <link rel="stylesheet" href="/layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="/css/hotel/hotel.css">
+
+
+    <!--@/* 加入contextPath属性和session超时的配置 */-->
+    <script type="text/javascript">
+        var Feng = {
+            ctxPath: "",
+            addCtx: function (ctx) {
+                if (this.ctxPath === "") {
+                    this.ctxPath = ctx;
+                }
+            }
+        };
+        Feng.addCtx("${ctxPath}");
+    </script>
+    <script src="/layui/layui.js"></script>
+    <!--其他插件js-->
+    <script src="/jquery-easyui-1.7.0/jquery.min.js"></script>
+    <script src="/module/ztree/jquery.ztree.all.min.js"></script>
+
+    <script type="text/javascript" src="/js/common.js"></script>
+    <script src="/js/admin/hotel/hotel.js"></script>
+</head>
+<body>
+<div class="layui-fluid">
+    <div class="layui-row layui-col-space15">
+        <!--右边用户数据-->
+        <div class="layui-col-sm12 layui-col-md9 layui-col-lg10">
+            <div class="layui-card">
+                <div class="layui-card-body">
+                    <div class="layui-form toolbar">
+                        <div class="layui-form-item">
+                            <div class="layui-inline">
+                                <input id="name" class="layui-input" type="text" placeholder="房间号/楼层"/>
+                            </div>
+                            <div class="layui-inline">
+                                <input id="timeLimit" class="layui-input" type="text" placeholder="添加时间"/>
+                            </div>
+                            <div class="layui-inline">
+                                <button id="btnSearch" class="layui-btn icon-btn"><i class="layui-icon">&#xe615;</i>搜索
+                                </button>
+
+                                <button id="btnAdd" class="layui-btn icon-btn"><i class="layui-icon">&#xe654;</i>添加新房间
+                                </button>
+
+                                <button id="btnExp" class="layui-btn icon-btn"><i class="layui-icon">&#xe67d;</i>导出
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <table class="layui-table" id="userTable" lay-filter="userTable"></table>
+                    <script type="text/html" id="tableBarPhoto">
+                        <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="show">查看照片</a>
+                    </script>
+                    <script type="text/html" id="tableBar">
+                        <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="edit">修改</a>
+                        <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="delete">删除</a>
+                    </script>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

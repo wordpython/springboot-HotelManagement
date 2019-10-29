@@ -1,9 +1,8 @@
 package com.wordpython.controller;
 
-import com.wordpython.entity.User;
-import com.wordpython.service.LoginService;
+import com.wordpython.admin.entity.User;
+import com.wordpython.admin.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -13,12 +12,12 @@ import org.springframework.web.bind.annotation.RestController;
 public class RegisterController {
 
     @Autowired
-    private LoginService loginService;
+    private UserService userService;
 
     /*判断注册用户名是否已存在*/
     @RequestMapping(value = "/checkName",method = RequestMethod.POST)
     public String checkName(@RequestBody User user){
-        if(loginService.selectByUsername(user.getUsername())!=null){
+        if(userService.findByUsername(user.getUsername())!=null){
             return "false";//说明用户名已被注册
         }
         return "true";
@@ -34,7 +33,7 @@ public class RegisterController {
                 &&user.getPassword().equals(user.getRePassword())) {
             //将数据插入数据库
             System.out.println(user);
-            if(loginService.insertUser(user)>0) {//成功插入数据库
+            if(userService.insertUser(user)>0) {//成功插入数据库
                 //发送跳转地址
                 return "true";
             }else {

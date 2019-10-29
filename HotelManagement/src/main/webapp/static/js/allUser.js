@@ -14,9 +14,10 @@ $(function(){
 	type:"POST",
 	dataType:"json",
 	success:function(data){
-		if(data!=null){}
-		showPage(data);
-		allData=data;//记录总量
+		if(data!=null){
+			showPage(data);
+			allData=data;//记录总量
+		}
 		if (data%10!=0) {// 203%10=3
 			totalPage=data/10-data%10/10+1;//记录总页数20.3-0.3+1=21
 		}else{

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace指定映射的包下的接口 -->
+<mapper namespace="com.wordpython.admin.dao.HotelMapper">
+    <insert id="insertHotel" parameterType="Hotel">
+		insert into hotel (hotel_id, admin_id, hotel_name, phone, telephone, email, address, website)
+		VALUES (#{hotel_id},#{admin_id},#{hotel_name},#{phone},#{telephone},#{email},#{address},#{website})
+	</insert>
+	<select id="selectHotel" parameterType="Hotel" resultType="com.wordpython.admin.entity.Hotel">
+		select * from hotel where admin_id=#{admin_id}
+	</select>
+	<select id="selectHotelByAdmin_id" parameterType="String" resultType="Hotel">
+		select * from hotel where admin_id=#{admin_id}
+	</select>
+    <update id="updateHotel" parameterType="Hotel">
+		update hotel set hotel_name=#{hotel_name},phone=#{phone},telephone=#{telephone},email=#{email},address=#{address},website=#{website}
+		where hotel_id=#{hotel_id}
+	</update>
+    <delete id="deleteHotel" parameterType="Hotel">
+		delete from hotel where hotel_id=#{hotel_id}
+	</delete>
+</mapper>

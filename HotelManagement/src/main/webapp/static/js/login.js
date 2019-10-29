@@ -13,13 +13,18 @@ function login_button(){
 		contentType:"application/json;charset=UTF-8",
 		dataType:"text",
 		success:function (data) {
+            var win = window;
 			if(data=="user/search"){
-                var win = window;
                 while (win != win.top){//Top属性返回当前窗口的最顶层浏览器窗口。
                     win = win.top;
                 }
                 win.location.href="/search"
-			}else{
+			}else if(data=="admin/login"){
+                while (win != win.top){//Top属性返回当前窗口的最顶层浏览器窗口。
+                    win = win.top;
+                }
+                win.location.href="/admin/login.html";
+            } else{
 //	        	login_button.innerHTML="登录";
                 //添加之前，先把这个div删了
                 if(document.getElementsByClassName("kk").length>=1){//这里如果只是div!=undefined也不行，因为这里是异步刷新，第一次创建了div,不管后来有没有被删，只要页面不被刷新，这个div就是定义的了

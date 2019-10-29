@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>图片</title>
+    <style>
+        body{
+            overflow-y: hidden;
+        }
+        #left {
+            float: left;
+        }
+
+        #right {
+            float: right;
+            height: 440px;
+            width: 175px;
+            padding-right: 5px;
+            overflow-x: hidden;
+        }
+        ul{
+            padding: 0px;
+        }
+        ul li {
+            list-style: none;
+        }
+        .small-pic-img{
+            width: 100%;
+            height: auto;
+        }
+    </style>
+    <script src="/js/jquery-1.11.3.min.js"></script>
+</head>
+<body>
+<div id="left">
+    <div class="big-pic-content" style="height: 440px; width: 500px;">
+        <div class="big-pic-wrapper" style="height: 440px; width: 500px;">
+            <img class="big-pic-img" src="/images/0.jpg" style="height: 440px; width: 500px;">
+        </div>
+    </div>
+</div>
+<div id="right">
+    <ul id="ul" style="">
+<!--        <li>-->
+<!--            <div>-->
+<!--                <img class="small-pic-img" src="//himg2.qunarzz.com/imgs/201808/06/C._M0DCiiYN7aIxQpui120.jpg"-->
+<!--                     style="animation: 1s ease 0s 1 normal none running fadeIn;">-->
+<!--            </div>-->
+<!--        </li>-->
+<!--        <li>-->
+<!--            <div>-->
+<!--                <img class="small-pic-img" src="//himg1.qunarzz.com/imgs/201612/29/C._M0DCiLRi4dajBwbi120.jpg"-->
+<!--                     style="animation: 1s ease 0s 1 normal none running fadeIn;">-->
+<!--            </div>-->
+<!--        </li>-->
+    </ul>
+</div>
+<script>
+    $(function(){
+       $.ajax({
+           url:"/hotel/photo",
+           dataType:"json",
+           success:function(data){
+               var src=data["img_url"]+data["photo_names"][0];
+               $(".big-pic-img").attr("src",src);//初始化大图
+               //设置小图
+               for(var i in data["photo_names"]){
+                   var url=data["img_url"]+data["photo_names"][i];
+                   $("#ul").append('<li><div id="img_div"><img class="small-pic-img" src="'+url+'"style="animation: 1s ease 0s 1 normal none running fadeIn;"></div></li>');
+               }
+           }
+       })
+    });
+    //给动态生成的小图添加点击事件
+    $("#ul").on('click','.small-pic-img',function () {
+        $(".big-pic-img").attr("src",this.src);
+    });
+</script>
+</body>
+</html>

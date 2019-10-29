@@ -1,0 +1,22 @@
+<!--@/* 侧边栏 */-->
+<div class="layui-side" th:fragment="sidebar" xmlns:th="http://www.w3.org/1999/xhtml">
+    <div class="layui-side-scroll">
+        <ul class="layui-nav layui-nav-tree" lay-filter="admin-side-nav" style="margin-top: 15px;">
+            <li class="layui-nav-item layui-nav-itemed">
+                <a><i class="layui-icon layui-icon-set"></i> <cite>系统管理</cite><span class="layui-nav-more"></span></a>
+                <dl class="layui-nav-child">
+                    <dd class="layui-this"><a onclick="openUser()">用户管理</a></dd>
+                    <dd><a onclick="openHotel()">酒店管理</a></dd>
+                    <dd class=""><a lay-href="/role">角色管理</a></dd>
+                    <dd><a lay-href="/dept">部门管理</a></dd>
+                    <dd><a lay-href="/dictType">字典管理</a></dd>
+                    <dd><a lay-href="/menu">菜单管理</a></dd>
+                    <dd><a lay-href="/loginLog">登录日志</a></dd>
+                    <dd><a lay-href="/log">业务日志</a></dd>
+                    <dd><a lay-href="/druid">监控管理</a></dd>
+                    <dd><a lay-href="/notice">通知管理</a></dd>
+                </dl>
+            </li>
+            <span class="layui-nav-bar" style="top: 30.5px; height: 0px; opacity: 0;"></span></ul>
+    </div>
+</div>

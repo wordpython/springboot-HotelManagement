@@ -1,7 +1,7 @@
 package com.wordpython.controller;
 
-import com.wordpython.entity.User;
-import com.wordpython.service.LoginService;
+import com.wordpython.admin.entity.User;
+import com.wordpython.admin.service.UserService;
 import com.wordpython.utils.LoginD;
 import com.wordpython.utils.RandomUtils;
 import com.wordpython.utils.Send163Mail;
@@ -20,7 +20,7 @@ import javax.servlet.http.HttpSession;
 @Controller
 public class LoginController{
     @Autowired
-    private LoginService loginService;
+    private UserService userService;
 
     @RequestMapping(value = "/login.html", method = RequestMethod.GET)
     public String getLogin() {
@@ -35,25 +35,33 @@ public class LoginController{
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     @ResponseBody
     public String postLogin(@RequestBody User user,HttpSession httpSession) {
-        /*
-        * 使用Shiro编写认证操作
-        * */
-        //1.获取Shiro编写认证操作
-        Subject subject= SecurityUtils.getSubject();
-        //2.封装用户数据
-        UsernamePasswordToken token = new UsernamePasswordToken(user.getUsername(), user.getPassword());
-        //3.执行登录方法
-        try{
-            subject.login(token);
-            //登录成功
-            httpSession.setAttribute("isLogin","true");
-            return "user/search";
-        }catch (UnknownAccountException e){
-            //登录失败，用户名不存在
-            return "用户名或密码错误";
-        }catch (IncorrectCredentialsException e){
-            //密码错误
-            return "用户名或密码错误";
+        //后台管理员用户名和密码
+        String aUsername="admin";
+        String aPassword="111111";
+        if(user.getUsername().equals("admin")&&user.getPassword().equals("111111")){
+            //跳转到管理员登录页面
+            return "admin/login";
+        }else{
+            /*
+             * 使用Shiro编写认证操作
+             * */
+            //1.获取Shiro编写认证操作
+            Subject subject= SecurityUtils.getSubject();
+            //2.封装用户数据
+            UsernamePasswordToken token = new UsernamePasswordToken(user.getUsername(), user.getPassword());
+            //3.执行登录方法
+            try{
+                subject.login(token);
+                //登录成功
+                httpSession.setAttribute("isLogin","true");
+                return "user/search";
+            }catch (UnknownAccountException e){
+                //登录失败，用户名不存在
+                return "用户名或密码错误";
+            }catch (IncorrectCredentialsException e){
+                //密码错误
+                return "用户名或密码错误";
+            }
         }
     }
 
@@ -72,10 +80,10 @@ public class LoginController{
         System.out.println("sendsuccess:" + username);
         if (username != null) { //登陆成功
             user.setUsername(username);
-            if (loginService.selectByUsername(username) == null) { // 数据库中没有该用户即为空，则插入
+            if (userService.findByUsername(username) == null) { // 数据库中没有该用户即为空，则插入
                 //将数据插入数据库
                 user.setPhone("17654323809");
-                if (loginService.insertUser(user) > 0) { // 将用户信息插入数据库
+                if (userService.insertUser(user) > 0) { // 将用户信息插入数据库
                     System.out.println("用户信息已插入数据库");
                 }
                 System.out.println("数据库中无该用户！");
@@ -91,7 +99,7 @@ public class LoginController{
     /*发送邮箱验证码*/
     @RequestMapping(value = "/sendMail")
     @ResponseBody
-    public String sendMail(@RequestBody User user,HttpSession session) {
+    public String sendMail(@RequestBody User user, HttpSession session) {
         Send163Mail ds = new Send163Mail();
         RandomUtils random = new RandomUtils();
         String code = random.getRandom();

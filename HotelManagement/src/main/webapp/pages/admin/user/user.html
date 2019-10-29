@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html class="${bg!}">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>酒店管理系统</title>
+    <link rel="stylesheet" href="/layui/css/layui.css"/>
+    <link rel="stylesheet" href="/css/admin.css" media="all"/>
+    <!--    <link rel="stylesheet" href="/layui/css/modules/laydate/default/laydate.css?v=5.0.9"/>-->
+
+    <!--其他插件css-->
+    <link href="/module/ztree/zTreeStyle.css" rel="stylesheet" type="text/css"/>
+
+    <link id="layuicss-layer" rel="stylesheet"
+          href="/layui/css/modules/layer/default/layer.css?v=3.1.1" media="all">
+
+    <style>
+        .layui-col-md9 {
+            width: 100%;/*如果添加下面的左边树部门结构div,这个样式就要删了*/
+        }
+    </style>
+</head>
+
+<body>
+
+
+<div class="layui-fluid">
+    <div class="layui-row layui-col-space15">
+        <!--左边树部门结构-->
+        <!--        <div class="layui-col-sm12 layui-col-md3 layui-col-lg2">-->
+        <!--            <div class="layui-card">-->
+        <!--                <div class="layui-card-body mini-bar">-->
+        <!--                    <div class="ztree" id="deptTree"></div>-->
+        <!--                </div>-->
+        <!--            </div>-->
+        <!--        </div>-->
+        <!--        <div class="layui-col-sm12 layui-col-md3 layui-col-lg2">-->
+        <!--            <div class="layui-card">-->
+        <!--                <div class="layui-card-body mini-bar">-->
+        <!--                    <div class="ztree" id="deptTree">-->
+        <!--                        <li id="deptTree_1" class="level0" tabindex="0" hidefocus="true" treenode=""><span-->
+        <!--                                id="deptTree_1_switch" title="" class="button level0 switch root_open"-->
+        <!--                                treenode_switch=""></span><a id="deptTree_1_a" class="level0" treenode_a="" onclick=""-->
+        <!--                                                             target="_blank" style="" title="顶级"><span-->
+        <!--                                id="deptTree_1_ico" title="" treenode_ico="" class="button ico_open"-->
+        <!--                                style=""></span><span id="deptTree_1_span" class="node_name">顶级</span></a>-->
+        <!--                            <ul id="deptTree_1_ul" class="level0 " style="display:block">-->
+        <!--                                <li id="deptTree_2" class="level1" tabindex="0" hidefocus="true" treenode=""><span-->
+        <!--                                        id="deptTree_2_switch" title="" class="button level1 switch bottom_open"-->
+        <!--                                        treenode_switch=""></span><a id="deptTree_2_a" class="level1" treenode_a=""-->
+        <!--                                                                     onclick="" target="_blank" style=""-->
+        <!--                                                                     title="总公司"><span id="deptTree_2_ico" title=""-->
+        <!--                                                                                       treenode_ico=""-->
+        <!--                                                                                       class="button ico_open"-->
+        <!--                                                                                       style=""></span><span-->
+        <!--                                        id="deptTree_2_span" class="node_name">总公司</span></a>-->
+        <!--                                    <ul id="deptTree_2_ul" class="level1 " style="display:block">-->
+        <!--                                        <li id="deptTree_3" class="level2" tabindex="0" hidefocus="true" treenode="">-->
+        <!--                                            <span id="deptTree_3_switch" title=""-->
+        <!--                                                  class="button level2 switch center_docu" treenode_switch=""></span><a-->
+        <!--                                                id="deptTree_3_a" class="level2" treenode_a="" onclick=""-->
+        <!--                                                target="_blank" style="" title="开发部"><span id="deptTree_3_ico" title=""-->
+        <!--                                                                                           treenode_ico=""-->
+        <!--                                                                                           class="button ico_docu"-->
+        <!--                                                                                           style=""></span><span-->
+        <!--                                                id="deptTree_3_span" class="node_name">开发部</span></a></li>-->
+        <!--                                        <li id="deptTree_4" class="level2" tabindex="0" hidefocus="true" treenode="">-->
+        <!--                                            <span id="deptTree_4_switch" title=""-->
+        <!--                                                  class="button level2 switch center_docu" treenode_switch=""></span><a-->
+        <!--                                                id="deptTree_4_a" class="level2" treenode_a="" onclick=""-->
+        <!--                                                target="_blank" style="" title="运营部"><span id="deptTree_4_ico" title=""-->
+        <!--                                                                                           treenode_ico=""-->
+        <!--                                                                                           class="button ico_docu"-->
+        <!--                                                                                           style=""></span><span-->
+        <!--                                                id="deptTree_4_span" class="node_name">运营部</span></a></li>-->
+        <!--                                        <li id="deptTree_5" class="level2" tabindex="0" hidefocus="true" treenode="">-->
+        <!--                                            <span id="deptTree_5_switch" title=""-->
+        <!--                                                  class="button level2 switch center_docu" treenode_switch=""></span><a-->
+        <!--                                                id="deptTree_5_a" class="level2" treenode_a="" onclick=""-->
+        <!--                                                target="_blank" style="" title="战略部"><span id="deptTree_5_ico" title=""-->
+        <!--                                                                                           treenode_ico=""-->
+        <!--                                                                                           class="button ico_docu"-->
+        <!--                                                                                           style=""></span><span-->
+        <!--                                                id="deptTree_5_span" class="node_name">战略部</span></a></li>-->
+        <!--                                        <li id="deptTree_6" class="level2" tabindex="0" hidefocus="true" treenode="">-->
+        <!--                                            <span id="deptTree_6_switch" title=""-->
+        <!--                                                  class="button level2 switch bottom_docu" treenode_switch=""></span><a-->
+        <!--                                                id="deptTree_6_a" class="level2" treenode_a="" onclick=""-->
+        <!--                                                target="_blank" style="" title="暗杀部"><span id="deptTree_6_ico" title=""-->
+        <!--                                                                                           treenode_ico=""-->
+        <!--                                                                                           class="button ico_docu"-->
+        <!--                                                                                           style=""></span><span-->
+        <!--                                                id="deptTree_6_span" class="node_name">暗杀部</span></a></li>-->
+        <!--                                    </ul>-->
+        <!--                                </li>-->
+        <!--                            </ul>-->
+        <!--                        </li>-->
+        <!--                    </div>-->
+        <!--                </div>-->
+        <!--            </div>-->
+        <!--        </div>-->
+        <!--右边用户数据-->
+        <div class="layui-col-sm12 layui-col-md9 layui-col-lg10">
+            <div class="layui-card">
+                <div class="layui-card-body">
+                    <div class="layui-form toolbar">
+                        <div class="layui-form-item">
+                            <div class="layui-inline">
+                                <input id="name" class="layui-input" type="text" placeholder="账号/姓名/手机号"/>
+                            </div>
+                            <div class="layui-inline">
+                                <input id="timeLimit" class="layui-input" type="text" placeholder="注册时间"/>
+                            </div>
+                            <div class="layui-inline">
+                                <button id="btnSearch" class="layui-btn icon-btn"><i class="layui-icon">&#xe615;</i>搜索
+                                </button>
+
+                                <button id="btnAdd" class="layui-btn icon-btn"><i class="layui-icon">&#xe654;</i>添加
+                                </button>
+
+                                <button id="btnExp" class="layui-btn icon-btn"><i class="layui-icon">&#xe67d;</i>导出
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <table class="layui-table" id="userTable" lay-filter="userTable"></table>
+                    <script type="text/html" id="tableBar">
+                        <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="edit">修改</a>
+                        <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="delete">删除</a>
+                        <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="roleAssign">分配角色</a>
+                        <a class="layui-btn layui-btn-xs" lay-event="reset">重置密码</a>
+                    </script>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--@/* 加入contextPath属性和session超时的配置 */-->
+<script type="text/javascript">
+    var Feng = {
+        ctxPath: "",
+        addCtx: function (ctx) {
+            if (this.ctxPath === "") {
+                this.ctxPath = ctx;
+            }
+        }
+    };
+    Feng.addCtx("${ctxPath}");
+</script>
+
+<script type="text/javascript" src="/layui/layui.js"></script>
+<!--其他插件js-->
+<script src="/jquery-easyui-1.7.0/jquery.min.js"></script>
+<script src="/module/ztree/jquery.ztree.all.min.js"></script>
+
+<script type="text/javascript" src="/js/common.js"></script>
+<script src="/js/admin/user/user.js"></script>
+<script src="/js/admin/user/user_add.js"></script>
+</body>
+</html>
