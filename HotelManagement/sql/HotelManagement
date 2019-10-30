@@ -95,30 +95,32 @@ INSERT INTO photo value ('5', '867677', '1', '/images/', '3.jpg');
 DROP TABLE IF EXISTS room;
 CREATE TABLE room
 (
-    type_id     varchar(255) NOT NULL PRIMARY KEY COMMENT '主键id',
-    room_number varchar(255) NOT NULL COMMENT '房间编号',
-    hotel_id    varchar(255) COMMENT '酒店id',
-    type        varchar(255) COMMENT '房间类型(单双人房等)',
-    area        varchar(255) COMMENT '房间面积',
-    floor       int COMMENT '所属楼层',
-    bed         int COMMENT '床位数',
-    wifi        varchar(255) COMMENT 'wifi(有无)',
-    workbench   varchar(255) COMMENT '工作台（有无）',
-    livingroom  varchar(255) COMMENT '客厅（有无）',
-    kitchen     varchar(255) COMMENT '厨房',
-    win         varchar(255) COMMENT '窗口(有无)',
-    detailed    varchar(255) COMMENT '特别提示',
-    create_time timestamp    not null DEFAULT '0000-00-00 00:00:00' COMMENT '创建时间',
-    update_time timestamp    null ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间'
+    type_id       varchar(255) NOT NULL PRIMARY KEY COMMENT '主键id',
+    room_number   varchar(255) NOT NULL COMMENT '房间编号',
+    hotel_id      varchar(255) COMMENT '酒店id',
+    type          varchar(255) COMMENT '房间类型(单双人房等)',
+    area          varchar(255) COMMENT '房间面积',
+    floor         int COMMENT '所属楼层',
+    bed           int COMMENT '床位数',
+    wifi          varchar(255) COMMENT 'wifi(有无)',
+    workbench     varchar(255) COMMENT '工作台（有无）',
+    livingroom    varchar(255) COMMENT '客厅（有无）',
+    kitchen       varchar(255) COMMENT '厨房',
+    win           varchar(255) COMMENT '窗口(有无)',
+    detailed      varchar(255) COMMENT '特别提示',
+    `create_time` TIMESTAMP                             DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+    `update_time` TIMESTAMP ON UPDATE CURRENT_TIMESTAMP DEFAULT CURRENT_TIMESTAMP COMMENT '更新时间'
 #     FOREIGN KEY (room_number) REFERENCES room_msg (room_number) ON DELETE CASCADE ON UPDATE CASCADE
 ) COMMENT '房间表';
 -- -----------
 -- Records of room
 -- -----------
-INSERT INTO room value ('1', '888888', '1', '双人房', '20-25㎡', 8, 2, '有', '有', '有', '有', '有', '非常温馨浪漫的房间',
-                        '2019-010-14 17:11:10', '2019-10-14 17:11:10');
-INSERT INTO room value ('2', '867677', '1', '双人房', '20-25㎡', 8, 2, '有', '有', '有', '有', '有', '非常温馨浪漫的房间',
-                        '2019-010-14 17:11:10', '2019-10-14 17:11:10');
+INSERT INTO room(type_id, room_number, hotel_id, type, area, floor, bed, wifi, workbench, livingroom, kitchen, win,
+                 detailed)
+    value ('1', '888888', '1', '双人房', '20-25㎡', 8, 2, '有', '有', '有', '有', '有', '非常温馨浪漫的房间');
+INSERT INTO room(type_id, room_number, hotel_id, type, area, floor, bed, wifi, workbench, livingroom, kitchen, win,
+                 detailed)
+    value ('2', '867677', '1', '双人房', '20-25㎡', 8, 2, '有', '有', '有', '有', '有', '非常温馨浪漫的房间');
 
 -- ----------------------------
 -- Table structure for room_msg
@@ -127,20 +129,20 @@ INSERT INTO room value ('2', '867677', '1', '双人房', '20-25㎡', 8, 2, '有'
 DROP TABLE IF EXISTS room_msg;
 CREATE TABLE room_msg
 (
-    room_id     varchar(255) NOT NULL PRIMARY KEY COMMENT '房间id',
-    room_number varchar(255) COMMENT '房间编号',
-    hotel_id    varchar(255) COMMENT '酒店id',
-    status      varchar(255) COMMENT '房间状态:1-可预订，0-已被预订，-1：已入住，-2：不可用',
-    price       double    DEFAULT 0 COMMENT '房间价格',
-    discount    double    DEFAULT 0 COMMENT '房间折扣',
-    create_time timestamp DEFAULT '0000-00-00 00:00:00' COMMENT '创建时间',
-    update_time timestamp    null ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间'
+    room_id       varchar(255) NOT NULL PRIMARY KEY COMMENT '房间id',
+    room_number   varchar(255) COMMENT '房间编号',
+    hotel_id      varchar(255) COMMENT '酒店id',
+    status        varchar(255) COMMENT '房间状态:1-可预订，0-已被预订，-1：已入住，-2：不可用',
+    price         double                                DEFAULT 0 COMMENT '房间价格',
+    discount      double                                DEFAULT 0 COMMENT '房间折扣',
+    `create_time` TIMESTAMP                             DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+    `update_time` TIMESTAMP ON UPDATE CURRENT_TIMESTAMP DEFAULT CURRENT_TIMESTAMP COMMENT '更新时间'
 ) COMMENT '房间信息表';
 -- -----------
 -- Records of room_msg
 -- -----------
-INSERT INTO room_msg value (1, '888888', '1', '可预订', 88.8, 0.88, '2019-10-14 17:11:10', '2019-10-14 17:11:10');
-INSERT INTO room_msg value (2, '867677', '1', '可预订', 78.8, 0.90, '2019-10-14 17:11:10', '2019-10-14 17:11:10');
+INSERT INTO room_msg(room_id, room_number, hotel_id, status, price, discount) value (1, '888888', '1', '可预订', 88.8, 0.88);
+INSERT INTO room_msg(room_id, room_number, hotel_id, status, price, discount) value (2, '867677', '1', '可预订', 78.8, 0.90);
 
 -- ----------------------------
 -- Table structure for user
@@ -149,24 +151,30 @@ INSERT INTO room_msg value (2, '867677', '1', '可预订', 78.8, 0.90, '2019-10-
 DROP TABLE IF EXISTS user;
 CREATE TABLE user
 (
-    user_id      varchar(255) NOT NULL PRIMARY KEY COMMENT '编号(主键)',
-    username     varchar(255) NOT NULL COMMENT '昵称',
-    password     varchar(255) NOT NULL COMMENT '密码',
-    photo        varchar(255) COMMENT '头像路径',
-    mail         varchar(255) COMMENT '邮箱',
-    code         varchar(255) COMMENT '邮箱验证码',
-    name         varchar(255) COMMENT '实名',
-    phone        varchar(255) COMMENT '电话',
-    idcard       varchar(255) COMMENT '身份证号',
-    status       varchar(255) COMMENT '登录状态',
-    bookingtimes int COMMENT '预订次数',
-    level        int COMMENT '等级'
+    user_id       varchar(255) NOT NULL PRIMARY KEY COMMENT '编号(主键)',
+    username      varchar(255) NOT NULL COMMENT '昵称',
+    password      varchar(255) NOT NULL COMMENT '密码',
+    photo         varchar(255) COMMENT '头像路径',
+    mail          varchar(255) COMMENT '邮箱',
+    code          varchar(255) COMMENT '邮箱验证码',
+    name          varchar(255) COMMENT '实名',
+    phone         varchar(255) COMMENT '电话',
+    idcard        varchar(255) COMMENT '身份证号',
+    status        varchar(255) COMMENT '登录状态',
+    bookingtimes  int COMMENT '消费次数',
+    level         int COMMENT '等级',
+    `create_time` TIMESTAMP                             DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+    `update_time` TIMESTAMP ON UPDATE CURRENT_TIMESTAMP DEFAULT CURRENT_TIMESTAMP COMMENT '更新时间'
 ) COMMENT '客户表';
 -- -----------
 -- Records of user
 -- -----------
-INSERT INTO user() value (1, 'wordpython', 'aaaaaa', 'C:/major/images/', 'wordpython@163.com', NULL, 'ydl',
-                          '13680008000', '440882199780008888', 'false', 88, 1);
+INSERT INTO user(user_id, username, password, photo, mail, code, name, phone, idcard, status, bookingtimes, level)
+values ('1', 'wordpython', 'aaaaaa', 'C:/major/images/', 'wordpython@163.com', NULL, 'ydl', '13680008000',
+        '440882199780008888', 'false', 88, 1);
+INSERT INTO user(user_id, username, password, photo, mail, code, name, phone, idcard, status, bookingtimes, level)
+values ('2', '车易达', 'aaaaaa', 'C:/major/images/', 'wordjava@163.com', NULL, '尚希', '13680004545',
+        '440882199780008888', 'false', 88, 1);
 
 -- ----------------------------
 -- Table structure for booking
@@ -175,18 +183,42 @@ INSERT INTO user() value (1, 'wordpython', 'aaaaaa', 'C:/major/images/', 'wordpy
 DROP TABLE IF EXISTS booking;
 CREATE TABLE booking
 (
-    booking_id   bigint    NOT NULL PRIMARY KEY COMMENT '预订id',
-    user_id      varchar(255) COMMENT '客户编号',
-    room_number  varchar(255) COMMENT '房间编号',
-    booking_time timestamp COMMENT '预订日期',
-    cost         double COMMENT '订单费用',
-    status       int COMMENT '订单状态:0-已下单，1-已付款，2-已消费，-1-已取消，-2-被删除',
-    create_time  TIMESTAMP null DEFAULT '0000-00-00 00:00:00' COMMENT '创建时间',
-    update_time  TIMESTAMP null ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间'
+    booking_id    varchar(255) NOT NULL PRIMARY KEY COMMENT '预订id',
+    hotel_id      varchar(255) COMMENT '酒店id',
+    username      varchar(255) COMMENT '昵称',
+    room_number   varchar(255) COMMENT '房间编号',
+    cost          double COMMENT '订单费用',
+    status        varchar(255) COMMENT '订单状态:0-已下单，1-已付款，2-已消费，-1-已取消，-2-被删除',
+    booking_time  TIMESTAMP ON UPDATE CURRENT_TIMESTAMP DEFAULT CURRENT_TIMESTAMP COMMENT '预订日期',
+    `create_time` TIMESTAMP                             DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+    `update_time` TIMESTAMP ON UPDATE CURRENT_TIMESTAMP DEFAULT CURRENT_TIMESTAMP COMMENT '更新时间'
 #     FOREIGN KEY (user_id) REFERENCES user (user_id) ON DELETE CASCADE ON UPDATE CASCADE
 #     FOREIGN KEY (room_number) REFERENCES room (room_number) ON DELETE CASCADE ON UPDATE CASCADE
 ) COMMENT '预定表';
+INSERT INTO booking(booking_id, hotel_id, username, room_number, cost, status)
+    value ('1', '1', 'wordpython', '888888', 888.88, '已付款');
+INSERT INTO booking(booking_id, hotel_id, username, room_number, cost, status)
+    value ('2', '1', 'wordpython', '867677', 888.88, '已付款');
 
+-- ----------------------------
+-- Table structure for  discuss
+-- 评论表
+-- ----------------------------
+DROP TABLE IF EXISTS discuss;
+CREATE TABLE discuss
+(
+    discuss_id    varchar(255) NOT NULL PRIMARY KEY COMMENT '评论id',
+    room_number   varchar(255) COMMENT '房间编号',
+    hotel_id      varchar(255) COMMENT '酒店id',
+    content       varchar(255) COMMENT '内容',
+    username      varchar(255) COMMENT '评论人昵称',
+    photo         varchar(255) COMMENT '头像路径',
+    `create_time` TIMESTAMP DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间'
+) COMMENT '评论表';
+INSERT INTO discuss(discuss_id, room_number, hotel_id, content, username, photo)
+VALUES ('1', '888888', '1', '很舒服，服务又好', 'wordpython', 'C:/major/images/');
+INSERT INTO discuss(discuss_id, room_number, hotel_id, content, username, photo)
+VALUES ('2', '888888', '1', '很舒服，服务又好', '车易达', 'C:/major/images/');
 
 -- -----------------------------------
 
