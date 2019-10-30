@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace指定映射的包下的接口 -->
+<mapper namespace="com.wordpython.dao.MapperDiscuss">
+    <insert id="insertDiscuss" parameterType="com.wordpython.entity.Discuss">
+		insert into discuss(discuss_id, room_number, hotel_id, content, username, photo)
+		VALUES (#{discuss_id},#{room_number},#{hotel_id},#{content},#{username},#{photo})
+	</insert>
+	<select id="selectDiscuss" parameterType="com.wordpython.entity.Discuss" resultType="com.wordpython.entity.Discuss">
+		select * from discuss where hotel_id=#{hotel_id} and room_number=#{room_number}
+	</select>
+</mapper>

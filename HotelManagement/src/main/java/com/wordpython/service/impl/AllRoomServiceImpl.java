@@ -28,6 +28,10 @@ public class AllRoomServiceImpl implements AllRoomService {
     public int updateRoom(Room room) {
         return mapperRoom.updateRoom(room);
     }
+    @Override
+    public int updateRoom_msg(Room room) {
+        return mapperRoom.updateRoom(room);
+    }
 
     @Override
     public int deleteRoom(Room room) {

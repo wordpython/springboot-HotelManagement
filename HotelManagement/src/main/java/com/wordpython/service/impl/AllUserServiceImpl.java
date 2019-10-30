@@ -20,8 +20,8 @@ public class AllUserServiceImpl implements AllUserService {
     @Autowired
     private MapperUser mapperUser;
     @Override
-    public User findByUsername(String username) {
-        return mapperUser.findByUsername(username);
+    public User findByUsername(User user) {
+        return mapperUser.findByUsername(user);
     }
 
     @Override
@@ -37,51 +37,51 @@ public class AllUserServiceImpl implements AllUserService {
 
     @Override
     public int setStatus(String status) {
-        return 0;
+        return mapperUser.setStatus(status);
     }
 
     @Override
     public int setName(User user) {
-        return 0;
+        return mapperUser.setName(user);
     }
 
     @Override
-    public int updatePassword(String password) {
-        return 0;
+    public int updatePassword(User user) {
+        return mapperUser.updatePassword(user);
     }
 
     @Override
     public int updateUsername(String username) {
-        return 0;
+        return mapperUser.updateUsername(username);
     }
 
     @Override
     public int updateMail(String mail) {
-        return 0;
+        return mapperUser.updateMail(mail);
     }
 
     @Override
     public int updatePhone(String phone) {
-        return 0;
+        return mapperUser.updatePhone(phone);
     }
 
     @Override
     public int setBookingtimesAndLevel(User user) {
-        return 0;
+        return mapperUser.setBookingtimesAndLevel(user);
     }
 
     @Override
     public int deleteUser(User user) {
-        return 0;
+        return mapperUser.deleteUser(user);
     }
 
     @Override
     public List<User> selectPartUser(User user) {
-        return null;
+        return mapperUser.selectPartUser(user);
     }
 
     @Override
     public int selectUserCount() {
-        return 0;
+        return mapperUser.selectUserCount();
     }
 }

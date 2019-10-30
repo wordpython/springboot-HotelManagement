@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface AllUserService {
     //查询昵称
-    User findByUsername(String username);
+    User findByUsername(User user);
     //添加验证码（60s有效）
 
     //登录，查询用户名和密码和登录状态，登录之前查询该用户是否已在其他地方登录
@@ -18,7 +18,7 @@ public interface AllUserService {
     //实名，插入实名
     int setName(User user);
     //修改密码
-    int updatePassword(String password);
+    int updatePassword(User user);
     //修改昵称
     int updateUsername(String username);
     //修改邮箱

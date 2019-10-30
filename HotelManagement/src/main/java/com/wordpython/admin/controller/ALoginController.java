@@ -54,6 +54,7 @@ public class ALoginController {
             if(hotelService.selectHotelByAdmin_id(admin_id)==null){
                 return "admin/add";
             }
+            session.setAttribute("isLogin","true");
             session.setAttribute("hotel_id",hotelService.selectHotelByAdmin_id(admin_id).getHotel_id());
             return "admin/index";
         }

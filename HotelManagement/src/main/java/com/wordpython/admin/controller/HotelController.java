@@ -175,7 +175,7 @@ public class HotelController {
 
 
     /**
-     * 查询管理员列表
+     * 查询房间列表
      *
      * @author wordpython
      * @Date 2019/10/14 22:43

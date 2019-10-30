@@ -11,6 +11,7 @@ public interface AllRoomService {
 
     //更新
     int updateRoom(Room room);
+    int updateRoom_msg(Room room);
 
     //删除
     int deleteRoom(Room room);

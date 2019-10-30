@@ -12,9 +12,7 @@ public interface AllBookingService {
     //删除
     int deleteBooking(Booking booking);
     //查询
-    Booking selectBooking(Booking booking);
+    List<Booking> selectBooking(Booking booking);
     //查询部分用户
     List<Booking> selectPartBooking(Booking booking);
-    //查询用户总数
-    int selectUserCount();
 }

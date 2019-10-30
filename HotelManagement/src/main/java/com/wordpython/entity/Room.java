@@ -37,4 +37,11 @@ public class Room {
     private double price;//房间价格
     private double discount;//房间折扣
     private String remark;//备注
+
+    public Room(){}
+    public Room(String room_number, String hotel_id, String status) {
+        this.room_number = room_number;
+        this.hotel_id = hotel_id;
+        this.status = status;
+    }
 }

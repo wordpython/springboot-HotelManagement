@@ -23,15 +23,15 @@
 		SELECT room_number,img_url,photo_name from photo JOIN room USING(room_number)
 		where room.hotel_id=#{hotel_id} and photo.hotel_id=#{hotel_id};
 	</select>
-    <select id="selectPhoto" parameterType="Room" resultMap="photoResultMap">
+    <select id="selectPhoto" parameterType="com.wordpython.entity.Room" resultMap="photoResultMap">
 		SELECT room_number,img_url,photo_name from photo JOIN room USING(room_number)
 		where room_number=#{room_number} and room.hotel_id=#{hotel_id} and photo.hotel_id=#{hotel_id};
 	</select>
-    <insert id="insertPhoto" parameterType="Photo">
+    <insert id="insertPhoto" parameterType="com.wordpython.entity.Photo">
         insert into photo(photo_id, room_number,hotel_id,img_url, photo_name)
         value(#{photo_id},#{room_number},#{hotel_id},#{img_url},#{photo_name})
     </insert>
-    <update id="updatePhoto" parameterType="Photo">
+    <update id="updatePhoto" parameterType="com.wordpython.entity.Photo">
 		update photo set room_number =#{room_number}
 		where img_url=#{img_url}  and hotel_id=#{hotel_id};
 	</update>
@@ -40,32 +40,36 @@
     <!--
         房间信息的增删改查
     -->
-    <select id="selectRoom" parameterType="Room" resultType="Room">
+    <select id="selectRoom" parameterType="com.wordpython.entity.Room" resultType="com.wordpython.entity.Room">
 		SELECT * from room JOIN room_msg USING(room_number,create_time,update_time)
 		where room_number=#{room_number} ;
 	</select>
-    <select id="selectRooms" parameterType="Room" resultType="Room">
+    <select id="selectRooms" parameterType="com.wordpython.entity.Room" resultType="com.wordpython.entity.Room">
 		SELECT * from room JOIN room_msg USING(room_number,create_time,update_time)
 		where room.hotel_id=#{hotel_id} and room_msg.hotel_id=#{hotel_id};
 	</select>
-    <insert id="insertRoom" parameterType="Room">
+    <insert id="insertRoom" parameterType="com.wordpython.entity.Room">
 		insert into room(type_id,room_number,hotel_id,type,area,floor,bed,wifi,workbench,livingroom,kitchen,win,detailed,create_time,update_time)
 		values(#{type_id},#{room_number},#{hotel_id},#{type},#{area},#{floor},#{bed},#{wifi},#{workbench},#{livingroom},#{kitchen},#{win},#{detailed},#{create_time},#{update_time});
         insert into room_msg(room_id, room_number,hotel_id, status, price, discount, create_time, update_time)
         values (#{room_id},#{room_number},#{hotel_id},#{status},#{price},#{discount},#{create_time},#{update_time});
 	</insert>
-    <update id="updateRoom" parameterType="Room">
+    <update id="updateRoom" parameterType="com.wordpython.entity.Room">
 		update room set room_number=#{room_number},type=#{type},wifi=#{wifi},workbench=#{workbench},livingroom=#{livingroom},kitchen=#{kitchen},update_time=#{update_time}
 		where type_id=#{type_id} and hotel_id=#{hotel_id};
 		update room_msg set room_number=#{room_number},price=#{price},update_time=#{update_time}
 		where room_id=#{room_id} and hotel_id=#{hotel_id};
 	</update>
-    <delete id="deleteRoom" parameterType="Room">
+    <update id="updateRoom_msg" parameterType="com.wordpython.entity.Room">
+		update room_msg set status=#{status}
+		where room_id=#{room_id} and hotel_id=#{hotel_id};
+	</update>
+    <delete id="deleteRoom" parameterType="com.wordpython.entity.Room">
 		delete from room where room_number=#{room_number} and hotel_id=#{hotel_id};
 		delete from room_msg where room_id=#{room_id} and hotel_id=#{hotel_id};
 		delete from photo where room_number=#{room_number} and hotel_id=#{hotel_id};
 	</delete>
-    <select id="selectPartRoom" parameterType="Room" resultType="Room">
+    <select id="selectPartRoom" parameterType="com.wordpython.entity.Room" resultType="com.wordpython.entity.Room">
         <!-- select * from users limit 5,10  检索记录行 6-15 -->
         select * from room
         <if test="start !=null and rows !=null">

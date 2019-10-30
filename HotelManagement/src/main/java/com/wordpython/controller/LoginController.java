@@ -54,6 +54,7 @@ public class LoginController{
                 subject.login(token);
                 //登录成功
                 httpSession.setAttribute("isLogin","true");
+                System.out.println(httpSession.getAttribute("isLogin"));
                 return "user/search";
             }catch (UnknownAccountException e){
                 //登录失败，用户名不存在

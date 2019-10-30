@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace指定映射的包下的接口 -->
+<mapper namespace="com.wordpython.dao.MapperBooking">
+    <select id="selectBooking" parameterType="com.wordpython.entity.Booking" resultType="com.wordpython.entity.Booking">
+		select * from booking where username=#{username}
+	</select>
+    <insert id="insertBooking" parameterType="com.wordpython.entity.Booking">
+		insert into booking(booking_id,username,room_number,cost,status)
+		values(#{booking_id},#{username},#{room_number},#{cost},#{status})
+	</insert>
+    <update id="updateBooking" parameterType="com.wordpython.entity.Booking">
+		update booking set username =#{username},room_number=#{room_number},cost=#{cost},status=#{status}
+		where username=#{username};
+	</update>
+    <delete id="deleteBooking" parameterType="com.wordpython.entity.Booking">
+		delete from booking where username=#{username}
+	</delete>
+    <select id="selectPartBooking" parameterType="com.wordpython.entity.Booking" resultType="com.wordpython.entity.Booking">
+        <!-- select * from users limit 5,10  检索记录行 6-15 -->
+        select * from booking
+        <if test="start !=null and rows !=null">
+            limit #{start},#{rows}
+        </if>
+    </select>
+
+</mapper>

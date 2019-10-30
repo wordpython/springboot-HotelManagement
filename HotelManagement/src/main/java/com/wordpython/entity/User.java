@@ -22,4 +22,6 @@ public class User {
     //其他登录方式
     private String account;
 
+    public User() {
+    }
 }

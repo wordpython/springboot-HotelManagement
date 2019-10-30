@@ -11,15 +11,13 @@ import java.util.List;
 
 public interface MapperBooking {
     //添加
-    int insertBooking(com.wordpython.entity.Booking booking);
+    int insertBooking(Booking booking);
     //更新
-    int updateBooking(com.wordpython.entity.Booking booking);
+    int updateBooking(Booking booking);
     //删除
-    int deleteBooking(com.wordpython.entity.Booking booking);
+    int deleteBooking(Booking booking);
     //查询
-    com.wordpython.entity.Booking selectBooking(com.wordpython.entity.Booking booking);
+    List<Booking> selectBooking(Booking booking);
     //查询部分用户
-    List<com.wordpython.entity.Booking> selectPartBooking(com.wordpython.entity.Booking booking);
-    //查询用户总数
-    int selectUserCount();
+    List<Booking> selectPartBooking(Booking booking);
 }

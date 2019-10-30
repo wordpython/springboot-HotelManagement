@@ -1,6 +1,7 @@
 package com.wordpython.service.impl;
 
 import com.wordpython.dao.MapperBooking;
+import com.wordpython.entity.Booking;
 import com.wordpython.service.AllBookingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,32 +20,27 @@ public class AllBookingServiceImpl implements AllBookingService {
     private MapperBooking mapperBooking;
 
     @Override
-    public int insertBooking(com.wordpython.entity.Booking booking) {
-        return 0;
+    public int insertBooking(Booking booking) {
+        return mapperBooking.insertBooking(booking);
     }
 
     @Override
-    public int updateBooking(com.wordpython.entity.Booking booking) {
-        return 0;
+    public int updateBooking(Booking booking) {
+        return mapperBooking.updateBooking(booking);
     }
 
     @Override
-    public int deleteBooking(com.wordpython.entity.Booking booking) {
-        return 0;
+    public int deleteBooking(Booking booking) {
+        return mapperBooking.deleteBooking(booking);
     }
 
     @Override
-    public com.wordpython.entity.Booking selectBooking(com.wordpython.entity.Booking booking) {
-        return null;
+    public List<Booking> selectBooking(Booking booking) {
+        return mapperBooking.selectBooking(booking);
     }
 
     @Override
-    public List<com.wordpython.entity.Booking> selectPartBooking(com.wordpython.entity.Booking booking) {
-        return null;
-    }
-
-    @Override
-    public int selectUserCount() {
-        return 0;
+    public List<Booking> selectPartBooking(Booking booking) {
+        return mapperBooking.selectPartBooking(booking);
     }
 }

@@ -18,7 +18,10 @@ public class Photo {
     private String photo_name;//图片名字
     private List<String> photo_names;//房间图片名字集
 
-    public Photo(String photo_id,String hotel_id, String img_url, String photo_name) {
+    public Photo() {
+    }
+
+    public Photo(String photo_id, String hotel_id, String img_url, String photo_name) {
         this.photo_id = photo_id;
         this.hotel_id=hotel_id;
         this.img_url = img_url;
