@@ -146,7 +146,7 @@ public class UserMgrController {
         String beginTime = "";
         String endTime = "";
         AdUsers data=new AdUsers("123abc","wordpython","男","超级管理员","开发部","djsk@qq.com","13610079097","2016-01-29 08:49:53", "正常");
-        AdPage adPage=new AdPage(Arrays.asList(data),"0","1","啦啦啦");
+        AdPage adPage=new AdPage(Arrays.asList(data),0,12,"啦啦啦");
         return adPage;
     }
 

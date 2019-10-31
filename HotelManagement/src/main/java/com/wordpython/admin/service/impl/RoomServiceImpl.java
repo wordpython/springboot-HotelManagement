@@ -46,12 +46,12 @@ public class RoomServiceImpl implements RoomService {
 
     @Override
     public List<Room> selectPartRoom(Room room) {
-        return null;
+        return roomMapper.selectPartRoom(room);
     }
 
     @Override
-    public int selectRoomCount(Room room) {
-        return 0;
+    public int selectRoomCount() {
+        return roomMapper.selectRoomCount();
     }
 
     @Override

@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>预订</title>
+    <script src="/vue/lib/vue.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/popper.js/1.15.0/umd/popper.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="/vue/lib/vue2.js"></script>
+    <script src="/vue/lib/vue-nav.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <link rel="stylesheet" href="/vue/css/booking.css">
+</head>
+
+<body>
+<div id="app">
+    <!-- 导航栏 -->
+    <nav class="navbar navbar-expand-md fixed-top navbar-dark" style="background-color: #3579aa;">
+        <div style="width: 40px; height: 40px;">
+            <img class="img-fluid" src="/vue/lib/img/酒店logo.jpg" alt="Chania">
+        </div>
+        <a class="navbar-brand" href="#">酒店预定系统</a>
+        <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId"
+                aria-controls="collapsibleNavId"
+                aria-expanded="false" aria-label="Toggle navigation"></button>
+        <div class="collapse navbar-collapse" id="collapsibleNavId">
+            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                <li class="nav-item active">
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false">功能选择</a>
+                    <div class="dropdown-menu" aria-labelledby="dropdownId">
+                        <a class="dropdown-item" href="#booking">预订</a>
+                        <a class="dropdown-item" href="#/cancel">退订</a>
+                    </div>
+                </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+                <div style="width: 40px; height: 40px;">
+                    <img v-bind:src="user.head" class="rounded-circle" alt="Cinque Terre"
+                         style="width: 100%; height: 100%;" href="baidu.com">
+                </div>
+                <!-- <a href="#" style="color: snow;" v-model="user.name">{{user.name}}</a> -->
+                <button type="button" class="btn btn-secondary mr-sm-2" data-toggle="modal" data-target="#modal_user">
+                    {{user.name}}
+                </button>
+                <button class="btn btn-outline-primary my-2 my-sm-0" type="submit" style="color: rgb(202, 211, 149);">
+                    登录
+                </button>
+                <button class="btn btn-outline-primary my-2 my-sm-0" type="submit" style="color: rgb(202, 211, 149);">
+                    注册
+                </button>
+            </form>
+        </div>
+    </nav>
+
+
+    <!-- 要预订的房间的详细信息，包括房间编号，类型，楼层，图片，价格，设施（WiFi、工作台、阳台、客厅），房间被预订过的次数，用户评价-->
+    <div class="container jumbotron">
+        <div class="row">
+            <div class="col-md-4">
+                <img src="/vue/lib/img/1.jpg"
+                     class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}"
+                     alt="" data-toggle="modal" data-target="#myModal1">
+                <div style="color: rgb(117, 112, 112);"><span>点击图片查看更多</span></div>
+            </div>
+            <div class="col-md-6">
+                <div class="row" style="height: 90%;">
+                    房间信息
+                </div>
+                <div class="row">
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal_booking">
+                        我要预定
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 预定表单 -->
+    <div class="container">
+
+    </div>
+
+
+    <!-- 用户模态框 -->
+    <div class="modal fade" id="modal_user">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+
+                <!-- 模态框头部 -->
+                <div class="modal-header" >
+                    <h4 class="modal-title" style="color: cornflowerblue;">用户中心</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <!-- 模态框主体 -->
+                <div class="modal-body row">
+                    <div class="col-md-4">
+                        <img v-bind:src="user.head" class="img-fluid border">
+                    </div>
+                    <div class="right col">
+                        <h4>{{user.username}}</h4>
+                        <p style="background-color: cadetblue;width: 80%; color: cornsilk;">{{user.msg}}</p>
+                        <div>
+                            <p>已预定房间:</p>
+                            <div>
+                                <ul class="ul" v-for="item in bookedroom" :key="bookedroom.room_id">
+                                    <p>{{item.name}}</p>
+                                    <img v-bind:src="item.pic" style="width: 70%; height:30%;"/>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 预定房间模态框 -->
+    <div class="modal fade" id="modal_booking">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+
+                <!-- 模态框头部 -->
+                <div class="modal-header">
+                    <h4 class="modal-title">房间预订</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <!-- 模态框主体 -->
+                <div class="modal-body">
+                    <form class="custom-control">
+                        <div class="form-group">
+                            <label for="name">真实姓名:</label>
+                            <input type="text" class="form-control" id="name">
+                        </div>
+                        <div class="form-group">
+                            <label for="IDcode">身份证号:</label>
+                            <input type="text" class="form-control" id="IDcode">
+                        </div>
+                        <div class="form-group">
+                            <input type="hidden" class="form-control" id="pwd" value="1001">
+                        </div>
+
+                        <button type="submit" class="btn btn-primary ">提交</button>
+                    </form>
+                </div>
+
+                <!-- 模态框底部 -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <!-- 显示多张图片模态框 -->
+    <div class="modal fade" id="myModal1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+
+                <!-- 模态框头部 -->
+                <div class="modal-header">
+                    <h4 class="modal-title">房间图片</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <!-- 模态框主体 -->
+                <div class="modal-body">
+                    <div class="row">
+                        <div id="left" class="col">
+                            <div class="big-pic-content" style="height: 400px; width: 500px;">
+                                <div class="big-pic-wrapper" style="height: 400px; width: 500px;">
+                                    <img class="big-pic-img" src="/vue/lib/img/5.jpg"
+                                         style="height: 100%; width: 100% ;">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="right" class="col">
+                            <ul class="ul">
+                                <li>
+                                    <div>
+                                        <img class="small-pic-img" src="/vue/lib/img/1.jpg"
+                                             style="animation: 1s ease 0s 1 normal none running fadeIn; height: 100%; width: 100%;">
+                                    </div>
+                                </li>
+                                <li>
+                                    <div>
+                                        <img class="small-pic-img" src="/vue/lib/img/2.jpg"
+                                             style="animation: 1s ease 0s 1 normal none running fadeIn; height: 100%; width: 100%;">
+                                    </div>
+                                </li>
+                                <li>
+                                    <div>
+                                        <img class="small-pic-img" src="/vue/lib/img/2.jpg"
+                                             style="animation: 1s ease 0s 1 normal none running fadeIn; height: 100%; width: 100%;">
+                                    </div>
+                                </li>
+                                <li>
+                                    <div>
+                                        <img class="small-pic-img" src="/vue/lib/img/2.jpg"
+                                             style="animation: 1s ease 0s 1 normal none running fadeIn; height: 100%; width: 100%;">
+                                    </div>
+                                </li>
+                                <li>
+                                    <div>
+                                        <img class="small-pic-img" src="/vue/lib/img/3.jpg"
+                                             style="animation: 1s ease 0s 1 normal none running fadeIn; height: 100%; width: 100%;">
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+    <hr>
+    <!-- 评价栏 -->
+    <div class="container">
+
+        <div class="card bg-info text-white">
+            <div class="card-body">
+                <label for="">房间评价</label>
+                <textarea class="form-control" name="" id="" cols="120" rows="2" style="width: 100%;" placeholder="快来评论吧~" v-model="context"></textarea>
+                <button type="text" class="btn btn-secondary" @click="add">提交</button>
+            </div>
+        </div>
+        <div class="card bg-light text-dark">
+            <div class="card-body">
+                <ul v-for="item in users">
+                    <li class="row">
+                        <div class="div_img"><img :src="item.photo" style="width:20px; height:20px"></div>
+                        <div class="head">
+                            <span class="username">{{item.username}} </span>
+                            <span class="time">{{item.create_time}}</span>
+                        </div>
+                        <div  class="content">
+                            <span>{{item.content}}</span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div id="discuss">
+                <vue-nav :cur="cur" :all="all" :callback="callback"></vue-nav>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+<script>
+    //创建Vue实例,得到 ViewModel
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            user: {
+                id: 1,
+                name: "wordpython",
+                head: "/vue/lib/img/5.jpg"
+            },
+            users: [],
+            cur: 1,
+            all: 8,
+            url: 'http://localhost:8080/all/select_discuss',
+            context:null,
+            bookedroom:[
+                {room_id:1, name:"四季豪华双人套房", type:"标准双人房",  pic:"/vue/lib/img/四季酒店-2.jpg", msg:"asd"},
+                {room_id:2, name:"铂悦豪华单人套房", type:"标准单人房",  pic:"/vue/lib/img/铂悦酒店-2.jpg", msg:"asd"}
+            ]
+
+        },
+        components: {
+            'vue-nav': Vnav
+        },
+        methods: {
+            callback(data) {
+                this.cur = data
+                this.url = '你点击了'+data+ '页';
+                console.log(this.url);
+                var that=this;
+                $.ajax({
+                    url: 'http://localhost:8080/all/list?page='+this.cur+"&limit="+10,
+                    dataType: "json",
+                    success: function (data) {
+                        that.users=data['data'];
+                    }
+                });
+            },
+            add(){
+                if(this.context != null){
+                    this.users.unshift({ username: this.user.name, photo: this.user.head, content: this.context});
+                    this.context = null;
+                    $.ajax({
+                        type:"POST",
+                        url: 'http://localhost:8080/all/insert_discuss',
+                        data:JSON.stringify({username:this.user.name}),
+                        contentType:"application/json;charset=UTF-8",
+                        dataType: "json",
+                        success: function (data) {
+                            console.log(data);
+                        }
+                    });
+                }
+                else{
+                    alert("评论不能为空哦~")
+                }
+            }
+        },
+        created:function () {
+            var that=this;
+                $.ajax({
+                    url: 'http://localhost:8080/all/select_discuss?page=1&limit='+10,
+                    dataType: "json",
+                    success: function (data) {
+                        that.users=data['data'];
+                        that.all=data['count']
+                        console.log(data['data']);
+                    }
+                })
+        }
+    });
+
+    // $(function () {
+    //     $.ajax({
+    //         url: "https://static.runoob.com/images/mix/img_avatar.png",
+    //         dataType: "json",
+    //         success: function (data) {
+    //             var src = data["img_url"] + data["photo_names"][0];
+    //             $(".big-pic-img").attr("src", src);//初始化大图
+    //             //设置小图
+    //             for (var i in data["photo_names"]) {
+    //                 var url = data["img_url"] + data["photo_names"][i];
+    //                 $("#ul").append('<li><div id="img_div"><img class="small-pic-img" src="' + url + '"style="animation: 1s ease 0s 1 normal none running fadeIn;"></div></li>');
+    //             }
+    //         }
+    //     })
+    // });
+    //给动态生成的小图添加点击事件
+    $(".ul").on('click', '.small-pic-img', function () {
+        $(".big-pic-img").attr("src", this.src);
+    });
+
+</script>
+
+</body>
+
+</html>

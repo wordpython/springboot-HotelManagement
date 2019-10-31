@@ -18,7 +18,8 @@ function login_button(){
                 while (win != win.top){//Top属性返回当前窗口的最顶层浏览器窗口。
                     win = win.top;
                 }
-                win.location.href="/search"
+                // win.location.href="/search"
+                win.location.href="/vue/html/index.html"
 			}else if(data=="admin/login"){
                 while (win != win.top){//Top属性返回当前窗口的最顶层浏览器窗口。
                     win = win.top;

@@ -182,21 +182,22 @@ public class HotelController {
      */
     @RequestMapping("/list")
     @ResponseBody
-    public Object list(@RequestParam(required = false) String name,
-                       @RequestParam(required = false) String timeLimit,
-                       @RequestParam(required = false) Long deptId,HttpSession session) {
+    public Object list(@RequestParam(required = false) int page,
+                       @RequestParam(required = false) int limit,HttpSession session) {
 
         System.out.println("查询房间列表");
-        //拼接查询条件
-        String beginTime = "";
-        String endTime = "";
-//        AdUsers data=new AdUsers("123abc","wordpython","男","超级管理员","开发部","djsk@qq.com","13610079097","2016-01-29 08:49:53", "正常");
+        System.out.println("页码:page="+page+"  一页数据数:limit="+limit);
+        int start=(page-1)*limit;
+        int rows=limit;
         Room room=new Room();
         room.setHotel_id(session.getAttribute("hotel_id").toString());
+        room.setStart(start);
+        room.setRows(rows);
         System.out.println(room);
-        List<Room> data = roomService.selectRooms(room);
+        List<Room> data = roomService.selectPartRoom(room);
         System.out.println(data);
-        AdPage adPage = new AdPage(data, "0", "1", "啦啦啦");
+        int count=roomService.selectRoomCount();
+        AdPage adPage = new AdPage(data, 0, count, "啦啦啦");
         System.out.println(adPage);
         return adPage;
     }

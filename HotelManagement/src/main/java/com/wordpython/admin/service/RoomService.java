@@ -24,7 +24,7 @@ public interface RoomService {
     List<Room> selectPartRoom(Room room);
 
     //总数
-    int selectRoomCount(Room room);
+    int selectRoomCount();
 
     List<Photo> selectPhotos();
 

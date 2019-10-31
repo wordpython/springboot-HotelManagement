@@ -66,8 +66,8 @@
 		delete from photo where room_number=#{room_number} and hotel_id=#{hotel_id};
 	</delete>
     <select id="selectPartRoom" parameterType="Room" resultType="Room">
-        <!-- select * from users limit 5,10  检索记录行 6-15 -->
-        select * from room
+        <!-- select * from users limit 0,10  检索记录行 1-10 -->
+        SELECT * from room JOIN room_msg USING(room_number,create_time,update_time)
         <if test="start !=null and rows !=null">
             limit #{start},#{rows}
         </if>

@@ -9,4 +9,10 @@ public interface MapperDiscuss {
     int insertDiscuss(Discuss discuss);
     //查询
     List<Discuss> selectDiscuss(Discuss discuss);
+
+    //部分查询
+    List<Discuss> selectPartDiscuss(Discuss discuss);
+
+    //总数
+    int selectDiscussCount();
 }

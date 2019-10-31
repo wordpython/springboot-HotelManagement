@@ -50,9 +50,9 @@ layui.use(['laydate', 'laypage', 'layer', 'table', 'upload', 'element', 'form', 
      */
     //执行一个 table 实例
     table.render({
-        elem: '#userTable'
+        elem: 'userTable'
         , height: "full-98"
-        , cellMinWidth: 100
+        // , cellMinWidth: 100
         , url: './hotel/list/' //数据接口
         , title: '用户表'
         , page: true //开启分页

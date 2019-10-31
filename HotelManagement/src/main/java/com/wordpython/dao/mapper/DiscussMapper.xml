@@ -10,4 +10,15 @@
 	<select id="selectDiscuss" parameterType="com.wordpython.entity.Discuss" resultType="com.wordpython.entity.Discuss">
 		select * from discuss where hotel_id=#{hotel_id} and room_number=#{room_number}
 	</select>
+
+	<select id="selectPartDiscuss" parameterType="com.wordpython.entity.Discuss" resultType="com.wordpython.entity.Discuss">
+		<!-- select * from users limit 5,10  检索记录行 6-15 -->
+		SELECT * from discuss
+		<if test="start !=null and rows !=null">
+			limit #{start},#{rows}
+		</if>
+	</select>
+	<select id="selectDiscussCount" parameterType="Integer" resultType="Integer">
+		select count(*) from discuss
+	</select>
 </mapper>

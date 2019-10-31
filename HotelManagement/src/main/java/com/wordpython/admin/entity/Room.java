@@ -10,7 +10,7 @@ import java.sql.Timestamp;
  **/
 @Data
 public class Room {
-    private String type_id;//主键id，自增
+    private String type_id;//主键id
     private String room_number;//房间编号
     private String hotel_id;//酒店id
     private String type;//房间类型
@@ -23,6 +23,7 @@ public class Room {
     private String kitchen;//厨房
     private String win;//窗口
     private String detailed;//特别提示
+    private String img;//图片文件夹名,图片名字(用于主页展示)
     private String img_url;//图片路径
     private int img_number;//图片数量
     private Timestamp create_time;//创建时间

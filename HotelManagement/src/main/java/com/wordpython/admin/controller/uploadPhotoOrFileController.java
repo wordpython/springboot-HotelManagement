@@ -47,7 +47,10 @@ public class uploadPhotoOrFileController {
 	public String send2() {
 		return "uploadPhotoOrFile2";
 	}
-	
+	/*
+	* 单图片上传，
+	*   img：图片文件夹名,图片名字(用于主页展示)
+	* */
 	@PostMapping("/upload")
 	@ResponseBody
 	public JSONObject Upload(@RequestParam("file") MultipartFile file) throws IOException {

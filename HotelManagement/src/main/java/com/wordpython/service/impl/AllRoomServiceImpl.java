@@ -54,8 +54,8 @@ public class AllRoomServiceImpl implements AllRoomService {
     }
 
     @Override
-    public int selectRoomCount(Room room) {
-        return mapperRoom.selectRoomCount(room);
+    public int selectRoomCount() {
+        return mapperRoom.selectRoomCount();
     }
 
     @Override

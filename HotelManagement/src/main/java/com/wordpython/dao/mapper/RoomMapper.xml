@@ -71,7 +71,7 @@
 	</delete>
     <select id="selectPartRoom" parameterType="com.wordpython.entity.Room" resultType="com.wordpython.entity.Room">
         <!-- select * from users limit 5,10  检索记录行 6-15 -->
-        select * from room
+		SELECT * from room JOIN room_msg USING(room_number,create_time,update_time)
         <if test="start !=null and rows !=null">
             limit #{start},#{rows}
         </if>

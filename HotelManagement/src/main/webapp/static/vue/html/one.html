@@ -1,0 +1,33 @@
+<html>
+	<head>
+        <meta charset="utf-8">
+		<title>this is the first vue demo</title>
+		<script src="/vue/lib/vue.min.js"></script>
+	</head>
+	
+<body>
+    <div id="app">
+        <ul>
+            <!--根据数组数据自动渲染页面-->
+            <li v-for="item in message">{{item}}</li>
+        </ul>
+        <button @click="add">添加数据</button>
+    </div>
+</body>
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            message: ["第1条数据","第2条数据"],
+            i:2
+        },
+        methods:{
+            //向数组添加一条数据即可
+            add:function(){
+                this.i++
+                this.message.push("第"+this.i+"条数据")
+            }
+        }
+    })
+</script>
+</html>

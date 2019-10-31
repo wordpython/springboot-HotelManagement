@@ -27,4 +27,14 @@ public class AllDiscussServiceImpl implements AllDiscussService {
     public List<Discuss> selectDiscuss(Discuss discuss) {
         return mapperDiscuss.selectDiscuss(discuss);
     }
+
+    @Override
+    public List<Discuss> selectPartDiscuss(Discuss discuss) {
+        return mapperDiscuss.selectPartDiscuss(discuss);
+    }
+
+    @Override
+    public int selectDiscussCount() {
+        return mapperDiscuss.selectDiscussCount();
+    }
 }

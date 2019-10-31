@@ -11,9 +11,10 @@ import java.util.List;
 @Data
 public class AdPage {
     List data;
-    String code,count,msg;
+    int code,count;
+    String msg;
 
-    public AdPage(List data, String code, String count, String msg) {
+    public AdPage(List data, int code, int count, String msg) {
         this.data = data;
         this.code = code;
         this.count = count;

@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<head>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta charset="utf-8">
+
+    <title>Bootstrap4 主页</title>
+
+    <script src="/vue/lib/vue.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/popper.js/1.15.0/umd/popper.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <style>
+        /* Make the image fully responsive */
+        #carouselId {
+            padding: 5%;
+        }
+
+        .carousel-inner img {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+
+<body>
+<div id="app">
+    <!-- 主页面设计 -->
+
+    <!-- 导航栏 -->
+    <nav class="navbar navbar-expand-md fixed-top navbar-dark" style="background-color: #3579aa;">
+        <div style="width: 40px; height: 40px;">
+            <img class="img-fluid" src="/vue/lib/img/酒店logo.jpg" alt="Chania">
+        </div>
+        <a class="navbar-brand" href="#">酒店预定系统</a>
+        <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId"
+                aria-controls="collapsibleNavId"
+                aria-expanded="false" aria-label="Toggle navigation"></button>
+        <div class="collapse navbar-collapse" id="collapsibleNavId">
+            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                <li class="nav-item active">
+                    <!-- <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a> -->
+                    <!-- <img src="./lib/img/1.jpg" class="img-thumbnail" alt="Cinque Terre"> -->
+
+
+                </li>
+                <!-- <li class="nav-item">
+                    <a class="nav-link" href="#">Link</a>
+                </li> -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false">功能选择</a>
+                    <div class="dropdown-menu" aria-labelledby="dropdownId">
+                        <a class="dropdown-item" href="#booking">预订</a>
+                        <a class="dropdown-item" href="#/cancel">退订</a>
+                    </div>
+                </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+                <div style="width: 40px; height: 40px;">
+                    <img v-bind:src="user.head" class="rounded-circle" alt="Cinque Terre"
+                         style="width: 100%; height: 100%;" href="baidu.com">
+                </div>
+                <!-- <a href="#" style="color: snow;" v-model="user.name">{{user.name}}</a> -->
+                <button type="button" class="btn btn-secondary mr-sm-2" data-toggle="modal" data-target="#modal_user">
+                    {{user.username}}
+                </button>
+                <button class="btn btn-outline-primary my-2 my-sm-0" type="submit" style="color: rgb(202, 211, 149);">
+                    登录
+                </button>
+                <button class="btn btn-outline-primary my-2 my-sm-0" type="submit" style="color: rgb(202, 211, 149);">
+                    注册
+                </button>
+            </form>
+        </div>
+    </nav>
+
+    <!-- 轮播图 -->
+    <div id="carouselId" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+            <li data-target="#carouselId" data-slide-to="0" class="active"></li>
+            <li data-target="#carouselId" data-slide-to="1"></li>
+            <li data-target="#carouselId" data-slide-to="2"></li>
+        </ol>
+        <div class="carousel-inner" role="listbox">
+            <div class="carousel-item active" style="height: 480px;">
+                <img src="/vue/lib/img/四季酒店.jpg">
+                <div class="container">
+                    <div class="carousel-caption">
+                        <h1>广州四季酒店</h1>
+                        <p>广州四季酒店位于市中心，提供室内游泳池、7处餐饮场所和热水浴池。现代化客房拥有柔和色调的装潢和东方风格主题。酒店提供覆盖各处的免费WiFi。
+
+                            广州四季酒店距离广州大剧院有5分钟步行路程，距离广州塔有10分钟车程，距离广东省博物馆有15分钟的步行路程。</p>
+                        <p><a class="btn btn-lg btn-primary" href="#" role="button">了解更多</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item" style="height: 480px;">
+                <img src="/vue/lib/img/铂悦酒店.jpg">
+                <div class="container">
+                    <div class="carousel-caption">
+                        <h1>广州柏悦酒店</h1>
+                        <p>
+                            广州柏悦酒店位于珠江新城中央商务区的中心，提供70楼的户外屋顶酒吧、室内游泳池、健身中心和63楼的Spa。每间宽敞的客房均配有落地窗，享有市容的全景和珠江的夜景，亦配有带多界面的平板电视、Nespresso咖啡机和舒适的休息区、宽敞的浴室配有浴缸和花洒淋浴区。</p>
+                        <p><a class="btn btn-lg btn-primary" href="#" role="button">了解更多</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item" style="height: 480px;">
+                <img src="/vue/lib/img/花园酒店.jpg">
+                <div class="container">
+                    <div class="carousel-caption">
+                        <h1>广州花园酒店</h1>
+                        <p>广州花园酒店位于广州市中心，坐落在淘金地铁站（5号线）前，提供现代化的客房、室外游泳池、健身中心和免费WiFi。
+                            广州花园酒店距离热门的广州友谊商店有5分钟步行路程，距离广州火车站有12分钟车程，距离广州火车东站有20分钟车程.</p>
+                        <p><a class="btn btn-lg btn-primary" href="#" role="button">了解更多</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <a class="carousel-control-prev" href="#carouselId" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselId" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+
+    <!-- 功能选择框 --><!-- 预定/退订按钮 -->
+    <!-- 房间筛选框 --><!-- 房间类型、入住时间-退房时间、筛选条件 -->
+    <!-- <div class="container jumbotron"  id="booking">
+        <div class="row">
+                <div class="col-md-6">
+                        <button type="button" class="btn btn-primary mr-sm-2" data-toggle="modal" data-target="#myModal1">
+                                我要预定
+                            </button>
+                </div>
+                <div class="col-md-6">
+                        <button id="cancel" type="button" class="btn btn-primary mr-sm-2" data-toggle="modal" data-target="#myModal2">
+                                我要退订
+                            </button>
+                </div>
+        </div> -->
+
+    <!-- <div class="row">
+         <form class="custom-control-inline">
+        <div class="col-md-*">
+                <div class="custom-control-inline">
+                        <h5><span class="badge badge-default">房间类型</span></h5>
+                        <select class="form-control " id="sel1">
+                            <option>标准单人房</option>
+                            <option>标准双人房</option>
+                            <option>豪华单人房</option>
+                            <option>豪华双人房</option>
+                        </select>
+                    </div>
+        </div>
+        <div class="col-md-*">
+                <div class="custom-control-inline">
+
+                        <h5><span class="badge badge-default">入住时间</span></h5>
+                        <input type="date" name="" id="input" class="form-control" value="" required="required" title="">
+
+                    </div>
+        </div>
+        <div class="col-md-*">
+                <div class="custom-control-inline">
+
+                        <h5><span class="badge badge-default">退房时间</span></h5>
+                        <input type="date" name="" id="input" class="form-control" value="" required="required" title="">
+
+                    </div>
+        </div>
+        <div>
+            <button type="button" class="btn btn-primary mr-sm-2" data-toggle="modal" data-target="#myModal3">
+                    房间条件筛选
+            </button>
+        </div>
+        <div class="col-md-*">
+                <div class="custom-control-inline">
+                        <button type="submit" class="btn btn-primary">搜索</button>
+                </div>
+        </div>
+    </form>
+    </div> -->
+
+
+</div>
+<!-- 房间展示列表 -->
+<div class="container card bg-light text-dark">
+    <div class="card-body list-inline">
+        <div class="list-inline-item">
+            精选房间
+        </div>
+        <div class="list-inline-item col-md-2 offset-md-9 ">
+            <a href="/vue/html/room.html">查看更多</a>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+
+    <div class="row">
+        <!-- <div class="col"></div> -->
+        <div class="card col-4">
+            <img class="card-img-top" src="/vue/lib/img/1.jpg" alt="Card image" style="width:100%">
+            <div class="card-body">
+                <h4 class="card-title">John Doe</h4>
+                <p class="card-text">Some example text some example text. John Doe is an architect and engineer</p>
+                <a href="#" class="btn btn-primary">See Profile</a>
+            </div>
+        </div>
+
+
+        <div class="card col-4">
+            <div class="card-body">
+                <h4 class="card-title">Jane Doe</h4>
+                <p class="card-text">Some example text some example text. Jane Doe is an architect and engineer</p>
+                <a href="#" class="btn btn-primary">See Profile</a>
+            </div>
+            <img class="card-img-bottom" src="/vue/lib/img/1.jpg" alt="Card image" style="width:100%">
+        </div>
+
+        <div class="card col-4">
+            <img class="card-img-top" src="/vue/lib/img/1.jpg" alt="Card image" style="width:100%">
+            <div class="card-body">
+                <h4 class="card-title">John Doe</h4>
+                <p class="card-text">Some example text some example text. John Doe is an architect and engineer</p>
+                <a href="#" class="btn btn-primary">See Profile</a>
+            </div>
+        </div>
+        <!-- <div class="col"></div> -->
+    </div>
+
+    <div class="row">
+        <!-- <div class="col"></div> -->
+        <div class="card col-4">
+            <img class="card-img-top" src="/vue/lib/img/1.jpg" alt="Card image" style="width:100%">
+            <div class="card-body">
+                <h4 class="card-title">John Doe</h4>
+                <p class="card-text">Some example text some example text. John Doe is an architect and engineer</p>
+                <a href="#" class="btn btn-primary">See Profile</a>
+            </div>
+        </div>
+
+
+        <div class="card col-4">
+            <div class="card-body">
+                <h4 class="card-title">Jane Doe</h4>
+                <p class="card-text">Some example text some example text. Jane Doe is an architect and engineer</p>
+                <a href="#" class="btn btn-primary">See Profile</a>
+            </div>
+            <img class="card-img-bottom" src="/vue/lib/img/1.jpg" alt="Card image" style="width:100%">
+        </div>
+
+        <div class="card col-4">
+            <img class="card-img-top" src="/vue/lib/img/1.jpg" alt="Card image" style="width:100%">
+            <div class="card-body">
+                <h4 class="card-title">John Doe</h4>vue
+                <p class="card-text">Some example text some example text. John Doe is an architect and engineer</p>
+                <a href="#" class="btn btn-primary">See Profile</a>
+            </div>
+        </div>
+        <!-- <div class="col"></div> -->
+    </div>
+</div>
+
+<br>
+
+
+<!-- 模态框1 -->
+<div class="modal fade" id="myModal1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!-- 模态框头部 -->
+            <div class="modal-header">
+                <h4 class="modal-title">预定失败</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- 模态框主体 -->
+            <div class="modal-body">
+                还不能预订哦~请先登录账户。
+            </div>
+
+            <!-- 模态框底部 -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+                <a name="cancel" id="wordpython" class="btn btn-primary" href="#" role="button">去登录</a>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- 模态框2 -->
+<div class="modal fade" id="myModal2">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!-- 模态框头部 -->
+            <div class="modal-header">
+                <h4 class="modal-title">退订失败</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- 模态框主体 -->
+            <div class="modal-body">
+                还不能退订哦~请先登录账户。
+            </div>
+
+            <!-- 模态框底部 -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+                <a name="cancel" id="" class="btn btn-primary" href="#" role="button">去登录</a>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- 筛选条件弹框 -->
+<div class="modal fade" id="myModal3">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!-- 模态框头部 -->
+            <div class="modal-header">
+                <h4 class="modal-title">房间设施筛选</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- 模态框主体 -->
+            <div class="modal-body">
+                <div class="form-check">
+                    <label class="form-check-label">
+                        <input type="checkbox" class="form-check-input" value="">WiFi
+                    </label>
+                </div>
+                <div class="form-check">
+                    <label class="form-check-label">
+                        <input type="checkbox" class="form-check-input" value="">阳台
+                    </label>
+                </div>
+                <div class="form-check disabled">
+                    <label class="form-check-label">
+                        <input type="checkbox" class="form-check-input" value="">工作台
+                    </label>
+                </div>
+            </div>
+
+            <!-- 模态框底部 -->
+            <div class="modal-footer">
+                <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+                <a name="cancel" id="" class="btn btn-primary" href="#" role="button">去登录</a> -->
+                <button type="button" class="btn btn-primary" data-dismiss="modal">确定</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- 预订按钮弹框 -->
+<div class="modal fade model-lg" id="modal_booking">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+
+            <!-- 模态框头部 -->
+            <div class="modal-header">
+                <h4 class="modal-title">房间预定</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- 模态框主体 -->
+            <div class="modal-body">
+                <form class="custom-control">
+                    <div class="form-group">
+                        <label for="name">真实姓名:</label>
+                        <input type="text" class="form-control" id="name">
+                    </div>
+                    <div class="form-group">
+                        <label for="IDcode">身份证号:</label>
+                        <input type="text" class="form-control" id="IDcode">
+                    </div>
+                    <div class="form-group">
+                        <input type="hidden" class="form-control" id="pwd" value="1001">
+                    </div>
+
+                    <button type="submit" class="btn btn-primary ">提交</button>
+                </form>
+            </div>
+
+            <!-- 模态框底部 -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">提交</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- 用户模态框 -->
+<div class="modal fade" id="modal_user">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+
+            <!-- 模态框头部 -->
+            <div class="modal-header">
+                <h4 class="modal-title" style="color: cornflowerblue;">{{user.username}}</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- 模态框主体 -->
+            <div class="modal-body">
+                <label>用户头像</label>
+                <img v-bind:src="user.head" class="img-fluid border">
+                <div class="input-group mb-3">
+
+                    <input type="text" class="form-control" placeholder="Some text">
+                    <div class="input-group-prepend">
+                        <button class="btn btn-outline-secondary" type="button">Basic Button</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 模态框底部 -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+                <a name="cancel" id="tt" class="btn btn-primary" href="#" role="button">去登录</a>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<!-- 版权声明栏 -->
+<div class="">
+    <div style="background-color: #3579aa; height: 130px;">
+        版权声明
+    </div>
+</div>
+
+</div>
+
+<script>
+    //创建Vue实例,得到 ViewModel
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            user:{
+                id:'1',
+                username:"wordpython",
+                head:"/vue/lib/img/5.jpg",
+                msg:"用户信息",
+                list:{
+
+                }
+            },
+            room: [
+                {id:1, type:"标准单人房", pic: "/vue/lib/img/1.jpg", msg:"房间基本信息1"},
+                {id:2, type:"标准双人房", pic: "/vue/lib/img/2.jpg", msg:"房间基本信息2"},
+                {id:3, type:"豪华单人房", pic: "/vue/lib/img/3.jpg", msg:"房间基本信息3"}
+            ]
+        },
+        methods: {}
+    });
+</script>
+</body>
+
+</html>

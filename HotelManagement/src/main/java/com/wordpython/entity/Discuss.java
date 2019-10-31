@@ -15,4 +15,8 @@ public class Discuss {
     private String username;
     private String photo;
     private String create_time;
+
+    //分页
+    private int start;
+    private int rows;
 }

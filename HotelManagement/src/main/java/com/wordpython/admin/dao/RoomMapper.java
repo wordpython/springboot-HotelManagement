@@ -29,7 +29,7 @@ public interface RoomMapper {
     List<Room> selectPartRoom(Room room);
 
     //总数
-    int selectRoomCount(Room room);
+    int selectRoomCount();
 
     //所有房间所有图片
     List<Photo> selectPhotos();

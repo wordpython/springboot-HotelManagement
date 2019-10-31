@@ -30,27 +30,6 @@ public class AllHotelController {
     private AllDiscussService allDiscussService;
 
     /**
-     * //查询房间信息
-     *
-     * @author wordpython
-     * @Date 2019/10/14 22:43
-     */
-    @RequestMapping("/list")
-    @ResponseBody
-    public Object list(HttpSession session) {
-
-        System.out.println("查询房间列表");
-        Room room = new Room();
-        room.setStart(0);
-        room.setRows(10);
-        List<Room> data = allRoomService.selectPartRoom(room);
-        System.out.println(data);
-        AdPage adPage = new AdPage(data, "0", "1", "啦啦啦");
-        System.out.println(adPage);
-        return adPage;
-    }
-
-    /**
      * 查询用户信息
      * 参数：username
      *
@@ -108,6 +87,37 @@ public class AllHotelController {
             }
         }
         return "false";
+    }
+
+    /**
+     * //查询房间信息
+     *
+     * @author wordpython
+     * @Date 2019/10/14 22:43
+     */
+    @RequestMapping("/list")
+    @ResponseBody
+    public Object list(@RequestParam(required = false) int page,
+                       @RequestParam(required = false) int limit,
+                       HttpSession session) {
+        System.out.println("查询房间列表");
+        System.out.println("页码:page="+page+"  一页数据数:limit="+limit);
+        int start=(page-1)*limit;
+        int rows=limit;
+        Room room = new Room();
+        room.setStart(start);
+        room.setRows(rows);
+        List<Room> data = allRoomService.selectPartRoom(room);
+        System.out.println(data);
+        int count=allRoomService.selectRoomCount();
+        if(count%10>0){//求余运算符
+            count=count/10+1;
+        }else{
+            count=count/10;
+        }
+        AdPage adPage = new AdPage(data, 0, count, "啦啦啦");
+        System.out.println(adPage);
+        return adPage;
     }
 
     /**
@@ -227,12 +237,26 @@ public class AllHotelController {
      * */
     @RequestMapping(value = "/select_discuss")
     @ResponseBody
-    public Object select_discuss(@RequestBody Discuss discuss) {
+    public Object select_discuss(@RequestParam(required = false) int page,
+                                 @RequestParam(required = false) int limit) {
         System.out.println("查询评论");
+        System.out.println("页码:page="+page+"  一页数据数:limit="+limit);
+        int start=(page-1)*limit;
+        int rows=limit;
+        Discuss discuss=new Discuss();
+        discuss.setStart(start);discuss.setRows(rows);
         System.out.println(discuss);
-        List<Discuss> discusses = allDiscussService.selectDiscuss(discuss);
+        List<Discuss> discusses = allDiscussService.selectPartDiscuss(discuss);
         System.out.println(discusses);
-        return discusses;
+        int count=allDiscussService.selectDiscussCount();
+        if(count%10>0){//求余运算符
+            count=count/10+1;
+        }else{
+            count=count/10;
+        }
+        AdPage adPage = new AdPage(discusses, 0, count, "啦啦啦");
+        System.out.println(adPage);
+        return adPage;
     }
 
 }
