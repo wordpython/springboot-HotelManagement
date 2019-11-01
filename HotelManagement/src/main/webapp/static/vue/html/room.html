@@ -15,6 +15,11 @@
     <script src="/vue/lib/vue-nav.js"></script>
     <link rel="stylesheet" href="/vue/css/room.css">
     <script type="text/javascript" src="/vue/lib/vue-router.js"></script>
+    <style>
+        [v-cloak]{
+            display: none;
+        }
+    </style>
 </head>
 
 <body>
@@ -55,7 +60,7 @@
                          style="width: 100%; height: 100%;" href="baidu.com">
                 </div>
                 <!-- <a href="#" style="color: snow;" v-model="user.name">{{user.name}}</a> -->
-                <button type="button" class="btn btn-secondary mr-sm-2" data-toggle="modal" data-target="#modal_user" :style="{display:kk}">
+                <button type="button" class="btn btn-secondary mr-sm-2" data-toggle="modal" data-target="#modal_user" :style="{display:kk}" v-cloak>
                     {{user.username}}
                 </button>
                 <button @click="login" class="btn btn-outline-primary my-2 my-sm-0" type="submit" :style="{color:color,display:ss}">
@@ -124,25 +129,25 @@
                     <img v-bind:src="item.img" style="width: 100%;"/>
                 </td>
                 <td style="width:50%">
-                    <p>房间编号 :{{item.room_number}}</p>
-                    <p>房间类型 : {{item.type}}</p>
-                    <p>房间面积 : {{item.area}}</p>
-                    <p>所属楼层 : {{item.floor}}</p>
-                    <p>床位数 : {{item.bed}}</p>
-                    <p>wifi : {{item.wifi}} &ensp;,&ensp;工作台 : {{item.workbench}}</p>
-                    <p>客厅 : {{item.livingroom}}&ensp;,&ensp;
+                    <p v-cloak>房间编号 :{{item.room_number}}</p>
+                    <p v-cloak>房间类型 : {{item.type}}</p>
+                    <p v-cloak>房间面积 : {{item.area}}</p>
+                    <p v-cloak>所属楼层 : {{item.floor}}</p>
+                    <p v-cloak>床位数 : {{item.bed}}</p>
+                    <p v-cloak>wifi : {{item.wifi}} &ensp;,&ensp;工作台 : {{item.workbench}}</p>
+                    <p v-cloak>客厅 : {{item.livingroom}}&ensp;,&ensp;
                         厨房 : {{item.kitchen}}&ensp;,&ensp;
                         窗口 : {{item.win}}
                     </p>
-                    <p>特别提示 : {{item.detailed}}</p>
+                    <p v-cloak>特别提示 : {{item.detailed}}</p>
                 </td>
                 <td style="width: 20%">
-                    <div style="display:none;">{{item.room_number}}</div>
+                    <div style="display:none;" v-cloak>{{item.room_number}}</div>
                     <button type="button" class="btn btn-primary mr-sm-2" data-toggle="modal"
                             data-target="#modal_booking" @click="booking($event)">
                         详情
                     </button>
-                    <div style="display:none;">{{item.hotel_id}}</div>
+                    <div style="display:none;" v-cloak>{{item.hotel_id}}</div>
                 </td>
             </tr>
 

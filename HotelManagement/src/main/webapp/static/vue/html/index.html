@@ -13,6 +13,9 @@
     <script src="https://cdn.staticfile.org/popper.js/1.15.0/umd/popper.min.js"></script>
     <script src="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <style>
+        [v-cloak]{
+            display: none;
+        }
         /* Make the image fully responsive */
         #carouselId {
             padding: 5%;
@@ -70,7 +73,7 @@
                 </div>
                 <!-- <a href="#" style="color: snow;" v-model="user.name">{{user.name}}</a> -->
                 <button type="button" class="btn btn-secondary mr-sm-2" data-toggle="modal" data-target="#modal_user"
-                        :style="{display:kk}">
+                        :style="{display:kk}" v-cloak>
                     {{user.username}}
                 </button>
                 <button @click="login" class="btn btn-outline-primary my-2 my-sm-0" type="submit"
@@ -164,22 +167,22 @@
             <div class="card col-4">
                 <img class="card-img-top" :src="example[0].img" alt="Card image" style="width:100%">
                 <div class="card-body">
-                    <h4 class="card-title">{{example[0].hotel_name}}</h4>
-                    <p class="card-text">{{example[0].detailed}}</p>
-                    <div style="display:none;">{{example[0].room_number}}</div>
+                    <h4 class="card-title" v-cloak>{{example[0].hotel_name}}</h4>
+                    <p class="card-text" v-cloak>{{example[0].detailed}}</p>
+                    <div style="display:none;" v-cloak>{{example[0].room_number}}</div>
                     <a class="btn btn-primary" @click="booking($event)">详情</a>
-                    <div style="display:none;">{{example[0].hotel_id}}</div>
+                    <div style="display:none;" v-cloak>{{example[0].hotel_id}}</div>
                 </div>
             </div>
 
 
             <div class="card col-4">
                 <div class="card-body">
-                    <h4 class="card-title">{{example[1].hotel_name}}</h4>
-                    <p class="card-text">{{example[1].detailed}}</p>
-                    <div style="display:none;">{{example[1].room_number}}</div>
+                    <h4 class="card-title" v-cloak>{{example[1].hotel_name}}</h4>
+                    <p class="card-text" v-cloak>{{example[1].detailed}}</p>
+                    <div style="display:none;" v-cloak>{{example[1].room_number}}</div>
                     <a class="btn btn-primary" @click="booking($event)">详情</a>
-                    <div style="display:none;">{{example[1].hotel_id}}</div>
+                    <div style="display:none;" v-cloak>{{example[1].hotel_id}}</div>
                 </div>
                 <img class="card-img-bottom" :src="example[1].img" alt="Card image" style="width:100%">
             </div>
@@ -187,11 +190,11 @@
             <div class="card col-4">
                 <img class="card-img-top" :src="example[2].img" alt="Card image" style="width:100%">
                 <div class="card-body">
-                    <h4 class="card-title">{{example[2].hotel_name}}</h4>
-                    <p class="card-text">{{example[2].detailed}}</p>
-                    <div style="display:none;">{{example[2].room_number}}</div>
+                    <h4 class="card-title" v-cloak>{{example[2].hotel_name}}</h4>
+                    <p class="card-text" v-cloak>{{example[2].detailed}}</p>
+                    <div style="display:none;" v-cloak>{{example[2].room_number}}</div>
                     <a class="btn btn-primary" @click="booking($event)">详情</a>
-                    <div style="display:none;">{{example[2].hotel_id}}</div>
+                    <div style="display:none;" v-cloak>{{example[2].hotel_id}}</div>
                 </div>
             </div>
             <!-- <div class="col"></div> -->
@@ -202,22 +205,22 @@
             <div class="card col-4">
                 <img class="card-img-top" :src="example[3].img" alt="Card image" style="width:100%">
                 <div class="card-body">
-                    <h4 class="card-title">{{example[3].hotel_name}}</h4>
-                    <p class="card-text">{{example[3].detailed}}</p>
-                    <div style="display:none;">{{example[3].room_number}}</div>
+                    <h4 class="card-title" v-cloak>{{example[3].hotel_name}}</h4>
+                    <p class="card-text" v-cloak>{{example[3].detailed}}</p>
+                    <div style="display:none;" v-cloak>{{example[3].room_number}}</div>
                     <a class="btn btn-primary" @click="booking($event)">详情</a>
-                    <div style="display:none;">{{example[3].hotel_id}}</div>
+                    <div style="display:none;" v-cloak>{{example[3].hotel_id}}</div>
                 </div>
             </div>
 
 
             <div class="card col-4">
                 <div class="card-body">
-                    <h4 class="card-title">{{example[4].hotel_name}}</h4>
-                    <p class="card-text">{{example[4].detailed}}</p>
-                    <div style="display:none;">{{example[4].room_number}}</div>
+                    <h4 class="card-title" v-cloak>{{example[4].hotel_name}}</h4>
+                    <p class="card-text" v-cloak>{{example[4].detailed}}</p>
+                    <div style="display:none;" v-cloak>{{example[4].room_number}}</div>
                     <a class="btn btn-primary" @click="booking($event)">详情</a>
-                    <div style="display:none;">{{example[4].hotel_id}}</div>
+                    <div style="display:none;" v-cloak>{{example[4].hotel_id}}</div>
                 </div>
                 <img class="card-img-bottom" :src="example[4].img" alt="Card image" style="width:100%">
             </div>
@@ -225,11 +228,11 @@
             <div class="card col-4">
                 <img class="card-img-top" :src="example[5].img" alt="Card image" style="width:100%">
                 <div class="card-body">
-                    <h4 class="card-title">{{example[5].hotel_name}}</h4>
-                    <p class="card-text">{{example[5].detailed}}</p>
-                    <div style="display:none;">{{example[5].room_number}}</div>
+                    <h4 class="card-title" v-cloak>{{example[5].hotel_name}}</h4>
+                    <p class="card-text" v-cloak>{{example[5].detailed}}</p>
+                    <div style="display:none;" v-cloak>{{example[5].room_number}}</div>
                     <a class="btn btn-primary" @click="booking($event)">详情</a>
-                    <div style="display:none;">{{example[5].hotel_id}}</div>
+                    <div style="display:none;" v-cloak>{{example[5].hotel_id}}</div>
                 </div>
             </div>
             <!-- <div class="col"></div> -->
@@ -379,7 +382,7 @@
 
                 <!-- 模态框头部 -->
                 <div class="modal-header">
-                    <h4 class="modal-title" style="color: cornflowerblue;">{{user.username}}</h4>
+                    <h4 class="modal-title" style="color: cornflowerblue;" v-cloak>{{user.username}}</h4>
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
 

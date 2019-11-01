@@ -15,6 +15,11 @@
     <script src="/vue/lib/vue-nav.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <link rel="stylesheet" href="/vue/css/booking.css">
+    <style>
+        [v-cloak]{
+            display: none;
+        }
+    </style>
 </head>
 
 <body>
@@ -76,6 +81,8 @@
                      class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}"
                      alt="" data-toggle="modal" data-target="#myModal1" @click="show">
                 <div style="color: rgb(117, 112, 112);"><span>点击图片查看更多</span></div>
+                <br>
+                <div><h3 v-cloak>价格：{{room.price}}/天</h3></div>
             </div>
             <div class="col-md-6">
                 <div class="row" style="height: 90%;">
@@ -83,15 +90,15 @@
                         <tbody>
                         <tr>
                             <td style="width:50%">
-                                <p>酒店名称 :{{room.hotel_name}} &ensp; 房间编号 :{{room.room_number}}</p>
-                                <p>房间类型 : {{room.type}} , 房间面积 : {{room.area}}</p>
-                                <p>所属楼层 : {{room.floor}} , 床位数 : {{room.bed}}</p>
-                                <p>wifi : {{room.wifi}} &ensp;,&ensp;工作台 : {{room.workbench}}</p>
-                                <p>客厅 : {{room.livingroom}}&ensp;,&ensp;
+                                <p v-cloak>酒店名称 :{{room.hotel_name}} &ensp; 房间编号 :{{room.room_number}}</p>
+                                <p v-cloak>房间类型 : {{room.type}} , 房间面积 : {{room.area}}</p>
+                                <p v-cloak>所属楼层 : {{room.floor}} , 床位数 : {{room.bed}}</p>
+                                <p v-cloak>wifi : {{room.wifi}} &ensp;,&ensp;工作台 : {{room.workbench}}</p>
+                                <p v-cloak>客厅 : {{room.livingroom}}&ensp;,&ensp;
                                     厨房 : {{room.kitchen}}&ensp;,&ensp;
                                     窗口 : {{room.win}}
                                 </p>
-                                <p>特别提示 : {{room.detailed}}</p>
+                                <p v-cloak>特别提示 : {{room.detailed}}</p>
                             </td>
                         </tr>
 
@@ -162,8 +169,8 @@
                     <div class="custom-control">
                         <div class="form-group">
                             <!--                            <label for="name">酒店名称:{{room.hotel_name}}</label>-->
-                            <p>酒店名称 : {{room.hotel_name}}</p>
-                            <p>房间号 : {{room.room_number}}</p>
+                            <p v-cloak>酒店名称 : {{room.hotel_name}}</p>
+                            <p v-cloak>房间号 : {{room.room_number}}</p>
 
                             <div class="row">
                                 <div class="col-4">
