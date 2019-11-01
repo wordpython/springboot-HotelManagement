@@ -49,8 +49,8 @@
 		where room.hotel_id=#{hotel_id} and room_msg.hotel_id=#{hotel_id};
 	</select>
     <insert id="insertRoom" parameterType="Room">
-		insert into room(type_id,room_number,hotel_id,type,area,floor,bed,wifi,workbench,livingroom,kitchen,win,detailed,create_time,update_time)
-		values(#{type_id},#{room_number},#{hotel_id},#{type},#{area},#{floor},#{bed},#{wifi},#{workbench},#{livingroom},#{kitchen},#{win},#{detailed},#{create_time},#{update_time});
+		insert into room(type_id,room_number,hotel_id,hotel_name,type,area,floor,bed,wifi,workbench,livingroom,kitchen,win,detailed,create_time,update_time)
+		values(#{type_id},#{room_number},#{hotel_id},#{hotel_name},#{type},#{area},#{floor},#{bed},#{wifi},#{workbench},#{livingroom},#{kitchen},#{win},#{detailed},#{create_time},#{update_time});
         insert into room_msg(room_id, room_number,hotel_id, status, price, discount, create_time, update_time)
         values (#{room_id},#{room_number},#{hotel_id},#{status},#{price},#{discount},#{create_time},#{update_time});
 	</insert>

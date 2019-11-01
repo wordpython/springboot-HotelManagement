@@ -133,7 +133,7 @@ public class AllHotelController {
         System.out.println("获取房间详情");
         System.out.println(room);
         Room r = allRoomService.selectRoom(room);
-        System.out.println(r);
+        System.out.println("获取房间详情:结果"+r);
         return r;
     }
 
@@ -156,7 +156,7 @@ public class AllHotelController {
 
     /*
      * 预订
-     * 参数：room_number,hotel_id,username
+     * 参数：room_number,hotel_id,hotel_name,username
      *
      * @author wordpython
      * @Date 2019/10/14 22:43
@@ -164,9 +164,10 @@ public class AllHotelController {
     @RequestMapping(value = "/booking")
     @ResponseBody
     public Object booking(@RequestBody Booking booking) {
-        //酒店id，房间号，用户名
+        //酒店id，酒店名，房间号，用户名
         System.out.println("预订");
         booking.setBooking_id(UUID.randomUUID().toString());
+        booking.setStatus("未付款");
         System.out.println(booking);
         //插入预订表
         int i = allBookingService.insertBooking(booking);

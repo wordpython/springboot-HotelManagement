@@ -22,6 +22,11 @@
             width: 100%;
             height: 100%;
         }
+
+        p {
+            color: #4d4d4d;
+            font-size: 14px;
+        }
     </style>
 </head>
 
@@ -64,16 +69,20 @@
                          style="width: 100%; height: 100%;" href="baidu.com">
                 </div>
                 <!-- <a href="#" style="color: snow;" v-model="user.name">{{user.name}}</a> -->
-                <button type="button" class="btn btn-secondary mr-sm-2" data-toggle="modal" data-target="#modal_user" :style="{display:kk}">
+                <button type="button" class="btn btn-secondary mr-sm-2" data-toggle="modal" data-target="#modal_user"
+                        :style="{display:kk}">
                     {{user.username}}
                 </button>
-                <button @click="login" class="btn btn-outline-primary my-2 my-sm-0" type="submit" :style="{color:color,display:ss}">
+                <button @click="login" class="btn btn-outline-primary my-2 my-sm-0" type="submit"
+                        :style="{color:color,display:ss}">
                     登录
                 </button>
-                <button @click="register" class="btn btn-outline-primary my-2 my-sm-0" type="submit" :style="{color:color,display:ss}">
+                <button @click="register" class="btn btn-outline-primary my-2 my-sm-0" type="submit"
+                        :style="{color:color,display:ss}">
                     注册
                 </button>
-                <button @click="logout" class="btn btn-outline-primary my-2 my-sm-0" type="submit" :style="{color:color,display:kk}">
+                <button @click="logout" class="btn btn-outline-primary my-2 my-sm-0" type="submit"
+                        :style="{color:color,display:kk}">
                     退出登录
                 </button>
             </div>
@@ -413,9 +422,9 @@
     var vm = new Vue({
         el: '#app',
         data: {
-            color:"rgb(202, 211, 149)",
-            kk:"none",
-            ss:"block",
+            color: "rgb(202, 211, 149)",
+            kk: "none",
+            ss: "block",
             user: {
                 id: '1',
                 username: '',
@@ -439,37 +448,37 @@
                 {
                     room_number: 867677,
                     hotel_id: 1,
-                    hotel_name: "裕华商务公寓",
+                    hotel_name: "艾薇国际度假公寓",
                     img: '/vue/lib/img/2.jpg',
-                    detailed: "裕华商务公寓为您打造如家一般的感觉"
+                    detailed: "艾薇国际度假公寓位于广州，提供一个露台，设有一间餐厅和酒吧；客人可以在水上乐园娱乐。公寓距离长隆欢乐世界6公里，提供覆盖各处的免费WiFi，仅接待中国大陆客人入住。"
                 },
                 {
                     room_number: 8676773,
                     hotel_id: 1,
-                    hotel_name: "裕华商务公寓",
+                    hotel_name: "广州茶阳国际酒店公寓",
                     img: '/vue/lib/img/3.jpg',
-                    detailed: "裕华商务公寓为您打造如家一般的感觉"
+                    detailed: "广州茶阳国际酒店公寓北京路店距离北京路步行街有2分钟的步行路程，提供带免费WiFi等齐全的设施的豪华公寓。公共停车场位于附近。"
                 },
                 {
                     room_number: 8676774,
                     hotel_id: 1,
-                    hotel_name: "裕华商务公寓",
-                    img: '/vue/lib/img/2.jpg',
-                    detailed: "裕华商务公寓为您打造如家一般的感觉"
+                    hotel_name: "友乐乐酒店公寓",
+                    img: '/vue/lib/img/4.jpg',
+                    detailed: "友乐乐酒店公寓距离五羊石像2.2公里，距离广州白云国际机场有40分钟车程，距离白云山有10分钟车程，距离越秀公园和广州火车北站有8分钟车程，距离琶洲展馆有20分钟车程，距离开往香港和澳门的巴士有5分钟车程。"
                 },
                 {
                     room_number: 8676775,
                     hotel_id: 1,
-                    hotel_name: "裕华商务公寓",
-                    img: '/vue/lib/img/3.jpg',
-                    detailed: "裕华商务公寓为您打造如家一般的感觉"
+                    hotel_name: "广州辉盛阁国际公寓",
+                    img: '/vue/lib/img/6.jpg',
+                    detailed: "广州辉盛阁国际公寓酒店位于广州市中心，距离石牌桥地铁站仅有数步之遥，提供豪华服务式公寓。舒适的公寓配备了家庭娱乐系统和现代的内饰提供覆盖各处的免费WiFi。"
                 },
                 {
                     room_number: 8676776,
                     hotel_id: 1,
-                    hotel_name: "裕华商务公寓",
-                    img: '/vue/lib/img/1.jpg',
-                    detailed: "裕华商务公寓为您打造如家一般的感觉"
+                    hotel_name: "广州丹顿行政公寓 ",
+                    img: '/vue/lib/img/7.jpg',
+                    detailed: "广州丹顿行政公寓距离广州天河广场、太古汇购物中心和广州塔有5分钟车程，提供带免费有线网络连接和免费WiFi的设备齐全的家外之家公寓。"
                 }
             ]
         },
@@ -481,28 +490,28 @@
                 sessionStorage.setItem("hotel_id", e.currentTarget.nextElementSibling.innerHTML);
                 window.location.href = "/vue/html/booking.html";
             },
-            logout(){
-                this.ss="block";
-                this.kk="none";
-                sessionStorage.setItem("username","请先登录");
-                sessionStorage.setItem("isLogin","false");
+            logout() {
+                this.ss = "block";
+                this.kk = "none";
+                sessionStorage.setItem("username", "请先登录");
+                sessionStorage.setItem("isLogin", "false");
             },
-            login(){
+            login() {
                 window.location.href = "/";
             },
-            register(){
+            register() {
                 window.location.href = "/register.html";
             }
         },
         created: function () {
             console.log(sessionStorage.getItem("isLogin"));
-            if(sessionStorage.getItem("isLogin")=="true"){//已登录
-                this.ss="none";
-                this.kk="block";
+            if (sessionStorage.getItem("isLogin") == "true") {//已登录
+                this.ss = "none";
+                this.kk = "block";
 
             }
-            this.user.username=sessionStorage.getItem("username");
-            this.user.head="/vue/lib/img/5.jpg";
+            this.user.username = sessionStorage.getItem("username");
+            this.user.head = "/vue/lib/img/5.jpg";
 
         }
     });

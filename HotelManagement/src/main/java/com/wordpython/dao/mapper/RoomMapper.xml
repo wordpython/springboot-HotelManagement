@@ -41,11 +41,11 @@
         房间信息的增删改查
     -->
     <select id="selectRoom" parameterType="com.wordpython.entity.Room" resultType="com.wordpython.entity.Room">
-		SELECT * from room JOIN room_msg USING(room_number,create_time,update_time)
-		where room_number=#{room_number} ;
+		SELECT * from room JOIN room_msg USING(room_number)
+		where room_number=#{room_number} and room.hotel_id=#{hotel_id};
 	</select>
     <select id="selectRooms" parameterType="com.wordpython.entity.Room" resultType="com.wordpython.entity.Room">
-		SELECT * from room JOIN room_msg USING(room_number,create_time,update_time)
+		SELECT * from room JOIN room_msg USING(room_number)
 		where room.hotel_id=#{hotel_id} and room_msg.hotel_id=#{hotel_id};
 	</select>
     <insert id="insertRoom" parameterType="com.wordpython.entity.Room">
@@ -71,7 +71,7 @@
 	</delete>
     <select id="selectPartRoom" parameterType="com.wordpython.entity.Room" resultType="com.wordpython.entity.Room">
         <!-- select * from users limit 5,10  检索记录行 6-15 -->
-		SELECT * from room JOIN room_msg USING(room_number,create_time,update_time)
+		SELECT * from room JOIN room_msg USING(room_number)
         <if test="start !=null and rows !=null">
             limit #{start},#{rows}
         </if>

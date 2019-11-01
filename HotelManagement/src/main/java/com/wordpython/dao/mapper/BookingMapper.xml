@@ -7,11 +7,11 @@
 		select * from booking where username=#{username}
 	</select>
     <insert id="insertBooking" parameterType="com.wordpython.entity.Booking">
-		insert into booking(booking_id,username,room_number,cost,status)
-		values(#{booking_id},#{username},#{room_number},#{cost},#{status})
+		insert into booking(booking_id,hotel_id,hotel_name,username,room_number,cost,status,booking_time)
+		values(#{booking_id},#{hotel_id},#{hotel_name},#{username},#{room_number},#{cost},#{status},#{booking_time})
 	</insert>
     <update id="updateBooking" parameterType="com.wordpython.entity.Booking">
-		update booking set username =#{username},room_number=#{room_number},cost=#{cost},status=#{status}
+		update booking set username =#{username},room_number=#{room_number},cost=#{cost},status=#{status},booking_time=#{booking_time}
 		where username=#{username};
 	</update>
     <delete id="deleteBooking" parameterType="com.wordpython.entity.Booking">

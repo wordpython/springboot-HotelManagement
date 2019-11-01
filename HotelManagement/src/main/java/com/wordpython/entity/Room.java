@@ -13,6 +13,7 @@ public class Room {
     private String type_id;//主键id，自增
     private String room_number;//房间编号
     private String hotel_id;//酒店id
+    private String hotel_name;//酒店名
     private String type;//房间类型
     private String area;//房间面积
     private int floor;//所属楼层

@@ -118,6 +118,7 @@ CREATE TABLE room
     type_id       varchar(255) NOT NULL PRIMARY KEY COMMENT '主键id',
     room_number   varchar(255) NOT NULL COMMENT '房间编号',
     hotel_id      varchar(255) COMMENT '酒店id',
+    `hotel_name`  VARCHAR(255) NOT NULL COMMENT '酒店名',
     type          varchar(255) COMMENT '房间类型(单双人房等)',
     area          varchar(255) COMMENT '房间面积',
     floor         int COMMENT '所属楼层',
@@ -136,75 +137,75 @@ CREATE TABLE room
 -- -----------
 -- Records of room
 -- -----------
-INSERT INTO room(type_id, room_number, hotel_id, type, area, floor, bed, wifi, workbench, livingroom, kitchen, win,
+INSERT INTO room(type_id, room_number, hotel_id,hotel_name, type, area, floor, bed, wifi, workbench, livingroom, kitchen, win,
                  detailed,img)
-    value ('1', '888888', '1', '双人房', '20-25㎡', 8, 2, '有', '有', '有', '有', '有', '非常温馨浪漫的房间','/vue/lib/img/1.jpg');
-INSERT INTO room(type_id, room_number, hotel_id, type, area, floor, bed, wifi, workbench, livingroom, kitchen, win,
+    value ('1', '888888', '1', '裕华商务公馆', '双人房', '20-25㎡', 8, 2, '有', '有', '有', '有', '有', '非常温馨浪漫的房间','/vue/lib/img/1.jpg');
+INSERT INTO room(type_id, room_number,  hotel_id,hotel_name, type, area, floor, bed, wifi, workbench, livingroom, kitchen, win,
                  detailed,img)
-    value ('2', '867677', '1', '双人房', '20-25㎡', 8, 2, '有', '有', '有', '有', '有', '非常温馨浪漫的房间','/vue/lib/img/2.jpg');
-INSERT INTO room(type_id, room_number, hotel_id, type, area, floor, bed, wifi, workbench, livingroom, kitchen, win,
+    value ('2', '867677', '1', '艾薇国际度假公寓', '双人房', '20-25㎡', 8, 2, '有', '有', '有', '有', '有', '非常温馨浪漫的房间','/vue/lib/img/2.jpg');
+INSERT INTO room(type_id, room_number,  hotel_id,hotel_name, type, area, floor, bed, wifi, workbench, livingroom, kitchen, win,
                  detailed,img)
-    value ('3', '8676773', '1', '双人房', '20-25㎡', 8, 2, '有', '有', '有', '有', '有', '非常温馨浪漫的房间','/vue/lib/img/3.jpg');
-INSERT INTO room(type_id, room_number, hotel_id, type, area, floor, bed, wifi, workbench, livingroom, kitchen, win,
+    value ('3', '8676773', '1', '广州茶阳国际酒店公寓', '双人房', '20-25㎡', 8, 2, '有', '有', '有', '有', '有', '非常温馨浪漫的房间','/vue/lib/img/3.jpg');
+INSERT INTO room(type_id, room_number,  hotel_id,hotel_name, type, area, floor, bed, wifi, workbench, livingroom, kitchen, win,
                  detailed,img)
-    value ('4', '8676774', '1', '双人房', '20-25㎡', 8, 2, '有', '有', '有', '有', '有', '非常温馨浪漫的房间','/vue/lib/img/5.jpg');
-INSERT INTO room(type_id, room_number, hotel_id, type, area, floor, bed, wifi, workbench, livingroom, kitchen, win,
+    value ('4', '8676774', '1', '友乐乐酒店公寓', '双人房', '20-25㎡', 8, 2, '有', '有', '有', '有', '有', '非常温馨浪漫的房间','/vue/lib/img/5.jpg');
+INSERT INTO room(type_id, room_number,  hotel_id,hotel_name, type, area, floor, bed, wifi, workbench, livingroom, kitchen, win,
                  detailed,img)
-    value ('5', '8676775', '1', '双人房', '20-25㎡', 8, 2, '有', '有', '有', '有', '有', '非常温馨浪漫的房间','/vue/lib/img/2.jpg');
-INSERT INTO room(type_id, room_number, hotel_id, type, area, floor, bed, wifi, workbench, livingroom, kitchen, win,
+    value ('5', '8676775', '1', '广州辉盛阁国际公寓', '双人房', '20-25㎡', 8, 2, '有', '有', '有', '有', '有', '非常温馨浪漫的房间','/vue/lib/img/2.jpg');
+INSERT INTO room(type_id, room_number,  hotel_id,hotel_name, type, area, floor, bed, wifi, workbench, livingroom, kitchen, win,
                  detailed,img)
-    value ('6', '8676776', '1', '双人房', '20-25㎡', 8, 2, '有', '有', '有', '有', '有', '非常温馨浪漫的房间','/vue/lib/img/3.jpg');
-INSERT INTO room(type_id, room_number, hotel_id, type, area, floor, bed, wifi, workbench, livingroom, kitchen, win,
+    value ('6', '8676776', '1', '广州丹顿行政公寓', '双人房', '20-25㎡', 8, 2, '有', '有', '有', '有', '有', '非常温馨浪漫的房间','/vue/lib/img/3.jpg');
+INSERT INTO room(type_id, room_number,  hotel_id,hotel_name, type, area, floor, bed, wifi, workbench, livingroom, kitchen, win,
                  detailed,img)
-    value ('7', '8676777', '1', '双人房', '20-25㎡', 8, 2, '有', '有', '有', '有', '有', '非常温馨浪漫的房间','/vue/lib/img/5.jpg');
-INSERT INTO room(type_id, room_number, hotel_id, type, area, floor, bed, wifi, workbench, livingroom, kitchen, win,
+    value ('7', '8676777', '1', '裕华商务公馆', '双人房', '20-25㎡', 8, 2, '有', '有', '有', '有', '有', '非常温馨浪漫的房间','/vue/lib/img/5.jpg');
+INSERT INTO room(type_id, room_number,  hotel_id,hotel_name, type, area, floor, bed, wifi, workbench, livingroom, kitchen, win,
                  detailed,img)
-    value ('8', '8676778', '1', '双人房', '20-25㎡', 8, 2, '有', '有', '有', '有', '有', '非常温馨浪漫的房间','/vue/lib/img/1.jpg');
-INSERT INTO room(type_id, room_number, hotel_id, type, area, floor, bed, wifi, workbench, livingroom, kitchen, win,
+    value ('8', '8676778', '1', '裕华商务公馆', '双人房', '20-25㎡', 8, 2, '有', '有', '有', '有', '有', '非常温馨浪漫的房间','/vue/lib/img/1.jpg');
+INSERT INTO room(type_id, room_number,  hotel_id,hotel_name, type, area, floor, bed, wifi, workbench, livingroom, kitchen, win,
                  detailed,img)
-    value ('9', '8676779', '1', '双人房', '20-25㎡', 8, 2, '有', '有', '有', '有', '有', '非常温馨浪漫的房间','/vue/lib/img/2.jpg');
-INSERT INTO room(type_id, room_number, hotel_id, type, area, floor, bed, wifi, workbench, livingroom, kitchen, win,
+    value ('9', '8676779', '1', '裕华商务公馆', '双人房', '20-25㎡', 8, 2, '有', '有', '有', '有', '有', '非常温馨浪漫的房间','/vue/lib/img/2.jpg');
+INSERT INTO room(type_id, room_number,  hotel_id,hotel_name, type, area, floor, bed, wifi, workbench, livingroom, kitchen, win,
                  detailed,img)
-    value ('10', '86767710', '1', '双人房', '20-25㎡', 8, 2, '有', '有', '有', '有', '有', '非常温馨浪漫的房间','/vue/lib/img/3.jpg');
-INSERT INTO room(type_id, room_number, hotel_id, type, area, floor, bed, wifi, workbench, livingroom, kitchen, win,
+    value ('10', '86767710', '1', '裕华商务公馆', '双人房', '20-25㎡', 8, 2, '有', '有', '有', '有', '有', '非常温馨浪漫的房间','/vue/lib/img/3.jpg');
+INSERT INTO room(type_id, room_number,  hotel_id,hotel_name, type, area, floor, bed, wifi, workbench, livingroom, kitchen, win,
                  detailed,img)
-    value ('11', '86767711', '1', '双人房', '20-25㎡', 8, 2, '有', '有', '有', '有', '有', '非常温馨浪漫的房间','/vue/lib/img/5.jpg');
-INSERT INTO room(type_id, room_number, hotel_id, type, area, floor, bed, wifi, workbench, livingroom, kitchen, win,
+    value ('11', '86767711', '1', '裕华商务公馆', '双人房', '20-25㎡', 8, 2, '有', '有', '有', '有', '有', '非常温馨浪漫的房间','/vue/lib/img/5.jpg');
+INSERT INTO room(type_id, room_number,  hotel_id,hotel_name, type, area, floor, bed, wifi, workbench, livingroom, kitchen, win,
                  detailed,img)
-    value ('12', '86767712', '1', '双人房', '20-25㎡', 8, 2, '有', '有', '有', '有', '有', '非常温馨浪漫的房间','/vue/lib/img/1.jpg');
-INSERT INTO room(type_id, room_number, hotel_id, type, area, floor, bed, wifi, workbench, livingroom, kitchen, win,
+    value ('12', '86767712', '1', '裕华商务公馆', '双人房', '20-25㎡', 8, 2, '有', '有', '有', '有', '有', '非常温馨浪漫的房间','/vue/lib/img/1.jpg');
+INSERT INTO room(type_id, room_number,  hotel_id,hotel_name, type, area, floor, bed, wifi, workbench, livingroom, kitchen, win,
                  detailed,img)
-    value ('13', '867677113', '1', '双人房', '20-25㎡', 8, 2, '有', '有', '有', '有', '有', '非常温馨浪漫的房间','/vue/lib/img/2.jpg');
-INSERT INTO room(type_id, room_number, hotel_id, type, area, floor, bed, wifi, workbench, livingroom, kitchen, win,
+    value ('13', '867677113', '1', '裕华商务公馆', '双人房', '20-25㎡', 8, 2, '有', '有', '有', '有', '有', '非常温馨浪漫的房间','/vue/lib/img/2.jpg');
+INSERT INTO room(type_id, room_number,  hotel_id,hotel_name, type, area, floor, bed, wifi, workbench, livingroom, kitchen, win,
                  detailed,img)
-    value ('14', '867677114', '1', '双人房', '20-25㎡', 8, 2, '有', '有', '有', '有', '有', '非常温馨浪漫的房间','/vue/lib/img/3.jpg');
-INSERT INTO room(type_id, room_number, hotel_id, type, area, floor, bed, wifi, workbench, livingroom, kitchen, win,
+    value ('14', '867677114', '1', '裕华商务公馆', '双人房', '20-25㎡', 8, 2, '有', '有', '有', '有', '有', '非常温馨浪漫的房间','/vue/lib/img/3.jpg');
+INSERT INTO room(type_id, room_number,  hotel_id,hotel_name, type, area, floor, bed, wifi, workbench, livingroom, kitchen, win,
                  detailed,img)
-    value ('15', '867677115', '1', '双人房', '20-25㎡', 8, 2, '有', '有', '有', '有', '有', '非常温馨浪漫的房间','/vue/lib/img/5.jpg');
-INSERT INTO room(type_id, room_number, hotel_id, type, area, floor, bed, wifi, workbench, livingroom, kitchen, win,
+    value ('15', '867677115', '1', '裕华商务公馆', '双人房', '20-25㎡', 8, 2, '有', '有', '有', '有', '有', '非常温馨浪漫的房间','/vue/lib/img/5.jpg');
+INSERT INTO room(type_id, room_number,  hotel_id,hotel_name, type, area, floor, bed, wifi, workbench, livingroom, kitchen, win,
                  detailed,img)
-    value ('16', '867677116', '1', '双人房', '20-25㎡', 8, 2, '有', '有', '有', '有', '有', '非常温馨浪漫的房间','/vue/lib/img/1.jpg');
-INSERT INTO room(type_id, room_number, hotel_id, type, area, floor, bed, wifi, workbench, livingroom, kitchen, win,
+    value ('16', '867677116', '1', '裕华商务公馆', '双人房', '20-25㎡', 8, 2, '有', '有', '有', '有', '有', '非常温馨浪漫的房间','/vue/lib/img/1.jpg');
+INSERT INTO room(type_id, room_number,  hotel_id,hotel_name, type, area, floor, bed, wifi, workbench, livingroom, kitchen, win,
                  detailed,img)
-    value ('17', '867677117', '1', '双人房', '20-25㎡', 8, 2, '有', '有', '有', '有', '有', '非常温馨浪漫的房间','/vue/lib/img/2.jpg');
-INSERT INTO room(type_id, room_number, hotel_id, type, area, floor, bed, wifi, workbench, livingroom, kitchen, win,
+    value ('17', '867677117', '1', '裕华商务公馆', '双人房', '20-25㎡', 8, 2, '有', '有', '有', '有', '有', '非常温馨浪漫的房间','/vue/lib/img/2.jpg');
+INSERT INTO room(type_id, room_number,  hotel_id,hotel_name, type, area, floor, bed, wifi, workbench, livingroom, kitchen, win,
                  detailed,img)
-    value ('18', '867677118', '1', '双人房', '20-25㎡', 8, 2, '有', '有', '有', '有', '有', '非常温馨浪漫的房间','/vue/lib/img/3.jpg');
-INSERT INTO room(type_id, room_number, hotel_id, type, area, floor, bed, wifi, workbench, livingroom, kitchen, win,
+    value ('18', '867677118', '1', '裕华商务公馆', '双人房', '20-25㎡', 8, 2, '有', '有', '有', '有', '有', '非常温馨浪漫的房间','/vue/lib/img/3.jpg');
+INSERT INTO room(type_id, room_number,  hotel_id,hotel_name, type, area, floor, bed, wifi, workbench, livingroom, kitchen, win,
                  detailed,img)
-    value ('19', '867677119', '1', '双人房', '20-25㎡', 8, 2, '有', '有', '有', '有', '有', '非常温馨浪漫的房间','/vue/lib/img/5.jpg');
-INSERT INTO room(type_id, room_number, hotel_id, type, area, floor, bed, wifi, workbench, livingroom, kitchen, win,
+    value ('19', '867677119', '1', '裕华商务公馆', '双人房', '20-25㎡', 8, 2, '有', '有', '有', '有', '有', '非常温馨浪漫的房间','/vue/lib/img/5.jpg');
+INSERT INTO room(type_id, room_number,  hotel_id,hotel_name, type, area, floor, bed, wifi, workbench, livingroom, kitchen, win,
                  detailed,img)
-    value ('20', '867677120', '1', '双人房', '20-25㎡', 8, 2, '有', '有', '有', '有', '有', '非常温馨浪漫的房间','/vue/lib/img/1.jpg');
-INSERT INTO room(type_id, room_number, hotel_id, type, area, floor, bed, wifi, workbench, livingroom, kitchen, win,
+    value ('20', '867677120', '1', '裕华商务公馆', '双人房', '20-25㎡', 8, 2, '有', '有', '有', '有', '有', '非常温馨浪漫的房间','/vue/lib/img/1.jpg');
+INSERT INTO room(type_id, room_number,  hotel_id,hotel_name, type, area, floor, bed, wifi, workbench, livingroom, kitchen, win,
                  detailed,img)
-    value ('21', '867677121', '1', '双人房', '20-25㎡', 8, 2, '有', '有', '有', '有', '有', '非常温馨浪漫的房间','/vue/lib/img/2.jpg');
-INSERT INTO room(type_id, room_number, hotel_id, type, area, floor, bed, wifi, workbench, livingroom, kitchen, win,
+    value ('21', '867677121', '1', '裕华商务公馆', '双人房', '20-25㎡', 8, 2, '有', '有', '有', '有', '有', '非常温馨浪漫的房间','/vue/lib/img/2.jpg');
+INSERT INTO room(type_id, room_number,  hotel_id,hotel_name, type, area, floor, bed, wifi, workbench, livingroom, kitchen, win,
                  detailed,img)
-    value ('22', '867677122', '1', '双人房', '20-25㎡', 8, 2, '有', '有', '有', '有', '有', '非常温馨浪漫的房间','/vue/lib/img/3.jpg');
-INSERT INTO room(type_id, room_number, hotel_id, type, area, floor, bed, wifi, workbench, livingroom, kitchen, win,
+    value ('22', '867677122', '1', '裕华商务公馆', '双人房', '20-25㎡', 8, 2, '有', '有', '有', '有', '有', '非常温馨浪漫的房间','/vue/lib/img/3.jpg');
+INSERT INTO room(type_id, room_number,  hotel_id,hotel_name, type, area, floor, bed, wifi, workbench, livingroom, kitchen, win,
                  detailed,img)
-    value ('23', '867677123', '1', '双人房', '20-25㎡', 8, 2, '有', '有', '有', '有', '有', '非常温馨浪漫的房间','/vue/lib/img/5.jpg');
+    value ('23', '867677123', '1', '裕华商务公馆', '双人房', '20-25㎡', 8, 2, '有', '有', '有', '有', '有', '非常温馨浪漫的房间','/vue/lib/img/5.jpg');
 
 -- ----------------------------
 -- Table structure for room_msg
@@ -289,20 +290,21 @@ CREATE TABLE booking
 (
     booking_id    varchar(255) NOT NULL PRIMARY KEY COMMENT '预订id',
     hotel_id      varchar(255) COMMENT '酒店id',
+    hotel_name      varchar(255) COMMENT '酒店名',
     username      varchar(255) COMMENT '昵称',
     room_number   varchar(255) COMMENT '房间编号',
     cost          double COMMENT '订单费用',
     status        varchar(255) COMMENT '订单状态:0-已下单，1-已付款，2-已消费，-1-已取消，-2-被删除',
-    booking_time  TIMESTAMP ON UPDATE CURRENT_TIMESTAMP DEFAULT CURRENT_TIMESTAMP COMMENT '预订日期',
+    booking_time  varchar(255) COMMENT '预订日期',
     `create_time` TIMESTAMP                             DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
     `update_time` TIMESTAMP ON UPDATE CURRENT_TIMESTAMP DEFAULT CURRENT_TIMESTAMP COMMENT '更新时间'
 #     FOREIGN KEY (user_id) REFERENCES user (user_id) ON DELETE CASCADE ON UPDATE CASCADE
 #     FOREIGN KEY (room_number) REFERENCES room (room_number) ON DELETE CASCADE ON UPDATE CASCADE
 ) COMMENT '预定表';
-INSERT INTO booking(booking_id, hotel_id, username, room_number, cost, status)
-    value ('1', '1', 'wordpython', '888888', 888.88, '已付款');
-INSERT INTO booking(booking_id, hotel_id, username, room_number, cost, status)
-    value ('2', '1', 'wordpython', '867677', 888.88, '已付款');
+INSERT INTO booking(booking_id, hotel_id,hotel_name, username, room_number, cost, status,booking_time)
+    value ('1', '1', '裕华商务公馆', 'wordpython', '888888', 888.88, '已付款','2019-11-01 21:24:19-2019-11-02 21:24:19');
+INSERT INTO booking(booking_id, hotel_id,hotel_name, username, room_number, cost, status,booking_time)
+    value ('2', '1', '裕华商务公馆', 'wordpython', '867677', 888.88, '已付款','2019-11-02 21:24:19-2019-11-03 21:24:19');
 
 -- ----------------------------
 -- Table structure for  discuss

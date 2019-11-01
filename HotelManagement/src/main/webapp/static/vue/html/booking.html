@@ -47,16 +47,20 @@
                          style="width: 100%; height: 100%;" href="baidu.com">
                 </div>
                 <!-- <a href="#" style="color: snow;" v-model="user.name">{{user.name}}</a> -->
-                <button type="button" class="btn btn-secondary mr-sm-2" data-toggle="modal" data-target="#modal_user" :style="{display:kk}">
+                <button type="button" class="btn btn-secondary mr-sm-2" data-toggle="modal" data-target="#modal_user"
+                        :style="{display:kk}">
                     {{user.username}}
                 </button>
-                <button @click="login" class="btn btn-outline-primary my-2 my-sm-0" type="submit" :style="{color:color,display:ss}">
+                <button @click="login" class="btn btn-outline-primary my-2 my-sm-0" type="submit"
+                        :style="{color:color,display:ss}">
                     登录
                 </button>
-                <button @click="register" class="btn btn-outline-primary my-2 my-sm-0" type="submit" :style="{color:color,display:ss}">
+                <button @click="register" class="btn btn-outline-primary my-2 my-sm-0" type="submit"
+                        :style="{color:color,display:ss}">
                     注册
                 </button>
-                <button @click="logout" class="btn btn-outline-primary my-2 my-sm-0" type="submit" :style="{color:color,display:kk}">
+                <button @click="logout" class="btn btn-outline-primary my-2 my-sm-0" type="submit"
+                        :style="{color:color,display:kk}">
                     退出登录
                 </button>
             </div>
@@ -79,8 +83,8 @@
                         <tbody>
                         <tr>
                             <td style="width:50%">
-                                <p>房间编号 :{{room.room_number}}</p>
-                                <p>房间类型 : {{room.type}}  , 房间面积 : {{room.area}}</p>
+                                <p>酒店名称 :{{room.hotel_name}} &ensp; 房间编号 :{{room.room_number}}</p>
+                                <p>房间类型 : {{room.type}} , 房间面积 : {{room.area}}</p>
                                 <p>所属楼层 : {{room.floor}} , 床位数 : {{room.bed}}</p>
                                 <p>wifi : {{room.wifi}} &ensp;,&ensp;工作台 : {{room.workbench}}</p>
                                 <p>客厅 : {{room.livingroom}}&ensp;,&ensp;
@@ -95,14 +99,16 @@
                     </table>
                 </div>
                 <div class="row">
-                    <button @click="toBooking" type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal_booking">
+                    <button @click="toBooking" type="button" class="btn btn-primary" id="button_booking" :style="{color:color,display:bb}">
                         我要预定
+                    </button>
+                    <button type="button" class="btn btn-primary" :style="{color:color,display:bbbb}">
+                        已预定
                     </button>
                 </div>
             </div>
         </div>
     </div>
-
 
 
     <!-- 用户模态框 -->
@@ -153,21 +159,22 @@
 
                 <!-- 模态框主体 -->
                 <div class="modal-body">
-                    <form class="custom-control">
+                    <div class="custom-control">
                         <div class="form-group">
-                            <label for="name">房间:</label>
-                            <p>{{}}</p >
+                            <!--                            <label for="name">酒店名称:{{room.hotel_name}}</label>-->
+                            <p>酒店名称 : {{room.hotel_name}}</p>
+                            <p>房间号 : {{room.room_number}}</p>
 
                             <div class="row">
                                 <div class="col-4">
                                     <label for="">入住时间</label>
                                     <input type="date" class="form-control" placeholder="" aria-describedby="helpId"
-                                           required="required">
+                                           required="required" ref="from"  :min="curdate" v-model="date_checkin">
                                 </div>
                                 <div class="col-4">
                                     <label for="">退房时间</label>
                                     <input type="date" class="form-control" placeholder="" aria-describedby="helpId"
-                                           required="required">
+                                           required="required" ref="to" :min="date_checkin">
                                 </div>
                             </div>
 
@@ -180,9 +187,9 @@
                             <input type="hidden" class="form-control" id="pwd" value="1001">
                         </div>
 
-                        <button type="submit" class="btn btn-primary ">提交</button>
+                        <button type="submit" class="btn btn-primary " @click="booking_ok">提交</button>
                         <button type="reset" class="btn btn-primary">重置</button>
-                    </form>
+                    </div>
                 </div>
 
 
@@ -215,36 +222,36 @@
                         </div>
                         <div class="right" class="col">
                             <ul id="ul">
-<!--                                <li>-->
-<!--                                    <div>-->
-<!--                                        <img class="small-pic-img" src="/vue/lib/img/1.jpg"-->
-<!--                                             style="animation: 1s ease 0s 1 normal none running fadeIn; height: 100%; width: 100%;">-->
-<!--                                    </div>-->
-<!--                                </li>-->
-<!--                                <li>-->
-<!--                                    <div>-->
-<!--                                        <img class="small-pic-img" src="/vue/lib/img/2.jpg"-->
-<!--                                             style="animation: 1s ease 0s 1 normal none running fadeIn; height: 100%; width: 100%;">-->
-<!--                                    </div>-->
-<!--                                </li>-->
-<!--                                <li>-->
-<!--                                    <div>-->
-<!--                                        <img class="small-pic-img" src="/vue/lib/img/2.jpg"-->
-<!--                                             style="animation: 1s ease 0s 1 normal none running fadeIn; height: 100%; width: 100%;">-->
-<!--                                    </div>-->
-<!--                                </li>-->
-<!--                                <li>-->
-<!--                                    <div>-->
-<!--                                        <img class="small-pic-img" src="/vue/lib/img/2.jpg"-->
-<!--                                             style="animation: 1s ease 0s 1 normal none running fadeIn; height: 100%; width: 100%;">-->
-<!--                                    </div>-->
-<!--                                </li>-->
-<!--                                <li>-->
-<!--                                    <div>-->
-<!--                                        <img class="small-pic-img" src="/vue/lib/img/3.jpg"-->
-<!--                                             style="animation: 1s ease 0s 1 normal none running fadeIn; height: 100%; width: 100%;">-->
-<!--                                    </div>-->
-<!--                                </li>-->
+                                <!--                                <li>-->
+                                <!--                                    <div>-->
+                                <!--                                        <img class="small-pic-img" src="/vue/lib/img/1.jpg"-->
+                                <!--                                             style="animation: 1s ease 0s 1 normal none running fadeIn; height: 100%; width: 100%;">-->
+                                <!--                                    </div>-->
+                                <!--                                </li>-->
+                                <!--                                <li>-->
+                                <!--                                    <div>-->
+                                <!--                                        <img class="small-pic-img" src="/vue/lib/img/2.jpg"-->
+                                <!--                                             style="animation: 1s ease 0s 1 normal none running fadeIn; height: 100%; width: 100%;">-->
+                                <!--                                    </div>-->
+                                <!--                                </li>-->
+                                <!--                                <li>-->
+                                <!--                                    <div>-->
+                                <!--                                        <img class="small-pic-img" src="/vue/lib/img/2.jpg"-->
+                                <!--                                             style="animation: 1s ease 0s 1 normal none running fadeIn; height: 100%; width: 100%;">-->
+                                <!--                                    </div>-->
+                                <!--                                </li>-->
+                                <!--                                <li>-->
+                                <!--                                    <div>-->
+                                <!--                                        <img class="small-pic-img" src="/vue/lib/img/2.jpg"-->
+                                <!--                                             style="animation: 1s ease 0s 1 normal none running fadeIn; height: 100%; width: 100%;">-->
+                                <!--                                    </div>-->
+                                <!--                                </li>-->
+                                <!--                                <li>-->
+                                <!--                                    <div>-->
+                                <!--                                        <img class="small-pic-img" src="/vue/lib/img/3.jpg"-->
+                                <!--                                             style="animation: 1s ease 0s 1 normal none running fadeIn; height: 100%; width: 100%;">-->
+                                <!--                                    </div>-->
+                                <!--                                </li>-->
                             </ul>
                         </div>
                     </div>
@@ -296,9 +303,13 @@
     var vm = new Vue({
         el: '#app',
         data: {
-            color:"rgb(202, 211, 149)",
-            kk:"none",
-            ss:"block",
+            curdate: "",
+            date_checkin:"",
+            color: "rgb(202, 211, 149)",
+            kk: "none",//控制登录，注册按钮样式
+            ss: "block",//控制退出登录按钮样式
+            bb:"block",//我要预订 按钮样式控制
+            bbbb:"none",//我要预订 按钮样式控制
             user: {},
             users: [],
             cur: 1,
@@ -309,12 +320,28 @@
                 {room_id: 1, name: "四季豪华双人套房", type: "标准双人房", pic: "/vue/lib/img/四季酒店-2.jpg", msg: "asd"},
                 {room_id: 2, name: "铂悦豪华单人套房", type: "标准单人房", pic: "/vue/lib/img/铂悦酒店-2.jpg", msg: "asd"}
             ],
-            room:{},
+            room: {},
         },
         components: {
             'vue-nav': Vnav
         },
+
         methods: {
+            dateFormat:function(time) {
+                var date = new Date(time);
+                var year = date.getFullYear();
+                /* 在日期格式中，月份是从0开始的，因此要加0
+                                     * 使用三元表达式在小于10的前面加0，以达到格式统一  如 09:11:05
+                                     * */
+                var month = date.getMonth() + 1 < 10 ? "0" + (date.getMonth() + 1) : date.getMonth() + 1;
+                var day = date.getDate() < 10 ? "0" + date.getDate() : date.getDate();
+                // var hours = date.getHours() < 10 ? "0" + date.getHours() : date.getHours();
+                // var minutes = date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes();
+                // var seconds = date.getSeconds() < 10 ? "0" + date.getSeconds() : date.getSeconds();
+                // 拼接
+                // return year + "-" + month + "-" + day + " " + hours + ":" + minutes + ":" + seconds;
+                return year + "-" + month + "-" + day ;
+            },
             callback(data) {//分页效果
                 this.cur = data
                 this.url = '你点击了' + data + '页';
@@ -331,16 +358,22 @@
             add() {//添加评论
                 if (this.context != null) {
                     this.users.unshift({username: this.user.name, photo: this.user.head, content: this.context});
-                    var room_number=sessionStorage.getItem("room_number");
-                    var hotel_id=sessionStorage.getItem("hotel_id");
-                    var username=sessionStorage.getItem("username");
-                    var content=this.context;
-                    var photo=this.user.head;
+                    var room_number = sessionStorage.getItem("room_number");
+                    var hotel_id = sessionStorage.getItem("hotel_id");
+                    var username = sessionStorage.getItem("username");
+                    var content = this.context;
+                    var photo = this.user.head;
 
                     $.ajax({
                         type: "POST",
                         url: 'http://localhost:8080/all/insert_discuss',
-                        data: JSON.stringify({username: username,room_number:room_number, hotel_id:hotel_id,content:content,photo:photo}),
+                        data: JSON.stringify({
+                            username: username,
+                            room_number: room_number,
+                            hotel_id: hotel_id,
+                            content: content,
+                            photo: photo
+                        }),
                         contentType: "application/json;charset=UTF-8",
                         dataType: "json",
                         success: function (data) {
@@ -352,14 +385,14 @@
                     alert("评论不能为空哦~")
                 }
             },
-            show(){//展示多图片
-                var room_number=sessionStorage.getItem("room_number");
-                var hotel_id=sessionStorage.getItem("hotel_id");
+            show() {//展示多图片
+                var room_number = sessionStorage.getItem("room_number");
+                var hotel_id = sessionStorage.getItem("hotel_id");
                 //获取房间图片
                 $.ajax({
                     type: "POST",
                     url: "http://localhost:8080/all/photo",
-                    data: JSON.stringify({room_number:room_number, hotel_id:hotel_id}),
+                    data: JSON.stringify({room_number: room_number, hotel_id: hotel_id}),
                     contentType: "application/json;charset=UTF-8",
                     dataType: "json",
                     success: function (data) {
@@ -374,57 +407,80 @@
                     }
                 });
             },
-            logout(){//退出登录按钮
-                this.ss="block";
-                this.kk="none";
-                sessionStorage.setItem("username","请先登录");
-                sessionStorage.setItem("isLogin","false");
+            logout() {//退出登录按钮
+                this.ss = "block";
+                this.kk = "none";
+                sessionStorage.setItem("username", "请先登录");
+                sessionStorage.setItem("isLogin", "false");
             },
-            login(){//登录按钮
+            login() {//登录按钮
                 window.location.href = "/";
             },
-            register(){//注册按钮
+            register() {//注册按钮
                 window.location.href = "/register.html";
             },
-            toBooking(){//预订
+            toBooking() {//预订弹窗判断
                 //判断是否登录
-                if(sessionStorage.getItem("isLogin")!="true"){//未登录
+                if (sessionStorage.getItem("isLogin") != "true") {//未登录
                     alert("请登录!");
-                }else {
-
+                } else {
+                        $('#modal_booking').modal('toggle');
                 }
+            },
+            booking_ok(){//提交预订表单
+                var room_number = sessionStorage.getItem("room_number");
+                var hotel_id = sessionStorage.getItem("hotel_id");
+                var hotel_name = this.room.hotel_name;
+                var username = sessionStorage.getItem("username");
+                var booking_time='from'+this.$refs.from.value+' to'+this.$refs.to.value;
+                var that=this;
+                $.ajax({
+                    type: "POST",
+                    url: "http://localhost:8080/all/booking",
+                    data: JSON.stringify({room_number: room_number, hotel_id: hotel_id,hotel_name:hotel_name,username:username,booking_time:booking_time}),
+                    contentType: "application/json;charset=UTF-8",
+                    dataType: "text",
+                    success: function (data) {
+                        if (data=1){
+                            alert("预订成功");
+                            that.bb="none";
+                            that.bbbb="block";
+                        }
+                    }
+                });
             },
         },
         created: function () {
+            this.curdate = this.dateFormat(new Date());
             /*登录，注册，退出登录，头像 初始化*/
-            if(sessionStorage.getItem("isLogin")=="true"){//已登录
-                this.ss="none";
-                this.kk="block";
+            if (sessionStorage.getItem("isLogin") == "true") {//已登录
+                this.ss = "none";
+                this.kk = "block";
 
             }
-            this.user.username=sessionStorage.getItem("username");
-            this.user.head="/vue/lib/img/5.jpg";
+            this.user.username = sessionStorage.getItem("username");
+            this.user.head = "/vue/lib/img/5.jpg";
 
             var that = this;
-            var room_number=sessionStorage.getItem("room_number");
-            var hotel_id=sessionStorage.getItem("hotel_id");
+            var room_number = sessionStorage.getItem("room_number");
+            var hotel_id = sessionStorage.getItem("hotel_id");
             //获取房间详情
             $.ajax({
                 type: "POST",
                 url: 'http://localhost:8080/all/getRoomInfo',
-                data: JSON.stringify({room_number:room_number,hotel_id:hotel_id}),
+                data: JSON.stringify({room_number: room_number, hotel_id: hotel_id}),
                 contentType: "application/json;charset=UTF-8",
                 dataType: "json",
                 success: function (data) {
-                    that.room=data;
+                    that.room = data;
                 }
             });
 
             //获取评论
             $.ajax({
-                type:"POST",
+                type: "POST",
                 url: 'http://localhost:8080/all/select_discuss?page=1&limit=' + 10,
-                data: JSON.stringify({room_number:room_number,hotel_id:hotel_id,start:1,rows:10}),
+                data: JSON.stringify({room_number: room_number, hotel_id: hotel_id, start: 1, rows: 10}),
                 contentType: "application/json;charset=UTF-8",
                 dataType: "json",
                 success: function (data) {
