@@ -1,5 +1,5 @@
 ul, li {
-    margin: 0px;
+    /*margin: 0px;*/
     padding: 0px;
 }
 
@@ -56,6 +56,10 @@ ul, li {
 }
 
 .ul li {
+    list-style: none;
+    margin-bottom: 5px;
+}
+#ul li {
     list-style: none;
     margin-bottom: 5px;
 }

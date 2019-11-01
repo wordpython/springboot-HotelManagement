@@ -2,7 +2,6 @@
  * 密码登录
  * 
  */
-
 function login_button(){
 	var username=document.getElementById("username").value;//没有.value,则返回[object HTMLInputElement]，一个DOM节点
 	var password=document.getElementById("password").value;
@@ -18,6 +17,8 @@ function login_button(){
                 while (win != win.top){//Top属性返回当前窗口的最顶层浏览器窗口。
                     win = win.top;
                 }
+                sessionStorage.setItem("isLogin","true");
+                sessionStorage.setItem("username",username);
                 // win.location.href="/search"
                 win.location.href="/vue/html/index.html"
 			}else if(data=="admin/login"){

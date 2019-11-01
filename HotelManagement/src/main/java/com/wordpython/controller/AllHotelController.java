@@ -237,14 +237,14 @@ public class AllHotelController {
      * */
     @RequestMapping(value = "/select_discuss")
     @ResponseBody
-    public Object select_discuss(@RequestParam(required = false) int page,
-                                 @RequestParam(required = false) int limit) {
+    public Object select_discuss(@RequestBody Discuss discuss) {
         System.out.println("查询评论");
-        System.out.println("页码:page="+page+"  一页数据数:limit="+limit);
-        int start=(page-1)*limit;
-        int rows=limit;
-        Discuss discuss=new Discuss();
-        discuss.setStart(start);discuss.setRows(rows);
+//        System.out.println("页码:page="+page+"  一页数据数:limit="+limit);
+        int start=(discuss.getStart()-1)*discuss.getRows();
+        discuss.setStart(start);
+//        int rows=limit;
+//        Discuss discuss=new Discuss();
+//        discuss.setStart(start);discuss.setRows(rows);
         System.out.println(discuss);
         List<Discuss> discusses = allDiscussService.selectPartDiscuss(discuss);
         System.out.println(discusses);

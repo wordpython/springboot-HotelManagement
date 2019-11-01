@@ -59,15 +59,16 @@ CREATE TABLE hotel
     `address`     VARCHAR(255) COMMENT '地址',
     `website`     VARCHAR(255) COMMENT '网站',
     detailed      varchar(255) COMMENT '补充酒店信息',
+    img           varchar(255) COMMENT '图片文件夹名,图片名字(用于主页展示)',
     `create_time` TIMESTAMP                             DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
     `update_time` TIMESTAMP ON UPDATE CURRENT_TIMESTAMP DEFAULT CURRENT_TIMESTAMP COMMENT '更新时间',
     PRIMARY KEY (`hotel_id`)
 
 
 ) comment '酒店信息表';
-INSERT INTO hotel (hotel_id, admin_id, hotel_name, phone, telephone, email, address, website, detailed)
+INSERT INTO hotel (hotel_id, admin_id, hotel_name, phone, telephone, email, address, website, detailed,img)
     value ('1', '1', '裕华商务公馆', '13211134568', '13610079095', 'wordpython@163.com', '东莞',
-           'https://wordpython.com', '旁边有著名公园，交通方便，环境优美');
+           'https://wordpython.com', '旁边有著名公园，交通方便，环境优美','/vue/lib/img/3.jpg');
 -- ----------------------------
 -- Table structure for photo
 -- 房间图片表
@@ -86,6 +87,25 @@ INSERT INTO photo value ('2', '888888', '1', '/images/', '1.jpg');
 INSERT INTO photo value ('3', '888888', '1', '/images/', '2.jpg');
 INSERT INTO photo value ('4', '888888', '1', '/images/', '3.jpg');
 INSERT INTO photo value ('5', '867677', '1', '/images/', '3.jpg');
+INSERT INTO photo value ('6', '867677', '1', '/images/', '1.jpg');
+INSERT INTO photo value ('11', '8676773', '1', '/images/', '0.jpg');
+INSERT INTO photo value ('12', '8676773', '1', '/images/', '1.jpg');
+INSERT INTO photo value ('13', '8676773', '1', '/images/', '2.jpg');
+INSERT INTO photo value ('14', '8676773', '1', '/images/', '3.jpg');
+INSERT INTO photo value ('21', '8676773', '1', '/images/', '0.jpg');
+INSERT INTO photo value ('22', '8676773', '1', '/images/', '1.jpg');
+INSERT INTO photo value ('23', '8676774', '1', '/images/', '2.jpg');
+INSERT INTO photo value ('24', '8676774', '1', '/images/', '3.jpg');
+INSERT INTO photo value ('31', '8676774', '1', '/images/', '0.jpg');
+INSERT INTO photo value ('32', '8676774', '1', '/images/', '1.jpg');
+INSERT INTO photo value ('33', '8676774', '1', '/images/', '2.jpg');
+INSERT INTO photo value ('34', '8676774', '1', '/images/', '3.jpg');
+INSERT INTO photo value ('41', '8676775', '1', '/images/', '0.jpg');
+INSERT INTO photo value ('42', '8676775', '1', '/images/', '1.jpg');
+INSERT INTO photo value ('43', '8676775', '1', '/images/', '2.jpg');
+INSERT INTO photo value ('44', '8676775', '1', '/images/', '3.jpg');
+INSERT INTO photo value ('45', '8676775', '1', '/images/', '3.jpg');
+INSERT INTO photo value ('46', '8676775', '1', '/images/', '1.jpg');
 
 
 -- ----------------------------

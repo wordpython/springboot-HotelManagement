@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>房间展示页面</title>
+    <link href="/imgs/favicon.ico" rel="icon">
     <script src="/vue/lib/vue.min.js"></script>
     <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
     <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
@@ -13,6 +14,7 @@
     <script src="/vue/lib/vue2.js"></script>
     <script src="/vue/lib/vue-nav.js"></script>
     <link rel="stylesheet" href="/vue/css/room.css">
+    <script type="text/javascript" src="/vue/lib/vue-router.js"></script>
 </head>
 
 <body>
@@ -47,22 +49,25 @@
                     </div>
                 </li>
             </ul>
-            <form class="form-inline my-2 my-lg-0">
+            <div class="form-inline my-2 my-lg-0">
                 <div style="width: 40px; height: 40px;">
                     <img v-bind:src="user.head" class="rounded-circle" alt="Cinque Terre"
                          style="width: 100%; height: 100%;" href="baidu.com">
                 </div>
                 <!-- <a href="#" style="color: snow;" v-model="user.name">{{user.name}}</a> -->
-                <button type="button" class="btn btn-secondary mr-sm-2" data-toggle="modal" data-target="#modal_user">
+                <button type="button" class="btn btn-secondary mr-sm-2" data-toggle="modal" data-target="#modal_user" :style="{display:kk}">
                     {{user.username}}
                 </button>
-                <button class="btn btn-outline-primary my-2 my-sm-0" type="submit" style="color: rgb(202, 211, 149);">
+                <button @click="login" class="btn btn-outline-primary my-2 my-sm-0" type="submit" :style="{color:color,display:ss}">
                     登录
                 </button>
-                <button class="btn btn-outline-primary my-2 my-sm-0" type="submit" style="color: rgb(202, 211, 149);">
+                <button @click="register" class="btn btn-outline-primary my-2 my-sm-0" type="submit" :style="{color:color,display:ss}">
                     注册
                 </button>
-            </form>
+                <button @click="logout" class="btn btn-outline-primary my-2 my-sm-0" type="submit" :style="{color:color,display:kk}">
+                    退出登录
+                </button>
+            </div>
         </div>
     </nav>
 
@@ -124,7 +129,7 @@
                     <p>房间面积 : {{item.area}}</p>
                     <p>所属楼层 : {{item.floor}}</p>
                     <p>床位数 : {{item.bed}}</p>
-                    <p>wifi : {{item.wifi}}  &ensp;,&ensp;工作台 : {{item.workbench}}</p>
+                    <p>wifi : {{item.wifi}} &ensp;,&ensp;工作台 : {{item.workbench}}</p>
                     <p>客厅 : {{item.livingroom}}&ensp;,&ensp;
                         厨房 : {{item.kitchen}}&ensp;,&ensp;
                         窗口 : {{item.win}}
@@ -132,10 +137,12 @@
                     <p>特别提示 : {{item.detailed}}</p>
                 </td>
                 <td style="width: 20%">
+                    <div style="display:none;">{{item.room_number}}</div>
                     <button type="button" class="btn btn-primary mr-sm-2" data-toggle="modal"
-                            data-target="#modal_booking" @click="booking">
+                            data-target="#modal_booking" @click="booking($event)">
                         详情
                     </button>
+                    <div style="display:none;">{{item.hotel_id}}</div>
                 </td>
             </tr>
 
@@ -154,10 +161,13 @@
     var vm = new Vue({
         el: '#app',
         data: {
+            color:"rgb(202, 211, 149)",
+            kk:"none",
+            ss:"block",
             user: {
                 id: '1',
-                username: "wordpython",
-                head: "/vue/lib/img/5.jpg",
+                username: "",
+                head: "",
                 msg: "用户信息",
                 list: {}
             },
@@ -182,22 +192,47 @@
                     }
                 });
             },
-            booking(){
-                alert("lsjdflkasfsd");
+            booking(e) {
+                //获得点击元素的前一个元素
+                sessionStorage.setItem("room_number",e.currentTarget.previousElementSibling.innerHTML);
+                //获得点击元素的下一个元素的值
+                sessionStorage.setItem("hotel_id",e.currentTarget.nextElementSibling.innerHTML);
+                window.location.href = "/vue/html/booking.html";
             },
-            click_img(event){
-                console.log("lskajdflasdjflksdafj");
+            click_img(event) {
                 alert(event.src);
+            },
+            logout(){
+                this.ss="block";
+                this.kk="none";
+                sessionStorage.setItem("username","请先登录");
+                sessionStorage.setItem("isLogin","false");
+            },
+            login(){
+                window.location.href = "/";
+            },
+            register(){
+                window.location.href = "/register.html";
             }
         },
-        created:function () {
-            var that=this;
+        created: function () {
+            /*登录，注册，退出登录，头像 初始化*/
+            if(sessionStorage.getItem("isLogin")=="true"){//已登录
+                this.ss="none";
+                this.kk="block";
+
+            }
+            this.user.username=sessionStorage.getItem("username");
+            this.user.head="/vue/lib/img/5.jpg";
+
+
+            var that = this;
             $.ajax({
-                url: 'http://localhost:8080/all/list?page=1&limit='+10,
+                url: 'http://localhost:8080/all/list?page=1&limit=' + 10,
                 dataType: "json",
                 success: function (data) {
-                    that.room=data['data']
-                    that.all=data['count']
+                    that.room = data['data']
+                    that.all = data['count']
                     console.log(data['data']);
                 }
             });

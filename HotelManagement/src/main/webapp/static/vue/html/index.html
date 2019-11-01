@@ -1,13 +1,11 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml">
 <head>
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta charset="utf-8">
-
-    <title>Bootstrap4 主页</title>
-
+    <title>酒店</title>
+    <link href="/imgs/favicon.ico" rel="icon">
     <script src="/vue/lib/vue.min.js"></script>
 
     <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
@@ -60,22 +58,25 @@
                     </div>
                 </li>
             </ul>
-            <form class="form-inline my-2 my-lg-0">
+            <div class="form-inline my-2 my-lg-0">
                 <div style="width: 40px; height: 40px;">
                     <img v-bind:src="user.head" class="rounded-circle" alt="Cinque Terre"
                          style="width: 100%; height: 100%;" href="baidu.com">
                 </div>
                 <!-- <a href="#" style="color: snow;" v-model="user.name">{{user.name}}</a> -->
-                <button type="button" class="btn btn-secondary mr-sm-2" data-toggle="modal" data-target="#modal_user">
+                <button type="button" class="btn btn-secondary mr-sm-2" data-toggle="modal" data-target="#modal_user" :style="{display:kk}">
                     {{user.username}}
                 </button>
-                <button class="btn btn-outline-primary my-2 my-sm-0" type="submit" style="color: rgb(202, 211, 149);">
+                <button @click="login" class="btn btn-outline-primary my-2 my-sm-0" type="submit" :style="{color:color,display:ss}">
                     登录
                 </button>
-                <button class="btn btn-outline-primary my-2 my-sm-0" type="submit" style="color: rgb(202, 211, 149);">
+                <button @click="register" class="btn btn-outline-primary my-2 my-sm-0" type="submit" :style="{color:color,display:ss}">
                     注册
                 </button>
-            </form>
+                <button @click="logout" class="btn btn-outline-primary my-2 my-sm-0" type="submit" :style="{color:color,display:kk}">
+                    退出登录
+                </button>
+            </div>
         </div>
     </nav>
 
@@ -134,321 +135,277 @@
 
     <!-- 功能选择框 --><!-- 预定/退订按钮 -->
     <!-- 房间筛选框 --><!-- 房间类型、入住时间-退房时间、筛选条件 -->
-    <!-- <div class="container jumbotron"  id="booking">
+
+    <!-- 房间展示列表 -->
+    <div class="container card bg-light text-dark">
+        <div class="card-body list-inline">
+            <div class="list-inline-item">
+                精选房间
+            </div>
+            <div class="list-inline-item col-md-2 offset-md-9 ">
+                <a href="/vue/html/room.html">查看更多</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+
         <div class="row">
-                <div class="col-md-6">
-                        <button type="button" class="btn btn-primary mr-sm-2" data-toggle="modal" data-target="#myModal1">
-                                我要预定
-                            </button>
-                </div>
-                <div class="col-md-6">
-                        <button id="cancel" type="button" class="btn btn-primary mr-sm-2" data-toggle="modal" data-target="#myModal2">
-                                我要退订
-                            </button>
-                </div>
-        </div> -->
-
-    <!-- <div class="row">
-         <form class="custom-control-inline">
-        <div class="col-md-*">
-                <div class="custom-control-inline">
-                        <h5><span class="badge badge-default">房间类型</span></h5>
-                        <select class="form-control " id="sel1">
-                            <option>标准单人房</option>
-                            <option>标准双人房</option>
-                            <option>豪华单人房</option>
-                            <option>豪华双人房</option>
-                        </select>
-                    </div>
-        </div>
-        <div class="col-md-*">
-                <div class="custom-control-inline">
-
-                        <h5><span class="badge badge-default">入住时间</span></h5>
-                        <input type="date" name="" id="input" class="form-control" value="" required="required" title="">
-
-                    </div>
-        </div>
-        <div class="col-md-*">
-                <div class="custom-control-inline">
-
-                        <h5><span class="badge badge-default">退房时间</span></h5>
-                        <input type="date" name="" id="input" class="form-control" value="" required="required" title="">
-
-                    </div>
-        </div>
-        <div>
-            <button type="button" class="btn btn-primary mr-sm-2" data-toggle="modal" data-target="#myModal3">
-                    房间条件筛选
-            </button>
-        </div>
-        <div class="col-md-*">
-                <div class="custom-control-inline">
-                        <button type="submit" class="btn btn-primary">搜索</button>
-                </div>
-        </div>
-    </form>
-    </div> -->
-
-
-</div>
-<!-- 房间展示列表 -->
-<div class="container card bg-light text-dark">
-    <div class="card-body list-inline">
-        <div class="list-inline-item">
-            精选房间
-        </div>
-        <div class="list-inline-item col-md-2 offset-md-9 ">
-            <a href="/vue/html/room.html">查看更多</a>
-        </div>
-    </div>
-</div>
-
-<div class="container">
-
-    <div class="row">
-        <!-- <div class="col"></div> -->
-        <div class="card col-4">
-            <img class="card-img-top" src="/vue/lib/img/1.jpg" alt="Card image" style="width:100%">
-            <div class="card-body">
-                <h4 class="card-title">John Doe</h4>
-                <p class="card-text">Some example text some example text. John Doe is an architect and engineer</p>
-                <a href="#" class="btn btn-primary">See Profile</a>
-            </div>
-        </div>
-
-
-        <div class="card col-4">
-            <div class="card-body">
-                <h4 class="card-title">Jane Doe</h4>
-                <p class="card-text">Some example text some example text. Jane Doe is an architect and engineer</p>
-                <a href="#" class="btn btn-primary">See Profile</a>
-            </div>
-            <img class="card-img-bottom" src="/vue/lib/img/1.jpg" alt="Card image" style="width:100%">
-        </div>
-
-        <div class="card col-4">
-            <img class="card-img-top" src="/vue/lib/img/1.jpg" alt="Card image" style="width:100%">
-            <div class="card-body">
-                <h4 class="card-title">John Doe</h4>
-                <p class="card-text">Some example text some example text. John Doe is an architect and engineer</p>
-                <a href="#" class="btn btn-primary">See Profile</a>
-            </div>
-        </div>
-        <!-- <div class="col"></div> -->
-    </div>
-
-    <div class="row">
-        <!-- <div class="col"></div> -->
-        <div class="card col-4">
-            <img class="card-img-top" src="/vue/lib/img/1.jpg" alt="Card image" style="width:100%">
-            <div class="card-body">
-                <h4 class="card-title">John Doe</h4>
-                <p class="card-text">Some example text some example text. John Doe is an architect and engineer</p>
-                <a href="#" class="btn btn-primary">See Profile</a>
-            </div>
-        </div>
-
-
-        <div class="card col-4">
-            <div class="card-body">
-                <h4 class="card-title">Jane Doe</h4>
-                <p class="card-text">Some example text some example text. Jane Doe is an architect and engineer</p>
-                <a href="#" class="btn btn-primary">See Profile</a>
-            </div>
-            <img class="card-img-bottom" src="/vue/lib/img/1.jpg" alt="Card image" style="width:100%">
-        </div>
-
-        <div class="card col-4">
-            <img class="card-img-top" src="/vue/lib/img/1.jpg" alt="Card image" style="width:100%">
-            <div class="card-body">
-                <h4 class="card-title">John Doe</h4>vue
-                <p class="card-text">Some example text some example text. John Doe is an architect and engineer</p>
-                <a href="#" class="btn btn-primary">See Profile</a>
-            </div>
-        </div>
-        <!-- <div class="col"></div> -->
-    </div>
-</div>
-
-<br>
-
-
-<!-- 模态框1 -->
-<div class="modal fade" id="myModal1">
-    <div class="modal-dialog">
-        <div class="modal-content">
-
-            <!-- 模态框头部 -->
-            <div class="modal-header">
-                <h4 class="modal-title">预定失败</h4>
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-            </div>
-
-            <!-- 模态框主体 -->
-            <div class="modal-body">
-                还不能预订哦~请先登录账户。
-            </div>
-
-            <!-- 模态框底部 -->
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
-                <a name="cancel" id="wordpython" class="btn btn-primary" href="#" role="button">去登录</a>
-            </div>
-
-        </div>
-    </div>
-</div>
-
-<!-- 模态框2 -->
-<div class="modal fade" id="myModal2">
-    <div class="modal-dialog">
-        <div class="modal-content">
-
-            <!-- 模态框头部 -->
-            <div class="modal-header">
-                <h4 class="modal-title">退订失败</h4>
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-            </div>
-
-            <!-- 模态框主体 -->
-            <div class="modal-body">
-                还不能退订哦~请先登录账户。
-            </div>
-
-            <!-- 模态框底部 -->
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
-                <a name="cancel" id="" class="btn btn-primary" href="#" role="button">去登录</a>
-            </div>
-
-        </div>
-    </div>
-</div>
-<!-- 筛选条件弹框 -->
-<div class="modal fade" id="myModal3">
-    <div class="modal-dialog">
-        <div class="modal-content">
-
-            <!-- 模态框头部 -->
-            <div class="modal-header">
-                <h4 class="modal-title">房间设施筛选</h4>
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-            </div>
-
-            <!-- 模态框主体 -->
-            <div class="modal-body">
-                <div class="form-check">
-                    <label class="form-check-label">
-                        <input type="checkbox" class="form-check-input" value="">WiFi
-                    </label>
-                </div>
-                <div class="form-check">
-                    <label class="form-check-label">
-                        <input type="checkbox" class="form-check-input" value="">阳台
-                    </label>
-                </div>
-                <div class="form-check disabled">
-                    <label class="form-check-label">
-                        <input type="checkbox" class="form-check-input" value="">工作台
-                    </label>
+            <!-- <div class="col"></div> -->
+            <div class="card col-4">
+                <img class="card-img-top" :src="example[0].img" alt="Card image" style="width:100%">
+                <div class="card-body">
+                    <h4 class="card-title">{{example[0].hotel_name}}</h4>
+                    <p class="card-text">{{example[0].detailed}}</p>
+                    <div style="display:none;">{{example[0].room_number}}</div>
+                    <a class="btn btn-primary" @click="booking($event)">详情</a>
+                    <div style="display:none;">{{example[0].hotel_id}}</div>
                 </div>
             </div>
 
-            <!-- 模态框底部 -->
-            <div class="modal-footer">
-                <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
-                <a name="cancel" id="" class="btn btn-primary" href="#" role="button">去登录</a> -->
-                <button type="button" class="btn btn-primary" data-dismiss="modal">确定</button>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+
+            <div class="card col-4">
+                <div class="card-body">
+                    <h4 class="card-title">{{example[1].hotel_name}}</h4>
+                    <p class="card-text">{{example[1].detailed}}</p>
+                    <div style="display:none;">{{example[1].room_number}}</div>
+                    <a class="btn btn-primary" @click="booking($event)">详情</a>
+                    <div style="display:none;">{{example[1].hotel_id}}</div>
+                </div>
+                <img class="card-img-bottom" :src="example[1].img" alt="Card image" style="width:100%">
             </div>
 
+            <div class="card col-4">
+                <img class="card-img-top" :src="example[2].img" alt="Card image" style="width:100%">
+                <div class="card-body">
+                    <h4 class="card-title">{{example[2].hotel_name}}</h4>
+                    <p class="card-text">{{example[2].detailed}}</p>
+                    <div style="display:none;">{{example[2].room_number}}</div>
+                    <a class="btn btn-primary" @click="booking($event)">详情</a>
+                    <div style="display:none;">{{example[2].hotel_id}}</div>
+                </div>
+            </div>
+            <!-- <div class="col"></div> -->
         </div>
-    </div>
-</div>
 
-<!-- 预订按钮弹框 -->
-<div class="modal fade model-lg" id="modal_booking">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-
-            <!-- 模态框头部 -->
-            <div class="modal-header">
-                <h4 class="modal-title">房间预定</h4>
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-            </div>
-
-            <!-- 模态框主体 -->
-            <div class="modal-body">
-                <form class="custom-control">
-                    <div class="form-group">
-                        <label for="name">真实姓名:</label>
-                        <input type="text" class="form-control" id="name">
-                    </div>
-                    <div class="form-group">
-                        <label for="IDcode">身份证号:</label>
-                        <input type="text" class="form-control" id="IDcode">
-                    </div>
-                    <div class="form-group">
-                        <input type="hidden" class="form-control" id="pwd" value="1001">
-                    </div>
-
-                    <button type="submit" class="btn btn-primary ">提交</button>
-                </form>
-            </div>
-
-            <!-- 模态框底部 -->
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-dismiss="modal">提交</button>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
-            </div>
-
-        </div>
-    </div>
-</div>
-
-<!-- 用户模态框 -->
-<div class="modal fade" id="modal_user">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-
-            <!-- 模态框头部 -->
-            <div class="modal-header">
-                <h4 class="modal-title" style="color: cornflowerblue;">{{user.username}}</h4>
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-            </div>
-
-            <!-- 模态框主体 -->
-            <div class="modal-body">
-                <label>用户头像</label>
-                <img v-bind:src="user.head" class="img-fluid border">
-                <div class="input-group mb-3">
-
-                    <input type="text" class="form-control" placeholder="Some text">
-                    <div class="input-group-prepend">
-                        <button class="btn btn-outline-secondary" type="button">Basic Button</button>
-                    </div>
+        <div class="row">
+            <!-- <div class="col"></div> -->
+            <div class="card col-4">
+                <img class="card-img-top" :src="example[3].img" alt="Card image" style="width:100%">
+                <div class="card-body">
+                    <h4 class="card-title">{{example[3].hotel_name}}</h4>
+                    <p class="card-text">{{example[3].detailed}}</p>
+                    <div style="display:none;">{{example[3].room_number}}</div>
+                    <a class="btn btn-primary" @click="booking($event)">详情</a>
+                    <div style="display:none;">{{example[3].hotel_id}}</div>
                 </div>
             </div>
 
-            <!-- 模态框底部 -->
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
-                <a name="cancel" id="tt" class="btn btn-primary" href="#" role="button">去登录</a>
+
+            <div class="card col-4">
+                <div class="card-body">
+                    <h4 class="card-title">{{example[4].hotel_name}}</h4>
+                    <p class="card-text">{{example[4].detailed}}</p>
+                    <div style="display:none;">{{example[4].room_number}}</div>
+                    <a class="btn btn-primary" @click="booking($event)">详情</a>
+                    <div style="display:none;">{{example[4].hotel_id}}</div>
+                </div>
+                <img class="card-img-bottom" :src="example[4].img" alt="Card image" style="width:100%">
             </div>
 
+            <div class="card col-4">
+                <img class="card-img-top" :src="example[5].img" alt="Card image" style="width:100%">
+                <div class="card-body">
+                    <h4 class="card-title">{{example[5].hotel_name}}</h4>
+                    <p class="card-text">{{example[5].detailed}}</p>
+                    <div style="display:none;">{{example[5].room_number}}</div>
+                    <a class="btn btn-primary" @click="booking($event)">详情</a>
+                    <div style="display:none;">{{example[5].hotel_id}}</div>
+                </div>
+            </div>
+            <!-- <div class="col"></div> -->
         </div>
     </div>
-</div>
+
+    <br>
 
 
-<!-- 版权声明栏 -->
-<div class="">
-    <div style="background-color: #3579aa; height: 130px;">
-        版权声明
+    <!-- 模态框1 -->
+    <div class="modal fade" id="myModal1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <!-- 模态框头部 -->
+                <div class="modal-header">
+                    <h4 class="modal-title">预定失败</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <!-- 模态框主体 -->
+                <div class="modal-body">
+                    还不能预订哦~请先登录账户。
+                </div>
+
+                <!-- 模态框底部 -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+                    <a name="cancel" id="wordpython" class="btn btn-primary" href="#" role="button">去登录</a>
+                </div>
+
+            </div>
+        </div>
     </div>
-</div>
 
+    <!-- 模态框2 -->
+    <div class="modal fade" id="myModal2">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <!-- 模态框头部 -->
+                <div class="modal-header">
+                    <h4 class="modal-title">退订失败</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <!-- 模态框主体 -->
+                <div class="modal-body">
+                    还不能退订哦~请先登录账户。
+                </div>
+
+                <!-- 模态框底部 -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+                    <a name="cancel" id="" class="btn btn-primary" href="#" role="button">去登录</a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- 筛选条件弹框 -->
+    <div class="modal fade" id="myModal3">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <!-- 模态框头部 -->
+                <div class="modal-header">
+                    <h4 class="modal-title">房间设施筛选</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <!-- 模态框主体 -->
+                <div class="modal-body">
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input type="checkbox" class="form-check-input" value="">WiFi
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input type="checkbox" class="form-check-input" value="">阳台
+                        </label>
+                    </div>
+                    <div class="form-check disabled">
+                        <label class="form-check-label">
+                            <input type="checkbox" class="form-check-input" value="">工作台
+                        </label>
+                    </div>
+                </div>
+
+                <!-- 模态框底部 -->
+                <div class="modal-footer">
+                    <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+                    <a name="cancel" id="" class="btn btn-primary" href="#" role="button">去登录</a> -->
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">确定</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- 预订按钮弹框 -->
+    <div class="modal fade model-lg" id="modal_booking">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+
+                <!-- 模态框头部 -->
+                <div class="modal-header">
+                    <h4 class="modal-title">房间预定</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <!-- 模态框主体 -->
+                <div class="modal-body">
+                    <form class="custom-control">
+                        <div class="form-group">
+                            <label for="name">真实姓名:</label>
+                            <input type="text" class="form-control" id="name">
+                        </div>
+                        <div class="form-group">
+                            <label for="IDcode">身份证号:</label>
+                            <input type="text" class="form-control" id="IDcode">
+                        </div>
+                        <div class="form-group">
+                            <input type="hidden" class="form-control" id="pwd" value="1001">
+                        </div>
+
+                        <button type="submit" class="btn btn-primary ">提交</button>
+                    </form>
+                </div>
+
+                <!-- 模态框底部 -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">提交</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- 用户模态框 -->
+    <div class="modal fade" id="modal_user">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+
+                <!-- 模态框头部 -->
+                <div class="modal-header">
+                    <h4 class="modal-title" style="color: cornflowerblue;">{{user.username}}</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <!-- 模态框主体 -->
+                <div class="modal-body">
+                    <label>用户头像</label>
+                    <img v-bind:src="user.head" class="img-fluid border">
+                    <div class="input-group mb-3">
+
+                        <input type="text" class="form-control" placeholder="Some text">
+                        <div class="input-group-prepend">
+                            <button class="btn btn-outline-secondary" type="button">Basic Button</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 模态框底部 -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+                    <a name="cancel" id="tt" class="btn btn-primary" href="#" role="button">去登录</a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <!-- 版权声明栏 -->
+    <div class="">
+        <div style="background-color: #3579aa; height: 130px;">
+            版权声明
+        </div>
+    </div>
+
+</div>
 </div>
 
 <script>
@@ -456,22 +413,98 @@
     var vm = new Vue({
         el: '#app',
         data: {
-            user:{
-                id:'1',
-                username:"wordpython",
-                head:"/vue/lib/img/5.jpg",
-                msg:"用户信息",
-                list:{
-
-                }
+            color:"rgb(202, 211, 149)",
+            kk:"none",
+            ss:"block",
+            user: {
+                id: '1',
+                username: '',
+                head: "",
+                msg: "用户信息",
+                list: {}
             },
             room: [
-                {id:1, type:"标准单人房", pic: "/vue/lib/img/1.jpg", msg:"房间基本信息1"},
-                {id:2, type:"标准双人房", pic: "/vue/lib/img/2.jpg", msg:"房间基本信息2"},
-                {id:3, type:"豪华单人房", pic: "/vue/lib/img/3.jpg", msg:"房间基本信息3"}
+                {id: 1, type: "标准单人房", pic: "/vue/lib/img/1.jpg", msg: "房间基本信息1"},
+                {id: 2, type: "标准双人房", pic: "/vue/lib/img/2.jpg", msg: "房间基本信息2"},
+                {id: 3, type: "豪华单人房", pic: "/vue/lib/img/3.jpg", msg: "房间基本信息3"}
+            ],
+            example: [
+                {
+                    room_number: 888888,
+                    hotel_id: 1,
+                    hotel_name: "裕华商务公寓",
+                    img: '/vue/lib/img/1.jpg',
+                    detailed: "裕华商务公寓为您打造如家一般的感觉"
+                },
+                {
+                    room_number: 867677,
+                    hotel_id: 1,
+                    hotel_name: "裕华商务公寓",
+                    img: '/vue/lib/img/2.jpg',
+                    detailed: "裕华商务公寓为您打造如家一般的感觉"
+                },
+                {
+                    room_number: 8676773,
+                    hotel_id: 1,
+                    hotel_name: "裕华商务公寓",
+                    img: '/vue/lib/img/3.jpg',
+                    detailed: "裕华商务公寓为您打造如家一般的感觉"
+                },
+                {
+                    room_number: 8676774,
+                    hotel_id: 1,
+                    hotel_name: "裕华商务公寓",
+                    img: '/vue/lib/img/2.jpg',
+                    detailed: "裕华商务公寓为您打造如家一般的感觉"
+                },
+                {
+                    room_number: 8676775,
+                    hotel_id: 1,
+                    hotel_name: "裕华商务公寓",
+                    img: '/vue/lib/img/3.jpg',
+                    detailed: "裕华商务公寓为您打造如家一般的感觉"
+                },
+                {
+                    room_number: 8676776,
+                    hotel_id: 1,
+                    hotel_name: "裕华商务公寓",
+                    img: '/vue/lib/img/1.jpg',
+                    detailed: "裕华商务公寓为您打造如家一般的感觉"
+                }
             ]
         },
-        methods: {}
+        methods: {
+            booking(e) {
+                //获得点击元素的前一个元素
+                sessionStorage.setItem("room_number", e.currentTarget.previousElementSibling.innerHTML);
+                //获得点击元素的下一个元素的值
+                sessionStorage.setItem("hotel_id", e.currentTarget.nextElementSibling.innerHTML);
+                window.location.href = "/vue/html/booking.html";
+            },
+            logout(){
+                this.ss="block";
+                this.kk="none";
+                sessionStorage.setItem("username","请先登录");
+                sessionStorage.setItem("isLogin","false");
+            },
+            login(){
+                window.location.href = "/";
+            },
+            register(){
+                window.location.href = "/register.html";
+            }
+        },
+        created: function () {
+            console.log(sessionStorage.getItem("isLogin"));
+            if(sessionStorage.getItem("isLogin")=="true"){//已登录
+                this.ss="none";
+                this.kk="block";
+
+            }
+            this.user.username=sessionStorage.getItem("username");
+            this.user.head="/vue/lib/img/5.jpg";
+
+        }
     });
 </script>
 </body>
